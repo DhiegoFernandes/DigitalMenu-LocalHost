@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import MainProvider from './context/context';
+import PrivateRoute from './util/privateRoute';
 
 import Home from './pages/Home/Home';
 import System from './pages/Settings/System';
@@ -24,11 +25,19 @@ function Router(){
                     />
                     <Route 
                         path='/home'
-                        element={<Home />}
+                        element={
+                        <PrivateRoute>
+                            <Home />
+                        </PrivateRoute>
+                        }
                     />
                     <Route 
                         path='/system'
-                        element={<System />}
+                        element={
+                        <PrivateRoute>
+                            <System />
+                        </PrivateRoute>
+                        }
                     >
                         <Route path='produtos' element={<Produtos />}/>
                         <Route path='pedidos' element={<Pedidos />}/>
@@ -38,7 +47,11 @@ function Router(){
                     </Route>
                     <Route 
                         path='/client'
-                        element={<Client />}
+                        element={      
+                        <PrivateRoute>   
+                            <Client />
+                        </PrivateRoute> 
+                        }
                     />
                 </Routes>
             </MainProvider>
