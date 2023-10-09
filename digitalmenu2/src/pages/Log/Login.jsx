@@ -22,46 +22,58 @@ function Login(){
 
     const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("");
-    const [tipoSenha, setTipoSenha] = useState("");
+    const [tipoSenha, setTipoSenha] = useState("password");
 
     return(
         <>
-            <div>
-                <h1>Login</h1>
-                <img src={logoDM} alt="Logo Digital Menu" />
-                <form>
-                    <input 
-                        type="text"
-                        placeholder='Nome'
-                        autoFocus
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                    />
-                    <input 
-                        type={tipoSenha}
-                        placeholder='Senha'
-                        autoFocus
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
-                    />
-                    {tipoSenha === "password" ? (
-                        <button className="senha" type="button"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setTipoSenha("text")
-                        }} ><img className="olhos" src={olhofechado} /></button>
-                    ) : (
-                        <button className="senha" type="button"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setTipoSenha("password")
-                        }}><img className="olhos" src={olhoaberto} /></button>)}
-                        <button
-                            type='submit'
-                            onClick={(e) => autenticar(e, nome, senha)
-                    }
-                    >Logar</button>
-                </form>
+            <div className='container'>
+                <div className='box-login'>
+                    <img className='logo-digitalmenu' src={logoDM} alt="Logo Digital Menu" />
+                    <div className='formulario-login'>
+                        <form>
+                            <input 
+                                className='input-nome'
+                                type="text"
+                                placeholder='Nome'
+                                autoFocus
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                            />
+                            <div className='senha-formulario'>
+                            <input
+                                className='input-senha' 
+                                type={tipoSenha}
+                                placeholder='Senha'
+                                autoFocus
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                            />
+                            {tipoSenha === "password" ? (
+                                <button 
+                                    className="btn-senha"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setTipoSenha("text")
+                                    }}
+                                ><img className="olhos" src={olhofechado} /></button>
+                            ) : (
+                                <button 
+                                    className="btn-senha" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setTipoSenha("password")
+                                    }}
+                                ><img className="olhos" src={olhoaberto} /></button>)} 
+                            </div>
+                                <button
+                                    className='btn-logar'
+                                    type='submit'
+                                    onClick={(e) => autenticar(e, nome, senha)
+                                    }
+                            >Logar</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </>
     );
