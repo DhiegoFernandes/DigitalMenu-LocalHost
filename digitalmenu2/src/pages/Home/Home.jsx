@@ -9,7 +9,7 @@ function Home(){
             <div>
                 <h1>Home</h1>
                 <button onClick={() => {
-                    localStorage.removeItem("logado");
+                    localStorage.removeItem("token");
                     navigate('/')
                 }}>Sair</button>
                 <button onClick={()=>navigate('/system')}>Área do Sistema</button>
