@@ -1,21 +1,21 @@
-# **Digital menu API 🍽️**
+# **Digital Menu API (Ta de cara novaaa!)🍽️**
  ## Sobre o nosso projeto
  ### O Digital Menu é um sistema que tem foco em restaurantes, fornecendo uma plataforma que digitaliza a maneira de efetuar pedidos em restaurantes.
 
 ## Como rodar o projeto?
 
 ``` bash
-# Clone este repositório
-$ git clone https://github.com/Guigite/DigitalMenu.git
+# Clone estes repositórios
+$ git clone https://github.com/Guigite/DigitalMenu2.0.git
 
 # Acesse a pasta do projeto no seu terminal
-$ cd DigitalMenu
+$ cd DigitalMenu2.0
 
 # Instale as dependencias 
 $ npm install
 
 # Execute a aplicação
-$ npm run start:both
+$ npm run dev
 ```
 
 ## 💻Tecnologias utilizadas
