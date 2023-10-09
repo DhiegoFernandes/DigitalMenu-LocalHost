@@ -4,7 +4,7 @@ function System(){
     return(
         <>
             <div>
-                <h1>System</h1>
+                <h1 className='italic'>System</h1>
                 <Outlet />
             </div>
         </>

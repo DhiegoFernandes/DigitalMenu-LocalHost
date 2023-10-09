@@ -2,16 +2,16 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import MainProvider from './context/context';
 
-import Home from './pages/Home';
-import System from './pages/System';
-import Login from './pages/Login';
-import Client from './pages/Client';
+import Home from './pages/Home/Home';
+import System from './pages/Settings/System';
+import Login from './pages/Log/Login';
+import Client from './pages/Client/Client';
 
-import Pedidos from './components/Pedidos';
-import Produtos from './components/Produtos';
-import Categorias from './components/Categorias';
-import Relatorios from './components/Relatorios';
-import Mesas from './components/Mesas';
+import Pedidos from './components/Pedidos/Pedidos';
+import Produtos from './components/Produtos/Produtos';
+import Categorias from './components/Categorias/Categorias';
+import Relatorios from './components/Relatorios/Relatorios';
+import Mesas from './components/Mesas/Mesas';
 
 function Router(){
     return(
