@@ -1,22 +1,121 @@
-import { Outlet, useNavigate, Link } from 'react-router-dom'
+import { Outlet, useNavigate} from 'react-router-dom'
+import { useState } from 'react';
+
+import './system.css'
+
+//imagens
+import logoDM from '../../assets/image/logo_digitalmenu2.png'
 
 function System(){
     
+    const [ativo, setAtivo] = useState("");
+    const [ativo1, setAtivo1] = useState("");
+    const [ativo2, setAtivo2] = useState("");
+    const [ativo3, setAtivo3] = useState("");
+    const [ativo4, setAtivo4] = useState("");
+    const [bemvindo, setBemvindo] = useState("bemvindo")
+
+
     const navigate = useNavigate();
     
     return(
         <>
-            <div>
-                <nav>
-                    <Link to={'relatorios'}>Relatorios</Link>
-                    <Link to={'produtos'}>Produtos</Link>
-                    <Link to={'categorias'}>Categorias</Link>
-                    <Link to={'mesas'}>Mesas</Link>
-                    <Link to={'pedidos'}>Pedidos</Link>
-                </nav>
-                <h1>System</h1>
-                <button onClick={() => navigate('/home')}>Home</button>
-                <Outlet />
+            <div className='body-sidebar'>
+                <aside className='menu-lateral'>
+                    <header className='div-logo'>
+                        <button className='btn-logo' onClick={() => {navigate('/home')}}><img className='logo' src={logoDM} alt="" /></button>
+                    </header>
+
+                    <header className='div-logo2'>
+                        <button className='btn-logo2' onClick={() => {navigate('/home')}}><i className='material-symbols-outlined'>home</i></button>
+                    </header>
+
+                    <nav className=''>
+                        <button onClick={() => {
+                            navigate('relatorios'); 
+                            setAtivo("ativo");
+                            setAtivo1("");
+                            setAtivo2("");
+                            setAtivo3("");
+                            setAtivo4("");
+                            setBemvindo("bemvindo-desativado")
+                            }}>
+                            <span className={ativo}>
+                                <i className='material-symbols-outlined'>bar_chart_4_bars</i>
+                                <span>Relatórios</span>
+                            </span>
+                        </button>
+
+                        <button onClick={() => {
+                            navigate('produtos'); 
+                            setAtivo("");
+                            setAtivo1("ativo");
+                            setAtivo2("");
+                            setAtivo3("");
+                            setAtivo4("");
+                            setBemvindo("bemvindo-desativado")
+                            }}>
+                            <span className={ativo1}>
+                                <i className='material-symbols-outlined'>menu_book</i>
+                                <span>Produtos</span>
+                            </span>
+                        </button>
+
+                        <button onClick={() => {
+                            navigate('categorias'); 
+                            setAtivo("");
+                            setAtivo1("");
+                            setAtivo2("ativo");
+                            setAtivo3("");
+                            setAtivo4("");
+                            setBemvindo("bemvindo-desativado")
+                            }}>
+                            <span className={ativo2}>
+                                <i className='material-symbols-outlined'>format_list_bulleted</i>
+                                <span>Categorias</span>
+                            </span>
+                        </button>
+
+                        <button onClick={() => {
+                            navigate('mesas'); 
+                            setAtivo("");
+                            setAtivo1("");
+                            setAtivo2("");
+                            setAtivo3("ativo");
+                            setAtivo4("");
+                            setBemvindo("bemvindo-desativado")
+                            }}>
+                            <span className={ativo3}>
+                                <i className='material-symbols-outlined'>table_restaurant</i>
+                                <span>Mesas</span>
+                            </span>
+                        </button>
+
+                        <button onClick={() => {
+                            navigate('pedidos'); 
+                            setAtivo("");
+                            setAtivo1("");
+                            setAtivo2("");
+                            setAtivo3("");
+                            setAtivo4("ativo");
+                            setBemvindo("bemvindo-desativado")
+                            }}>
+                            <span className={ativo4}>
+                                <i className='material-symbols-outlined'>contract</i>
+                                <span>Pedidos</span>
+                            </span>
+                        </button>
+                    </nav>
+
+                </aside>   
+                
+                <div className='container-info'> 
+                    <Outlet/>
+                    <div className={bemvindo}>
+                        <p className='mensagem'>Bem vindo ao SISTEMA!</p>
+                        <img className='icon-settings' src="https://cdn-icons-png.flaticon.com/512/407/407009.png" alt="settings icon" />
+                    </div>
+                </div>    
             </div>
         </>
     );

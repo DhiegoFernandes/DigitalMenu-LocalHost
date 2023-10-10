@@ -1,7 +1,12 @@
 function Mesas(){
     return(
         <>
-            <div>
+            <div className="container-mesa">
+                <h1>Mesas</h1>
+                <h1>Mesas</h1>
+                <h1>Mesas</h1>
+                <h1>Mesas</h1>
+                <h1>Mesas</h1>
                 <h1>Mesas</h1>
             </div>
         </>

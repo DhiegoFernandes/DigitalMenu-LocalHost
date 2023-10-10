@@ -3,6 +3,9 @@ function Relatorios(){
         <>
             <div>
                 <h1>Relatorios</h1>
+                <p>sadasd</p>
+                <p>sadasd</p>
+               
             </div>
         </>
     );

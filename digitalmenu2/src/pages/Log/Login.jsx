@@ -4,6 +4,7 @@ import { MainContext } from '../../context/context';
 
 import './login.css'
 
+//imagens
 import logoDM from '../../assets/image/logo_digitalmenu.png'
 import olhoaberto from '../../assets/image/eyeopen.png'
 import olhofechado from '../../assets/image/eyeclosed.png'
