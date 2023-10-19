@@ -128,6 +128,16 @@
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
 }
+
+/*  Ajustando Outlet  */
+
+.container-info{
+    margin-left: 270px;
+    height: 100%;
+    background-color: rgb(80, 80, 80);
+    transition: 1s;
+}
+
     
 /* Diminuição da tela */
 
@@ -152,51 +162,15 @@
         opacity: 1;
     }
 
+    .container-info{
+        margin-left: 85px;
+        height: 100%;
+        background-color: rgb(80, 80, 80);
+        transition: 0.5s;
+    }
 }
 
-/*  Ajustando Outlet  */
 
-.container-info{
-    margin-left: 270px;
-    height: 100%;
-    background-color: rgb(80, 80, 80);
-}
 
-/* Ajustando mensagem de bem vindo */
 
-.bemvindo{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.mensagem{
-    font-size: 60px;
-    font-weight: bold;
-    font-family: sans-serif;
-    margin-bottom: 30px;
-    color: #F6F2D9;
-}
-
-@keyframes loading {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-
-.icon-settings{
-    animation: loading 8s linear infinite;
-}
-
-.bemvindo-desativado{
-    visibility: hidden;
-    opacity: 0;
-    z-index: -1;
-}
 

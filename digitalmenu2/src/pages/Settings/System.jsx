@@ -1,5 +1,5 @@
 import { Outlet, useNavigate} from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './system.css'
 
@@ -13,10 +13,13 @@ function System(){
     const [ativo2, setAtivo2] = useState("");
     const [ativo3, setAtivo3] = useState("");
     const [ativo4, setAtivo4] = useState("");
-    const [bemvindo, setBemvindo] = useState("bemvindo")
-
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        navigate('/system/relatorios');
+        setAtivo("ativo")
+    }, []);
     
     return(
         <>
@@ -38,7 +41,6 @@ function System(){
                             setAtivo2("");
                             setAtivo3("");
                             setAtivo4("");
-                            setBemvindo("bemvindo-desativado")
                             }}>
                             <span className={ativo}>
                                 <i className='material-symbols-outlined'>bar_chart_4_bars</i>
@@ -53,7 +55,6 @@ function System(){
                             setAtivo2("");
                             setAtivo3("");
                             setAtivo4("");
-                            setBemvindo("bemvindo-desativado")
                             }}>
                             <span className={ativo1}>
                                 <i className='material-symbols-outlined'>menu_book</i>
@@ -68,7 +69,6 @@ function System(){
                             setAtivo2("ativo");
                             setAtivo3("");
                             setAtivo4("");
-                            setBemvindo("bemvindo-desativado")
                             }}>
                             <span className={ativo2}>
                                 <i className='material-symbols-outlined'>format_list_bulleted</i>
@@ -83,7 +83,6 @@ function System(){
                             setAtivo2("");
                             setAtivo3("ativo");
                             setAtivo4("");
-                            setBemvindo("bemvindo-desativado")
                             }}>
                             <span className={ativo3}>
                                 <i className='material-symbols-outlined'>table_restaurant</i>
@@ -98,7 +97,6 @@ function System(){
                             setAtivo2("");
                             setAtivo3("");
                             setAtivo4("ativo");
-                            setBemvindo("bemvindo-desativado")
                             }}>
                             <span className={ativo4}>
                                 <i className='material-symbols-outlined'>contract</i>
@@ -111,10 +109,6 @@ function System(){
                 
                 <div className='container-info'> 
                     <Outlet/>
-                    <div className={bemvindo}>
-                        <p className='mensagem'>Bem vindo ao SISTEMA!</p>
-                        <img className='icon-settings' src="https://cdn-icons-png.flaticon.com/512/407/407009.png" alt="settings icon" />
-                    </div>
                 </div>    
             </div>
         </>

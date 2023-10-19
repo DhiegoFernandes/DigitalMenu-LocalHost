@@ -1,11 +1,12 @@
+import './relatorios.css'
+
 function Relatorios(){
     return(
         <>
-            <div>
-                <h1>Relatorios</h1>
-                <p>sadasd</p>
-                <p>sadasd</p>
-               
+            <div className="container-relatorio">
+                <div className='box border'>
+                    TABELA
+                </div>
             </div>
         </>
     );
