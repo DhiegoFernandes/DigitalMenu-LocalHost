@@ -1,11 +1,10 @@
+import './relatorios.css'
+
 function Relatorios(){
     return(
         <>
-            <div>
+            <div className="container-relatorio">
                 <h1>Relatorios</h1>
-                <p>sadasd</p>
-                <p>sadasd</p>
-               
             </div>
         </>
     );

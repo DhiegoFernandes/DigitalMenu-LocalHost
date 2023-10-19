@@ -1,7 +1,9 @@
+import './produtos.css'
+
 function Produtos(){
     return(
         <>
-            <div>
+            <div className="container-produto">
                 <h1>Produtos</h1>
             </div>
         </>
