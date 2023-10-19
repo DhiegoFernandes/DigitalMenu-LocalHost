@@ -4,7 +4,9 @@ function Relatorios(){
     return(
         <>
             <div className="container-relatorio">
-                <h1>Relatorios</h1>
+                <div className='box border'>
+                    TABELA
+                </div>
             </div>
         </>
     );

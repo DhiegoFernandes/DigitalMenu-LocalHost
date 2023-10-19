@@ -29,10 +29,63 @@ function MainProvider({ children }) {
         }
     }
 
+    // ==================== Relatórios ==================== //
+
+
+
+    // ==================== Pedidos ==================== //
+
+    async function listarPedidos(){
+        try{
+            const { data } = await api.get("/pedidos/all")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    // ==================== Produtos ==================== //
+
+    async function listarProdutos(){
+        try{
+            const { data } = await api.get("/produto")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    // ==================== Mesas ==================== //
+
+    async function listarMesas(){
+        try{
+            const { data } =  await api.get("/mesa/todas-mesas")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    // ==================== Categorias ==================== //
+
+    async function listarCategorias(){
+        try{
+            const { data } =  await api.get("/categorias/listar")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+    
+    //RETURN
     return (
         <MainContext.Provider
         value={{
-            autenticar
+            autenticar,
+            listarCategorias,
+            listarMesas,
+            listarPedidos,
+            listarProdutos
         }}
         >
         {children}
