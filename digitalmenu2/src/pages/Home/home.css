@@ -1,0 +1,97 @@
+/* HEADER */
+.home_cabecalho {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    background-color: #2C2C2C;
+    justify-content: space-between;
+}
+
+.home_dmLogo {
+    width: 300px;
+    margin-left: 2vw;
+}
+
+.btn_sair_home {
+    margin-right: 2vw;
+    width: 5vw;
+    height: 35%;
+}
+
+/* APRESENTACAO */
+.home_apresentacao {
+    display: grid;
+    background-color: #F6F2D9;
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
+    grid-template-rows: 10vh 250px 250px 10vh;
+
+    width: auto;
+    height: auto;
+}
+
+.home_imagem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #2C2C2C;
+    grid-row: 2/4;
+    grid-column: 2/4;
+}
+
+.home-descricao {
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}
+
+.fotoApresentacao {
+    border-radius: 15px;
+    width: 90%;
+    border: 4px solid white;
+
+}
+
+/* OPCOES */
+
+.home-entrar-descricao {
+    color: white;
+    margin-bottom: 5vh;
+
+}
+
+.home_opcoes {
+    background-color: #505050;
+    grid-row: 2/4;
+    grid-column: 4/6;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.home_opcoes button {
+    margin-left: 10vw;
+    margin-right: 10vw;
+
+    height: 10vh;
+    margin-bottom: 10px;
+
+
+    background-color: rgb(230, 157, 2);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 1rem;
+
+}
+
+.home_opcoes button:hover{
+    background-color: #2C2C2C;
+}
