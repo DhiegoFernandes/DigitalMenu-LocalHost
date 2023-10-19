@@ -5,7 +5,7 @@ function Relatorios(){
         <>
             <div className="container-relatorio">
                 <div className='box border'>
-                    TABELA
+                    
                 </div>
             </div>
         </>

@@ -4,7 +4,9 @@ function Categorias(){
     return(
         <>
             <div className="container-categoria">
-                <h1>Categorias</h1>
+                <div className='box border'>
+                    
+                </div>
             </div>
         </>
     );
