@@ -20,7 +20,7 @@ function Home() {
                             <button className="btn_sair_home" onClick={() => {
                                 localStorage.removeItem("token");
                                 navigate('/')
-                            }}>Sair</button>
+                            }}><i className='material-symbols-outlined'>logout</i></button>
 
                         </div>
                     </nav>
