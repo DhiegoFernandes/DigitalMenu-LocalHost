@@ -103,4 +103,5 @@
 
 .home_opcoes button:hover{
     background-color: #2C2C2C;
+    cursor: pointer;
 }
