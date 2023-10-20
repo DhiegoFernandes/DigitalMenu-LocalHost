@@ -1,0 +1,110 @@
+.client_principal{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #525252;
+    justify-content: center;
+}
+
+.div_principal_client {
+    background-color: #ffffff;
+    border: 3px solid rgb(230, 157, 2);
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 20px;
+    padding: 10px;
+
+    
+
+}
+
+.client_mensagem {
+    margin-bottom: 2vh;
+    text-align: center;
+    color: white;
+    
+}
+
+/* logo da navbar*/
+.btn_logo_client {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.tam_logo_client {
+    width: 300px;
+    margin-left: 2vw;
+    margin-top: 1%;
+}
+
+.btn_logo_client:hover {
+    transform: scale(1.1);
+
+}
+
+/* botao home */
+.btn_home_client {
+    margin-right: 2vw;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 60px;
+}
+
+.btn_home_client i {
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* div das mesas */
+.mesas {
+    font-weight: bold;
+
+}
+
+.tamanho-img {
+    height: 130px;
+    width: 120px;
+}
+
+.Formato-mesa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.Formato-mesa p {
+    display: flex;
+    justify-content: center;
+}
+
+
+.formTemporario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+    font-weight: 900;
+    color: #d3a741;
+}
+
+
+.mesas:hover {
+    height: 150px;
+}
+
+.btn-numero {
+    border: none;
+}
+
+.btn-numero:hover {
+    background-color: #ffb300;
+    cursor: pointer;
+}
