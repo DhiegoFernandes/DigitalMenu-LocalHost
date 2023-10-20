@@ -31,6 +31,19 @@ function Mesas(){
             minWidth: 250,
             hideable: false,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+        },
+        {
+            field: "actions",
+            headerName: "Ações",
+            minWidth: 200,
+            hideable: false,
+            renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+            renderCell: (params) => (
+                <div className='btn-actions'>
+                    <button><i className='material-symbols-outlined'>check</i></button>
+                    <button><i className='material-symbols-outlined'>delete</i></button>
+                </div>
+            ) 
         }
     ]
     const getRowId = (row) =>{
