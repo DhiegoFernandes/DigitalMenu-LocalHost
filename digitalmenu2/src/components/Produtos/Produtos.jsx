@@ -35,7 +35,7 @@ function Produtos(){
         {
             field: "descricao",
             headerName: "Descrição",
-            minWidth: 250,
+            minWidth: 150,
             hideable: false,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
         },
