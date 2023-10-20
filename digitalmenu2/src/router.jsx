@@ -39,11 +39,31 @@ function Router(){
                         </PrivateRoute>
                         }
                     >
-                        <Route path='produtos' element={<Produtos />}/>
-                        <Route path='pedidos' element={<Pedidos />}/>
-                        <Route path='categorias' element={<Categorias />}/>
-                        <Route path='relatorios' element={<Relatorios />}/>
-                        <Route path='mesas' element={<Mesas />}/>
+                        <Route path='produtos' element={
+                        <PrivateRoute>
+                            <Produtos />
+                        </PrivateRoute>
+                        }/>
+                        <Route path='pedidos' element={
+                        <PrivateRoute>
+                            <Pedidos />
+                        </PrivateRoute>
+                        }/>
+                        <Route path='categorias' element={
+                        <PrivateRoute>
+                            <Categorias />
+                        </PrivateRoute>
+                        }/>
+                        <Route path='relatorios' element={
+                        <PrivateRoute>
+                            <Relatorios />
+                        </PrivateRoute>
+                        }/>
+                        <Route path='mesas' element={
+                        <PrivateRoute>
+                            <Mesas />
+                        </PrivateRoute>
+                        }/>
                     </Route>
                     <Route 
                         path='/client'

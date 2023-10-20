@@ -53,7 +53,10 @@ function Mesas(){
                     pageSizeOptions={[5, 10]}
                     localeText={localePTBR}
                 />
-                </div>               
+                </div>
+                <div className='btn-cadastro-mesa'>
+                    <button>Cadastrar Mesa</button>
+                </div>             
             </div>
         </>
     );

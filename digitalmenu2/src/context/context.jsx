@@ -31,7 +31,50 @@ function MainProvider({ children }) {
 
     // ==================== Relatórios ==================== //
 
+    async function produtosVendidos(){
+        try{
+            const { data } = await api.get("/relatorio/itens/mais/vendidos")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
 
+    // async function produtosFaturados(){
+    //     try{
+    //         const { data } = await api.get("/pedidos/all")
+    //         return data
+    //     }catch(e){
+    //         console.log(e)
+    //     }
+    // }
+
+    async function totalProdutosUni(){
+        try{
+            const { data } = await api.get("/relatorio/qtde/vendido")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async function totalPedidos(){
+        try{
+            const { data } = await api.get("/relatorio/total")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async function gorjetas(){
+        try{
+            const { data } = await api.get("/relatorio/calcular/gorjeta")
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
 
     // ==================== Pedidos ==================== //
 
@@ -85,7 +128,11 @@ function MainProvider({ children }) {
             listarCategorias,
             listarMesas,
             listarPedidos,
-            listarProdutos
+            listarProdutos,
+            gorjetas,
+            totalPedidos,
+            totalProdutosUni,
+            produtosVendidos
         }}
         >
         {children}

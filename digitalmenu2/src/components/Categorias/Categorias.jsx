@@ -59,6 +59,9 @@ function Categorias(){
                     localeText={localePTBR}
                 />     
                 </div>
+                <div className='btn-cadastro-categoria'>
+                        <button>Cadastrar Categoria</button>
+                </div>
             </div>
         </>
     );

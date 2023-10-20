@@ -83,6 +83,9 @@ function Produtos(){
                     localeText={localePTBR}
                 />  
                 </div>
+                <div className='btn-cadastro-produto'>
+                    <button>Cadastrar Produto</button>
+                </div>
             </div>
         </>
     );
