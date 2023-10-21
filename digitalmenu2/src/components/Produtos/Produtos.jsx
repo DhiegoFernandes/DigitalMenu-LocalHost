@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
+import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
 
 import './produtos.css'
@@ -73,11 +74,15 @@ function Produtos(){
                 </div>
             ) 
         }
-      ]
+    ]
     
-      const getRowId = (row) =>{
-        return row.idproduto;
-      }
+    const getRowId = (row) =>{
+    return row.idproduto;
+    }
+
+    const [open, setOpen] = useState(false);
+    const Open = () => setOpen(true);
+    const Close = () => setOpen(false);
 
     return(
         <>
@@ -97,7 +102,21 @@ function Produtos(){
                 />  
                 </div>
                 <div className='btn-cadastro-produto'>
-                    <button>Cadastrar Produto</button>
+                    <button onClick={() => {Open()}}>Cadastrar Produto</button> 
+                    <Modal
+                        open={open}
+                        onClose={Close}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+                                <button className='btn-cancelar'>Cancelar</button>
+                                <button className='btn-salvar'>Salvar</button>  
+                            </div>
+                        </div>
+                    </Modal>
+                    
                 </div>
             </div>
         </>
