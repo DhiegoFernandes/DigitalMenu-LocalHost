@@ -7,8 +7,12 @@ import localePTBR from '../../util/locale';
 import './categorias.css'
 
 function Categorias(){
-    const{listarCategorias} = useContext(MainContext);
+    
+    const{listarCategorias, cadastrarCategoria, ativarCategoria, desativarCategoria} = useContext(MainContext);
+
     const[categorias, setCategorias] = useState([]);
+    const [categoria, setCategoria] = useState("");
+    const [idCategoria, setIdCategoria] = useState("");
 
     useEffect(() =>{
         listarCategorias().then((resp)=>{
@@ -46,8 +50,8 @@ function Categorias(){
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
             renderCell: (params) => (
                 <div className='btn-actions'>
-                    <button><i className='material-symbols-outlined'>edit</i></button>
-                    <button><i className='material-symbols-outlined'>delete</i></button>
+                    <button onClick={() => {setIdCategoria(params.row.idcategoria); OpenCatAtivar()}}><i className='material-symbols-outlined'>check</i></button>
+                    <button onClick={() => {setIdCategoria(params.row.idcategoria); OpenCatDesativar()}}><i className='material-symbols-outlined'>delete</i></button>
                 </div>
             ) 
         }
@@ -56,9 +60,17 @@ function Categorias(){
         return row.idcategoria;
     }
 
-    const [openMesa, setOpenMesa] = useState(false);
-    const OpenMesa = () => setOpenMesa(true);
-    const CloseMesa = () => setOpenMesa(false);
+    const [openCat, setOpenCat] = useState(false);
+    const OpenCat = () => setOpenCat(true);
+    const CloseCat = () => setOpenCat(false);
+
+    const [openCatAtivar, setOpenCatAtivar] = useState(false);
+    const OpenCatAtivar = () => setOpenCatAtivar(true);
+    const CloseCatAtivar = () => setOpenCatAtivar(false);
+    
+    const [openCatDesativar, setOpenCatDesativar] = useState(false);
+    const OpenCatDesativar = () => setOpenCatDesativar(true);
+    const CloseCatDesativar = () => setOpenCatDesativar(false);
 
     return(
         <>
@@ -78,17 +90,59 @@ function Categorias(){
                 />     
                 </div>
                 <div className='btn-cadastro-categoria'>
-                        <button onClick={() => {OpenMesa()}}>Cadastrar Categoria</button>
+                        <button onClick={() => {OpenCat()}}>Cadastrar Categoria</button>
+                        
+                        {/* CADASTRAR */}
                         <Modal
-                        open={openMesa}
-                        onClose={CloseMesa}
+                        open={openCat}
+                        onClose={CloseCat}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                                <button className='btn-cancelar'>Cancelar</button>
-                                <button className='btn-salvar'>Salvar</button>  
+                                <p>Cadastrar categoria</p>
+                                <input 
+                                    type="text" 
+                                    autoFocus
+                                    placeholder='categoria'
+                                    value={categoria}
+                                    onChange={(e) => setCategoria(e.target.value)}
+                                />
+                                <button className='btn-cancelar' onClick={() => CloseCat()}>Cancelar</button>
+                                <button className='btn-salvar' onClick={(e) => {cadastrarCategoria(e, categoria); CloseCat()}}>Salvar</button>  
+                            </div>
+                        </div>
+                    </Modal>
+
+                    {/* ATIVAR */}
+                    <Modal
+                        open={openCatAtivar}
+                        onClose={CloseCatAtivar}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+                                <p>Tem certeza que deseja ativar?</p>
+                                <button className='btn-cancelar' onClick={() => CloseCatAtivar()}>Não</button>
+                                <button className='btn-salvar' onClick={(e) => {ativarCategoria(e, idCategoria); CloseCatAtivar()}}>Sim</button>  
+                            </div>
+                        </div>
+                    </Modal>
+
+                    {/* DESATIVAR */}
+                    <Modal
+                        open={openCatDesativar}
+                        onClose={CloseCatDesativar}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+                                <p>Tem certeza que deseja desativar?</p>
+                                <button className='btn-cancelar' onClick={() => CloseCatDesativar()}>Não</button>
+                                <button className='btn-salvar' onClick={(e) => {desativarCategoria(e, idCategoria); CloseCatDesativar()}}>Sim</button>  
                             </div>
                         </div>
                     </Modal>

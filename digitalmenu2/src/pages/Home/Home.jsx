@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import './home.css';
 
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
-import fotoApresentacao from '../../assets/image/fotoApresentacao.jpg';
+import fotoApresentacao from '../../assets/image/fotoApresentacao.png';
 
 function Home() {
 

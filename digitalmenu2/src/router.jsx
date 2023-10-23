@@ -82,8 +82,6 @@ function Router(){
                             </PrivateRoute>
                         }
                     />
-
-
                 </Routes>
             </MainProvider>
         </BrowserRouter>

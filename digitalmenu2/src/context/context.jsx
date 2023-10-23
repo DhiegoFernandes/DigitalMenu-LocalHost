@@ -1,7 +1,8 @@
-import { createContext} from "react";
+import { createContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import api from '../api'
 import { createNotification } from '../util/toastify'
+import { inputAdornmentClasses } from "@mui/material";
 
 // Criação do contexto
 export const MainContext = createContext({});
@@ -42,6 +43,16 @@ function MainProvider({ children }) {
         }
     }
 
+    
+    //Configuração do Headers
+    const token = localStorage.getItem("token");
+
+    const config = {
+        headers: {
+            'Authorization' : `Bearer ${token}`
+        }
+    }
+    
 
     // ==================== Relatórios ==================== //
 
@@ -93,8 +104,15 @@ function MainProvider({ children }) {
     // ==================== Pedidos ==================== //
 
     async function listarPedidos(){
+        
+        const token = localStorage.getItem("token");
+
         try{
-            const { data } = await api.get("/pedidos/all")
+            const { data } = await api.get("/pedidos/all", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             return data
         }catch(e){
             console.log(e)
@@ -104,8 +122,15 @@ function MainProvider({ children }) {
     // ==================== Produtos ==================== //
 
     async function listarProdutos(){
+        
+        const token = localStorage.getItem("token");
+        
         try{
-            const { data } = await api.get("/produto")
+            const { data } = await api.get("/produto", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             return data
         }catch(e){
             console.log(e)
@@ -114,18 +139,8 @@ function MainProvider({ children }) {
 
     // ==================== Mesas ==================== //
 
-    async function listarMesas(){
-        try{
-            const { data } =  await api.get("/mesa/todas-mesas")
-            return data
-        }catch(e){
-            console.log(e)
-        }
-    }
-
-    async function desativarMesa(e, idMesa) {
+    async function cadastrarMesa(e, idMesa) {
         e.preventDefault();
-        
         // Verifica se numeroMesa é uma string e pode ser convertida em um número
         if (typeof idMesa === "string") {
             idMesa = parseInt(idMesa, 10);
@@ -136,14 +151,42 @@ function MainProvider({ children }) {
                 return; // Retorna para evitar a chamada da API com um número inválido
             }
         } else {
-            console.error("Número inválido");      
+            console.error("Número inválido");
             return; // Retorna para evitar a chamada da API com um número inválido
         }
     
         try {
-            const { data } = await api.delete(`/mesa/${idMesa}`);
+            const { data } = await api.post("/mesa", { idMesa });
+            // Realiza o redirecionamento após o sucesso da chamada da API
+            console.log("Mesa criada com sucesso id da mesa:"+ idMesa);
+        } catch (e) {
+            console.error("Erro ao cadastrar mesa:", e);
+
+        }
+    }
+
+    async function listarMesas(){
+        
+        const token = localStorage.getItem("token");
+        
+        try{
+            const { data } =  await api.get("/mesa/todas-mesas", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async function desativarMesa(e, idMesa) {
+        e.preventDefault();
+    
+        try {
+            const { data } = await api.delete(`/mesa/${idMesa}`, config);
             console.log("Mesa deletada: " + idMesa);
-            navigate("/sistema");
         } catch (e) {
             console.error("Erro ao deletar mesa:", e);
         }
@@ -151,23 +194,10 @@ function MainProvider({ children }) {
 
     async function ativarMesa(e, idMesa) {
         e.preventDefault();
-        
-        // Verifica se numeroMesa é uma string e pode ser convertida em um número
-        if (typeof idMesa === "string") {
-            idMesa = parseInt(idMesa, 10);
-    
-            // Verifica se a conversão foi bem-sucedida
-            if (isNaN(idMesa)) {
-                return; // Retorna para evitar a chamada da API com um número inválido
-            }
-        } else {
-            return; // Retorna para evitar a chamada da API com um número inválido
-        }
-    
+
         try {
             const { data } = await api.put(`/mesa/${idMesa}`);
             console.log("Mesa ativada: " + idMesa);
-            navigate("/sistema");
         } catch (e) {
             console.error("Erro ao ativar mesa:", e);
         }
@@ -176,13 +206,78 @@ function MainProvider({ children }) {
     // ==================== Categorias ==================== //
 
     async function listarCategorias(){
+        
+        const token = localStorage.getItem("token");
+        
         try{
-            const { data } =  await api.get("/categorias/listar")
+            const { data } =  await api.get("/categorias/listar", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             return data
         }catch(e){
             console.log(e)
         }
     }
+
+    async function cadastrarCategoria(e, nome){
+        e.preventDefault();
+        nome = nome.trim();
+
+        try{
+            const { data } = await api.post("/categorias/criar", {nome});
+            console.log("Categoria cadastrada com sucesso!")
+        }catch(e){
+            console.log("Erro ao cadastrar categoria: ", e)
+        }
+    }
+
+    async function desativarCategoria(e, idCategoria) {
+        e.preventDefault();
+    
+        try {
+            const { data } = await api.delete(`/categorias/deletar`);
+            console.log("Categoria deletada: " + idCategoria);
+        } catch (e) {
+            console.error("Erro ao deletar categoria:", e);
+        }
+    }
+
+    async function ativarCategoria(e, idCategoria) {
+        e.preventDefault();
+
+        try {
+            const { data } = await api.put(`/mesa/${idCategoria}`);
+            console.log("Categoria ativada: " + idCategoria);
+        } catch (e) {
+            console.error("Erro ao ativar Categoria:", e);
+        }
+    }
+
+
+    // ==================== Token ==================== //
+
+    function validaToken() {
+        const token = (localStorage.getItem("chave"));
+        if (token) {
+            api.defaults.headers.Authorization = `Bearer ${token}`;
+            api
+                .post("/verifica-token")
+                .then((response) => {
+                    navigate("/home");
+                })
+                .catch((error) => {
+                    api.defaults.headers.Authorization = undefined;
+                    localStorage.removeItem("chave");
+                });
+        }
+    }
+
+    useEffect(() => {
+        validaToken();
+    }, []);
+
 
     //RETURN
     return (
@@ -200,7 +295,11 @@ function MainProvider({ children }) {
             produtosVendidos,
             autenticacaoMesa,
             desativarMesa,
-            ativarMesa
+            ativarMesa,
+            cadastrarMesa, 
+            cadastrarCategoria,
+            ativarCategoria,
+            desativarCategoria
         }}
         >
         {children}
