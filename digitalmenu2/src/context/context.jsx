@@ -109,6 +109,56 @@ function MainProvider({ children }) {
         }
     }
 
+    async function desativarMesa(e, idMesa) {
+        e.preventDefault();
+        
+        // Verifica se numeroMesa é uma string e pode ser convertida em um número
+        if (typeof idMesa === "string") {
+            idMesa = parseInt(idMesa, 10);
+    
+            // Verifica se a conversão foi bem-sucedida
+            if (isNaN(idMesa)) {
+                console.error("Número inválido");
+                return; // Retorna para evitar a chamada da API com um número inválido
+            }
+        } else {
+            console.error("Número inválido");      
+            return; // Retorna para evitar a chamada da API com um número inválido
+        }
+    
+        try {
+            const { data } = await api.delete(`/mesa/${idMesa}`);
+            console.log("Mesa deletada: " + idMesa);
+            navigate("/sistema");
+        } catch (e) {
+            console.error("Erro ao deletar mesa:", e);
+        }
+    }
+
+    async function ativarMesa(e, idMesa) {
+        e.preventDefault();
+        
+        // Verifica se numeroMesa é uma string e pode ser convertida em um número
+        if (typeof idMesa === "string") {
+            idMesa = parseInt(idMesa, 10);
+    
+            // Verifica se a conversão foi bem-sucedida
+            if (isNaN(idMesa)) {
+                return; // Retorna para evitar a chamada da API com um número inválido
+            }
+        } else {
+            return; // Retorna para evitar a chamada da API com um número inválido
+        }
+    
+        try {
+            const { data } = await api.put(`/mesa/${idMesa}`);
+            console.log("Mesa ativada: " + idMesa);
+            navigate("/sistema");
+        } catch (e) {
+            console.error("Erro ao ativar mesa:", e);
+        }
+    }
+
     // ==================== Categorias ==================== //
 
     async function listarCategorias(){
@@ -132,7 +182,9 @@ function MainProvider({ children }) {
             gorjetas,
             totalPedidos,
             totalProdutosUni,
-            produtosVendidos
+            produtosVendidos,
+            desativarMesa,
+            ativarMesa
         }}
         >
         {children}
