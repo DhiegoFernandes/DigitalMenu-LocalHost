@@ -56,7 +56,7 @@ function Produtos(){
         },
         {
             field: "id_categoria",
-            headerName: "Categoria do Pedido",
+            headerName: "Categoria do Produto",
             minWidth: 160,
             hideable: false,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
@@ -116,7 +116,6 @@ function Produtos(){
                             </div>
                         </div>
                     </Modal>
-                    
                 </div>
             </div>
         </>

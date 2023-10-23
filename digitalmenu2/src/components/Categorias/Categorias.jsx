@@ -1,6 +1,7 @@
 import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
 import { useContext, useEffect, useState } from 'react';
+import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
 
 import './categorias.css'
@@ -55,6 +56,10 @@ function Categorias(){
         return row.idcategoria;
     }
 
+    const [openMesa, setOpenMesa] = useState(false);
+    const OpenMesa = () => setOpenMesa(true);
+    const CloseMesa = () => setOpenMesa(false);
+
     return(
         <>
             <div className="container-categoria">
@@ -73,7 +78,20 @@ function Categorias(){
                 />     
                 </div>
                 <div className='btn-cadastro-categoria'>
-                        <button>Cadastrar Categoria</button>
+                        <button onClick={() => {OpenMesa()}}>Cadastrar Categoria</button>
+                        <Modal
+                        open={openMesa}
+                        onClose={CloseMesa}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+                                <button className='btn-cancelar'>Cancelar</button>
+                                <button className='btn-salvar'>Salvar</button>  
+                            </div>
+                        </div>
+                    </Modal>
                 </div>
             </div>
         </>

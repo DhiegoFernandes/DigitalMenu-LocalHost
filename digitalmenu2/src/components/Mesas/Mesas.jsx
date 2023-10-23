@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from 'react';
 import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
+import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
 
 import './mesas.css'
@@ -50,6 +51,10 @@ function Mesas(){
         return row.idmesa;
     }
 
+    const [openCat, setOpenCat] = useState(false);
+    const OpenCat = () => setOpenCat(true);
+    const CloseCat = () => setOpenCat(false);
+
     return(
         <>
             <div className="container-mesa">
@@ -68,7 +73,20 @@ function Mesas(){
                 />
                 </div>
                 <div className='btn-cadastro-mesa'>
-                    <button>Cadastrar Mesa</button>
+                    <button onClick={() => {OpenCat()}}>Cadastrar Mesa</button>
+                    <Modal
+                        open={openCat}
+                        onClose={CloseCat}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+                                <button className='btn-cancelar'>Cancelar</button>
+                                <button className='btn-salvar'>Salvar</button>  
+                            </div>
+                        </div>
+                    </Modal>
                 </div>             
             </div>
         </>
