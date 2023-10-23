@@ -8,7 +8,7 @@ export const MainContext = createContext({});
 
 // Criação do provedor do contexto
 function MainProvider({ children }) {
-  
+
     const navigate = useNavigate();
 
     // ==================== Autenticação ==================== //
@@ -28,6 +28,20 @@ function MainProvider({ children }) {
             console.log("Erro na autenticação" + e);
         }
     }
+
+    //Login para as mesas
+    async function autenticacaoMesa(e, idMesa) {
+        e.preventDefault();
+        idMesa = idMesa.trim();
+
+        try {
+            const { data } = await api.post("/mesa/check", { idMesa });
+            navigate("/cardapio");
+        } catch (e) {
+            console.log("Erro na autenticação" + e);
+        }
+    }
+
 
     // ==================== Relatórios ==================== //
 
@@ -169,10 +183,11 @@ function MainProvider({ children }) {
             console.log(e)
         }
     }
-    
+
     //RETURN
     return (
         <MainContext.Provider
+
         value={{
             autenticar,
             listarCategorias,
@@ -183,6 +198,7 @@ function MainProvider({ children }) {
             totalPedidos,
             totalProdutosUni,
             produtosVendidos,
+            autenticacaoMesa,
             desativarMesa,
             ativarMesa
         }}

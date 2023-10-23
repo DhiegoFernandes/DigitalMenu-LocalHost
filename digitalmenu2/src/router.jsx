@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import MainProvider from './context/context';
 import PrivateRoute from './util/privateRoute';
@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import System from './pages/Settings/System';
 import Login from './pages/Log/Login';
 import Client from './pages/Client/Client';
+import Cardapio from './pages/Cardapio/Cardapio';
 
 import Pedidos from './components/Pedidos/Pedidos';
 import Produtos from './components/Produtos/Produtos';
@@ -73,6 +74,16 @@ function Router(){
                         </PrivateRoute> 
                         }
                     />
+                    <Route
+                        path='/cardapio'
+                        element={
+                            <PrivateRoute>
+                                <Cardapio />
+                            </PrivateRoute>
+                        }
+                    />
+
+
                 </Routes>
             </MainProvider>
         </BrowserRouter>

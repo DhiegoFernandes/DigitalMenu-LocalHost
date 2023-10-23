@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-
+import { useState, useContext } from "react";
+import { MainContext } from "../../context/context";
 import './client.css';
 
 import um from "../../assets/image/1.png";
@@ -15,6 +16,13 @@ import logoDM from '../../assets/image/logo_digitalmenu2.png';
 function Client() {
 
     const navigate = useNavigate();
+
+
+
+    const { autenticacaoMesa } = useContext(MainContext);
+
+    const [idMesa, setidMesa] = useState("");
+
 
     return (
         <>
@@ -49,29 +57,29 @@ function Client() {
                             </div>
                             <div className="mesas">
                                 <p>Mesa3</p>
-                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={tres} /></button>
+                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '3')}><img className="tamanho-img" src={tres} /></button>
                             </div>
                             <div className="mesas">
                                 <p>Mesa4</p>
-                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={quatro} /></button>
+                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '4')}><img className="tamanho-img" src={quatro} /></button>
                             </div>
                         </div>
                         <div className="Formato-mesa">
                             <div className="mesas" >
                                 <p>Mesa5</p>
-                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={cinco} /></button>
+                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '5')}><img className="tamanho-img" src={cinco} /></button>
                             </div>
                             <div className="mesas">
                                 <p>Mesa6</p>
-                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={seis} /></button>
+                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '6')}><img className="tamanho-img" src={seis} /></button>
                             </div>
                             <div className="mesas">
                                 <p>Mesa7</p>
-                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={sete} /></button>
+                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '7')}><img className="tamanho-img" src={sete} /></button>
                             </div>
                             <div className="mesas">
                                 <p>Mesa8</p>
-                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={oito} /></button>
+                                <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '8')}><img className="tamanho-img" src={oito} /></button>
                             </div>
                         </div>
                     </div>
