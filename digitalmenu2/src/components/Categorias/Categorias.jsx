@@ -13,12 +13,16 @@ function Categorias(){
     const[categorias, setCategorias] = useState([]);
     const [categoria, setCategoria] = useState("");
     const [idCategoria, setIdCategoria] = useState("");
+    const [updateCategorias, setUpdateCategorias] = useState(true);
 
     useEffect(() =>{
-        listarCategorias().then((resp)=>{
+        if(updateCategorias){
+            listarCategorias().then((resp)=>{
             setCategorias(resp);
-        });
-    }, [categorias]);
+            setUpdateCategorias(false);
+            });
+        }
+    }, [updateCategorias]);
 
     const columnCategorias = [
         {
@@ -126,7 +130,7 @@ function Categorias(){
                             <div className='btn-modal'>
                                 <p>Tem certeza que deseja ativar?</p>
                                 <button className='btn-cancelar' onClick={() => CloseCatAtivar()}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {ativarCategoria(e, idCategoria); CloseCatAtivar()}}>Sim</button>  
+                                <button className='btn-salvar' onClick={(e) => {ativarCategoria(e, idCategoria); CloseCatAtivar(); setUpdateCategorias(true);}}>Sim</button>  
                             </div>
                         </div>
                     </Modal>
@@ -142,7 +146,7 @@ function Categorias(){
                             <div className='btn-modal'>
                                 <p>Tem certeza que deseja desativar?</p>
                                 <button className='btn-cancelar' onClick={() => CloseCatDesativar()}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {desativarCategoria(e, idCategoria); CloseCatDesativar()}}>Sim</button>  
+                                <button className='btn-salvar' onClick={(e) => {desativarCategoria(e, idCategoria); CloseCatDesativar(); setUpdateCategorias(true);}}>Sim</button>  
                             </div>
                         </div>
                     </Modal>

@@ -18,12 +18,16 @@ function Produtos(){
     const [categoria, setCategoria] = useState("");
     const [idproduto, setIdproduto] = useState("");
     const [status, setStatus] = useState("");
+    const [updateProdutos, setUpdateProdutos] = useState(true)
   
     useEffect(() => {
-      listarProdutos().then((resp) => {
-        setProdutos(resp);
-      });
-    }, [produtos]);
+        if(updateProdutos){
+            listarProdutos().then((resp) => {
+            setProdutos(resp);
+            setUpdateProdutos(false);
+            });
+        }
+    }, [updateProdutos]);
 
     const colunmProdutos = [
         {
@@ -167,7 +171,7 @@ function Produtos(){
                             />
                             <div className='btn-modal'>
                                 <button className='btn-cancelar' onClick={() => {Close()}}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {cadastrarProduto(e, nome, preco, descricao, categoria); Close();}}>Salvar</button>  
+                                <button className='btn-salvar' onClick={(e) => {cadastrarProduto(e, nome, preco, descricao, categoria); Close(); setUpdateProdutos(true);}}>Salvar</button>  
                             </div>
                         </div>
                     </Modal>
@@ -215,7 +219,7 @@ function Produtos(){
                             </select>
                             <div className='btn-modal'>
                                 <button className='btn-cancelar' onClick={() => {CloseEditar()}}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {editaProduto(e, nome, preco, descricao, categoria, status, idproduto); CloseEditar()}}>Salvar</button>  
+                                <button className='btn-salvar' onClick={(e) => {editaProduto(e, nome, preco, descricao, categoria, status, idproduto); CloseEditar(); setUpdateProdutos(true);}}>Salvar</button>  
                             </div>
                         </div>
                     </Modal>
@@ -231,7 +235,7 @@ function Produtos(){
                             <div className='btn-modal'>
                                 <p>Tem certeza que deseja desativar o Produto de nº {idproduto}?</p>
                                 <button className='btn-cancelar' onClick={() => CloseDesativar()}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {desativarProduto(e, idproduto); CloseDesativar()}}>Sim</button>  
+                                <button className='btn-salvar' onClick={(e) => {desativarProduto(e, idproduto); CloseDesativar(); setUpdateProdutos(true);}}>Sim</button>  
                             </div>
                         </div>
                     </Modal>

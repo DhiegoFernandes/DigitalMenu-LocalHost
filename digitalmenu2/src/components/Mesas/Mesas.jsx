@@ -11,12 +11,16 @@ function Mesas(){
     const {listarMesas, ativarMesa, desativarMesa, cadastrarMesa} = useContext(MainContext);
 
     const [mesas, setMesas] = useState([]);
+    const [updateMesas, setUpdateMesas] = useState(true);
   
     useEffect(() => {
-      listarMesas().then((resp) => {
+      if(updateMesas){
+        listarMesas().then((resp) => {
         setMesas(resp);
-      });
-    }, [mesas]);
+        setUpdateMesas(false);
+    });
+      }
+    }, [updateMesas]);
 
     const colunmMesas = [
         {
@@ -118,7 +122,7 @@ function Mesas(){
                             <div className='btn-modal'>
                                 <h1>Tem certeza que deseja Ativar?</h1>
                                 <button className='btn-cancelar' onClick={() => {CloseAtivar()}}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {ativarMesa(e, idMesa); CloseAtivar()}}>Sim</button>  
+                                <button className='btn-salvar' onClick={(e) => {ativarMesa(e, idMesa); CloseAtivar(); setUpdateMesas(true)}}>Sim</button>  
                             </div>
                         </div>
                     </Modal>
@@ -134,7 +138,7 @@ function Mesas(){
                             <div className='btn-modal'>
                                 <h1>Tem certeza que deseja Desativar?</h1>
                                 <button className='btn-cancelar' onClick={() => {CloseDesativar()}}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {desativarMesa(e, idMesa); CloseDesativar()}}>Sim</button>  
+                                <button className='btn-salvar' onClick={(e) => {desativarMesa(e, idMesa); CloseDesativar(); setUpdateMesas(true);}}>Sim</button>  
                             </div>
                         </div>
                     </Modal>
