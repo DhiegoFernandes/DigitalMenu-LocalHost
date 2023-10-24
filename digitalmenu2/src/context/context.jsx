@@ -137,6 +137,48 @@ function MainProvider({ children }) {
         }
     }
 
+    async function cadastrarProduto(e, nome, preco, descricao, categoria){
+        e.preventDefault();
+        nome = nome.trim();
+        preco = preco.trim();
+        descricao = descricao.trim();
+        categoria = categoria.trim();
+
+        try{
+            const { data } = await api.post("/produto", {nome, preco, descricao, categoria});
+            console.log("Produto cadastrado com sucesso:", nome)
+        }catch(e){
+            console.log("Erro ao cadastrar produto", e)
+        }
+    }
+
+    async function editaProduto(e, nome, preco, descricao, categoria, status, idproduto){
+        e.preventDefault();
+        nome = nome.trim();
+        preco = preco.trim();
+        descricao = descricao.trim();
+        categoria = categoria.trim();
+        status = status.trim();
+
+        try {
+            const { data } = await api.put("/produto", {nome, preco, descricao, categoria, status, idproduto});
+            console.log("Sucesso ao alterar produto", idproduto)
+        } catch (e) {
+            console.log("Erro ao editar produto", e)
+        }
+    }
+
+    async function desativarProduto(e, idproduto){
+        e.preventDefault();
+
+        try {
+            const { data } = await api.delete(`/produto/${idproduto}`);
+            console.log("Produto desativado:" + idproduto);
+        } catch (e) {
+            console.error("Erro ao desativar produto:", e);
+        }
+    }
+
     // ==================== Mesas ==================== //
 
     async function cadastrarMesa(e, idMesa) {
@@ -299,7 +341,10 @@ function MainProvider({ children }) {
             cadastrarMesa, 
             cadastrarCategoria,
             ativarCategoria,
-            desativarCategoria
+            desativarCategoria,
+            cadastrarProduto,
+            editaProduto,
+            desativarProduto
         }}
         >
         {children}

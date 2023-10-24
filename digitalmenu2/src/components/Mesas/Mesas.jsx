@@ -13,11 +13,16 @@ function Mesas(){
 
     const [mesas, setMesas] = useState([]);
 
+    const [updateMesas, setUpdateMesas] = useState(true);
+  
     useEffect(() => {
+      if(updateMesas){
         listarMesas().then((resp) => {
-            setMesas(resp);
-        });
-    }, []);
+        setMesas(resp);
+        setUpdateMesas(false);
+    });
+      }
+    }, [updateMesas]);
 
     const colunmMesas = [
         {
@@ -94,6 +99,7 @@ function Mesas(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
+
                                 <div className='modal-cadastrar'>
                                     <p>Cadastrar Mesa</p>
                                     <div className='form_div marg-grande'>
@@ -108,8 +114,9 @@ function Mesas(){
                                         /><label htmlFor="name" className="form__label">Número da Mesa</label>
                                     </div>
                                     <button className='btn-cancelar marg-media' onClick={() => { CloseMesa() }}>Cancelar</button>
-                                    <button className='btn-salvar marg-pequena' onClick={(e) => { cadastrarMesa(e, idMesa); CloseMesa() }}>Salvar</button>
+                                    <button className='btn-salvar marg-pequena' onClick={(e) => { cadastrarMesa(e, idMesa); CloseMesa(); setUpdateMesas(true); }}>Salvar</button>
                                 </div>
+
                             </div>
                         </div>
                     </Modal>
@@ -123,13 +130,15 @@ function Mesas(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
+
                                 <div className='modal-ativar'>
                                     <p>Tem certeza que deseja Ativar?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseAtivar() }}>Não</button>
-                                        <button className='btn-salvar' onClick={(e) => { ativarMesa(e, idMesa); CloseAtivar() }}>Sim</button>
+                                        <button className='btn-salvar' onClick={(e) => { ativarMesa(e, idMesa); CloseAtivar(); setUpdateMesas(true); }}>Sim</button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </Modal>
@@ -147,7 +156,7 @@ function Mesas(){
                                     <p>Tem certeza que deseja Desativar?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseDesativar() }}>Não</button>
-                                        <button className='btn-salvar' onClick={(e) => { desativarMesa(e, idMesa); CloseDesativar() }}>Sim</button>
+                                        <button className='btn-salvar' onClick={(e) => { desativarMesa(e, idMesa); CloseDesativar(); setUpdateMesas(true); }}>Sim</button>
                                     </div>
                                 </div>
 

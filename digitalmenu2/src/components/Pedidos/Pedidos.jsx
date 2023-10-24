@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
+// import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
 
 import './pedidos.css'
+
 
 function Pedidos(){
 
@@ -15,7 +17,7 @@ function Pedidos(){
           listarPedidos().then((resp) => {
             setPedidos(resp);
           });
-        }, []);
+        }, [pedidos]);
     
         const columnPedidos = [
             {
@@ -59,6 +61,18 @@ function Pedidos(){
                 minWidth: 150,
                 hideable: false,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+            },
+            {
+                field: "actions",
+                headerName: "Ações",
+                minWidth: 200,
+                hideable: false,
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <div className='btn-actions'>
+                        <button><i className='material-symbols-outlined'>contract_edit</i></button>
+                    </div>
+                ) 
             }
           ]
         
@@ -81,7 +95,9 @@ function Pedidos(){
                         }}
                     pageSizeOptions={[5, 10]}
                     localeText={localePTBR}
-                />   
+                /> 
+
+                {/* MODAL VER ITENS */}
                 </div>
             </div>
         </>

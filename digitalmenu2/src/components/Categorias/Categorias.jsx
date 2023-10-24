@@ -13,12 +13,16 @@ function Categorias(){
     const[categorias, setCategorias] = useState([]);
     const [categoria, setCategoria] = useState("");
     const [idCategoria, setIdCategoria] = useState("");
+    const [updateCategorias, setUpdateCategorias] = useState(true);
 
     useEffect(() =>{
-        listarCategorias().then((resp)=>{
+        if(updateCategorias){
+            listarCategorias().then((resp)=>{
             setCategorias(resp);
-        });
-    }, []);
+            setUpdateCategorias(false);
+            });
+        }
+    }, [updateCategorias]);
 
     const columnCategorias = [
         {
@@ -101,6 +105,7 @@ function Categorias(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
+
                                 <div className='modal-cadastrar'>
                                     <p>Cadastrar categoria</p>
                                     <div className='form_div marg-grande'>
@@ -115,7 +120,7 @@ function Categorias(){
                                         /><label htmlFor="name" className="form__label">Nome da categoria</label>
                                     </div>
                                     <button className='btn-cancelar  marg-media' onClick={() => CloseCat()}>Cancelar</button>
-                                    <button className='btn-salvar  marg-pequena' onClick={(e) => { cadastrarCategoria(e, categoria); CloseCat() }}>Salvar</button>
+                                    <button className='btn-salvar  marg-pequena' onClick={(e) => { cadastrarCategoria(e, categoria); CloseCat(); setUpdateCategorias(true);}}>Salvar</button>
                                 </div>
 
                             </div>
@@ -135,7 +140,7 @@ function Categorias(){
                                     <p>Tem certeza que deseja ativar?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => CloseCatAtivar()}>Não</button>
-                                        <button className='btn-salvar' onClick={(e) => { ativarCategoria(e, idCategoria); CloseCatAtivar() }}>Sim</button>
+                                        <button className='btn-salvar' onClick={(e) => { ativarCategoria(e, idCategoria); CloseCatAtivar(); setUpdateCategorias(true); }}>Sim</button>
                                     </div>
                                 </div>
 
@@ -156,9 +161,10 @@ function Categorias(){
                                     <p>Tem certeza que deseja desativar?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => CloseCatDesativar()}>Não</button>
-                                        <button className='btn-salvar' onClick={(e) => { desativarCategoria(e, idCategoria); CloseCatDesativar() }}>Sim</button>
+                                        <button className='btn-salvar' onClick={(e) => { desativarCategoria(e, idCategoria); CloseCatDesativar(); setUpdateCategorias(true);}}>Sim</button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </Modal>
