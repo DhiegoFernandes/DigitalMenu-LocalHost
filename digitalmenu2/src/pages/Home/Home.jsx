@@ -36,7 +36,6 @@ function Home() {
                         </div>
 
                         <div className='home_opcoes'>
-                            <img src="./images/foto.jpg" alt="" />
                             <p className='home-entrar-descricao'>DigitalMenu, entre como administrador ou cliente:</p>
                             
                             <button onClick={() => navigate('/system')}>Área do Sistema</button>

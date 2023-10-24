@@ -259,7 +259,7 @@ function MainProvider({ children }) {
     // ==================== Token ==================== //
 
     function validaToken() {
-        const token = (localStorage.getItem("chave"));
+        const token = (localStorage.getItem("token"));
         if (token) {
             api.defaults.headers.Authorization = `Bearer ${token}`;
             api
