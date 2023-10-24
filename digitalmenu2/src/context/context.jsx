@@ -237,7 +237,7 @@ function MainProvider({ children }) {
         e.preventDefault();
     
         try {
-            const { data } = await api.delete(`/categorias/deletar`);
+            const { data } = await api.delete(`/categorias/deletar/${idCategoria}`, config);
             console.log("Categoria deletada: " + idCategoria);
         } catch (e) {
             console.error("Erro ao deletar categoria:", e);
@@ -248,10 +248,10 @@ function MainProvider({ children }) {
         e.preventDefault();
 
         try {
-            const { data } = await api.put(`/mesa/${idCategoria}`);
+            const { data } = await api.put(`/categorias/ativar/${idCategoria}`, config);
             console.log("Categoria ativada: " + idCategoria);
         } catch (e) {
-            console.error("Erro ao ativar Categoria:", e);
+            console.error("Erro ao ativar Categoria:" + idCategoria, e);
         }
     }
 

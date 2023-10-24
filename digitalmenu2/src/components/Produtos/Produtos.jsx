@@ -55,7 +55,7 @@ function Produtos(){
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
         },
         {
-            field: "id_categoria",
+            field: "categoria",
             headerName: "Categoria do Produto",
             minWidth: 160,
             hideable: false,
