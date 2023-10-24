@@ -4,7 +4,10 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
 
-import './produtos.css';
+
+import './produtos.css'
+import '../Modal/modal_componentes.css';
+
 
 function Produtos(){
 

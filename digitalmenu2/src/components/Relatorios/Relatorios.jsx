@@ -1,4 +1,5 @@
 import './relatorios.css'
+import '../Modal/modal_componentes.css';
 
 function Relatorios(){
     return(

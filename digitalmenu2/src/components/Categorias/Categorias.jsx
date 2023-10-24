@@ -5,9 +5,9 @@ import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
 
 import './categorias.css'
+import '../Modal/modal_componentes.css';
 
 function Categorias(){
-    
     const{listarCategorias, cadastrarCategoria, ativarCategoria, desativarCategoria} = useContext(MainContext);
 
     const[categorias, setCategorias] = useState([]);
@@ -71,7 +71,7 @@ function Categorias(){
     const [openCatAtivar, setOpenCatAtivar] = useState(false);
     const OpenCatAtivar = () => setOpenCatAtivar(true);
     const CloseCatAtivar = () => setOpenCatAtivar(false);
-    
+ 
     const [openCatDesativar, setOpenCatDesativar] = useState(false);
     const OpenCatDesativar = () => setOpenCatDesativar(true);
     const CloseCatDesativar = () => setOpenCatDesativar(false);
@@ -91,11 +91,11 @@ function Categorias(){
                         }}
                     pageSizeOptions={[5, 10]}
                     localeText={localePTBR}
-                />     
+                />
                 </div>
                 <div className='btn-cadastro-categoria'>
                         <button onClick={() => {OpenCat()}}>Cadastrar Categoria</button>
-                        
+
                         {/* CADASTRAR */}
                         <Modal
                         open={openCat}
@@ -105,16 +105,24 @@ function Categorias(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                                <p>Cadastrar categoria</p>
-                                <input 
-                                    type="text" 
-                                    autoFocus
-                                    placeholder='categoria'
-                                    value={categoria}
-                                    onChange={(e) => setCategoria(e.target.value)}
-                                />
-                                <button className='btn-cancelar' onClick={() => CloseCat()}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {cadastrarCategoria(e, categoria); CloseCat(); setUpdateCategorias(true);}}>Salvar</button>  
+
+                                <div className='modal-cadastrar'>
+                                    <p>Cadastrar categoria</p>
+                                    <div className='form_div marg-grande'>
+                                        <input
+                                            className='inputAnimado'
+                                            type="text"
+                                            placeholder='categoria'
+                                            required=""
+                                            autoFocus
+                                            value={categoria}
+                                            onChange={(e) => setCategoria(e.target.value)}
+                                        /><label htmlFor="name" className="form__label">Nome da categoria</label>
+                                    </div>
+                                    <button className='btn-cancelar  marg-media' onClick={() => CloseCat()}>Cancelar</button>
+                                    <button className='btn-salvar  marg-pequena' onClick={(e) => { cadastrarCategoria(e, categoria); CloseCat(); setUpdateCategorias(true);}}>Salvar</button>
+                                </div>
+
                             </div>
                         </div>
                     </Modal>
@@ -128,9 +136,14 @@ function Categorias(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                                <p>Tem certeza que deseja ativar?</p>
-                                <button className='btn-cancelar' onClick={() => CloseCatAtivar()}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {ativarCategoria(e, idCategoria); CloseCatAtivar(); setUpdateCategorias(true);}}>Sim</button>  
+                                <div className='modal-ativar'>
+                                    <p>Tem certeza que deseja ativar?</p>
+                                    <div className='botoes-sim-nao marg-grande'>
+                                        <button className='btn-cancelar' onClick={() => CloseCatAtivar()}>Não</button>
+                                        <button className='btn-salvar' onClick={(e) => { ativarCategoria(e, idCategoria); CloseCatAtivar(); setUpdateCategorias(true); }}>Sim</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </Modal>
@@ -144,9 +157,14 @@ function Categorias(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                                <p>Tem certeza que deseja desativar?</p>
-                                <button className='btn-cancelar' onClick={() => CloseCatDesativar()}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {desativarCategoria(e, idCategoria); CloseCatDesativar(); setUpdateCategorias(true);}}>Sim</button>  
+                                <div className='modal-desativar'>
+                                    <p>Tem certeza que deseja desativar?</p>
+                                    <div className='botoes-sim-nao marg-grande'>
+                                        <button className='btn-cancelar' onClick={() => CloseCatDesativar()}>Não</button>
+                                        <button className='btn-salvar' onClick={(e) => { desativarCategoria(e, idCategoria); CloseCatDesativar(); setUpdateCategorias(true);}}>Sim</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </Modal>
