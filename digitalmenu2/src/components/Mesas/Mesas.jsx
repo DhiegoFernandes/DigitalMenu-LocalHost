@@ -106,7 +106,7 @@ function Mesas(){
                                     onChange={(e) => setIdMesa(e.target.value)}
                                 />
                                 <button className='btn-cancelar' onClick={() => {CloseMesa()}}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {cadastrarMesa(e, idMesa); CloseMesa()}}>Salvar</button>  
+                                <button className='btn-salvar' onClick={(e) => {cadastrarMesa(e, idMesa); CloseMesa(); setUpdateMesas(true);}}>Salvar</button>  
                             </div>
                         </div>
                     </Modal>

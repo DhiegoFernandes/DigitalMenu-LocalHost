@@ -114,7 +114,7 @@ function Categorias(){
                                     onChange={(e) => setCategoria(e.target.value)}
                                 />
                                 <button className='btn-cancelar' onClick={() => CloseCat()}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {cadastrarCategoria(e, categoria); CloseCat()}}>Salvar</button>  
+                                <button className='btn-salvar' onClick={(e) => {cadastrarCategoria(e, categoria); CloseCat(); setUpdateCategorias(true);}}>Salvar</button>  
                             </div>
                         </div>
                     </Modal>
