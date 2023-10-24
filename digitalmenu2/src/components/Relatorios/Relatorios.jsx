@@ -11,7 +11,7 @@ function Relatorios(){
                     <button>Total Pedidos (R$)</button>
                     <button>Gorjetas</button>
                 </div>
-                <div className='box border'>
+                <div className='box'>
                     
                 </div>
             </div>

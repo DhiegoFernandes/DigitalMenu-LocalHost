@@ -15,7 +15,7 @@ function Pedidos(){
           listarPedidos().then((resp) => {
             setPedidos(resp);
           });
-        }, []);
+        }, [pedidos]);
     
         const columnPedidos = [
             {

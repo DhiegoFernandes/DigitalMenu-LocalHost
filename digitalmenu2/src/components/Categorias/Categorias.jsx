@@ -18,7 +18,7 @@ function Categorias(){
         listarCategorias().then((resp)=>{
             setCategorias(resp);
         });
-    }, []);
+    }, [categorias]);
 
     const columnCategorias = [
         {
