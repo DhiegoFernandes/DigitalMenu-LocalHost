@@ -131,6 +131,28 @@ function MainProvider({ children }) {
         }
     }
 
+    async function editarQuantidade(e, iditem, quantidade){
+        e.preventDefault();
+
+        try {
+            const { data } = await api.put("/itens/pedidos/quantidades", {iditem, quantidade})
+            console.log("Quantidade editada com sucesso");
+        } catch (e) {
+            console.log("Erro ao editar quantidade" , e)            
+        }
+    }
+
+    async function cancelarItem(e, iditem){
+        e.preventDefault();
+
+        try {
+            const { data } = await api.put(`/itens/${iditem}`)
+            console.log("Sucesso ao cancelar o item: ", iditem)
+        } catch (e) {
+            console.log("Erro ao cancelar item" , e)            
+        }
+    }
+
     // ==================== Produtos ==================== //
 
     async function listarProdutos(){
@@ -357,7 +379,9 @@ function MainProvider({ children }) {
             cadastrarProduto,
             editaProduto,
             desativarProduto,
-            listarItens
+            listarItens,
+            editarQuantidade,
+            cancelarItem
         }}
         >
         {children}

@@ -9,11 +9,13 @@ import './pedidos.css'
 
 function Pedidos(){
 
-        const {listarPedidos, listarItens} = useContext(MainContext);
+        const {listarPedidos, listarItens, editarQuantidade, cancelarItem} = useContext(MainContext);
     
         const [pedidos, setPedidos] = useState([]);
         const [itens, setItens] = useState([]);
         const [updatePedidos, setUpdatePedidos] = useState(true)
+        const [quantidade, setQuantidade] = useState("");
+        const [idItem, setIdItem] = useState("");
       
         useEffect(() => {
             if(updatePedidos){
@@ -157,8 +159,8 @@ function Pedidos(){
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
                 renderCell: (params) => (
                     <div className='btn-actions'>
-                        <button><i className='material-symbols-outlined'>arrow_drop_down_circle</i></button>
-                        <button><i className='material-symbols-outlined'>cancel</i></button>
+                        <button><i className='material-symbols-outlined' onClick={() => {setIdItem(params.row.iditem); setQuantidade(params.row.QTDE); OpenQntd();}}>arrow_drop_down_circle</i></button>
+                        <button><i className='material-symbols-outlined' onClick={() => {setIdItem(params.row.iditem); OpenStatus()}}>cancel</i></button>
                     </div>
                 ) 
             }
@@ -171,6 +173,14 @@ function Pedidos(){
         const [openItem, setOpenItem] = useState(false);
         const OpenItem = () => setOpenItem(true);
         const CloseItem = () => setOpenItem(false);
+
+        const [openQntd, setOpenQntd] = useState(false);
+        const OpenQntd = () => setOpenQntd(true);
+        const CloseQntd = () => setOpenQntd(false);
+
+        const [openStatus, setOpenStatus] = useState(false);
+        const OpenStatus = () => setOpenStatus(true);
+        const CloseStatus = () => setOpenStatus(false);
 
     return(
         <>
@@ -217,6 +227,58 @@ function Pedidos(){
                         </div>
                     </div>
                 </Modal>
+
+                {/* EDITAR QNTD */}
+                <Modal
+                        open={openQntd}
+                        onClose={CloseQntd}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+
+                                <div className='modal-cadastrar'>
+                                    <p>Editar Quantidade</p>
+                                    <div className='form_div marg-grande'>
+                                        <input
+                                            className="inputAnimado"
+                                            type="number"
+                                            placeholder='Quantidade do Item'
+                                            value={quantidade}
+                                            autoFocus
+                                            onChange={(e) => setQuantidade(e.target.value)}
+                                        /><label htmlFor="name" className="form__label">Quantidade</label>
+                                    </div>
+                                    <button className='btn-cancelar marg-media' onClick={() => { CloseQntd() }}>Cancelar</button>
+                                    <button className='btn-salvar marg-pequena' onClick={(e) => { editarQuantidade(e, idItem, quantidade); setUpdatePedidos(true); CloseQntd();}}>Salvar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Modal>
+
+                {/* CANCELAR PEDIDO */}
+                <Modal
+                        open={openStatus}
+                        onClose={CloseStatus}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+
+                                <div className='modal-ativar'>
+                                    <p>Tem certeza que deseja cancelar o item {idItem}?</p>
+                                    <div className='botoes-sim-nao marg-grande'>
+                                        <button className='btn-cancelar' onClick={() => { CloseStatus() }}>Não</button>
+                                        <button className='btn-salvar' onClick={(e) => { cancelarItem(e, idItem); setUpdatePedidos(true); CloseStatus(); }}>Sim</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Modal>
                 </div>
             </div>
         </>
