@@ -115,6 +115,13 @@ function Pedidos(){
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
+                field: "QTDE",
+                headerName: "Quantidade",
+                minWidth: 50,
+                hideable: false,
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+            },
+            {
                 field: "subtotal",
                 headerName: "Subtotal",
                 minWidth: 50,
