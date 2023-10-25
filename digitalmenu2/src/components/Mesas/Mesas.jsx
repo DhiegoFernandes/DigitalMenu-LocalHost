@@ -132,7 +132,7 @@ function Mesas(){
                             <div className='btn-modal'>
 
                                 <div className='modal-ativar'>
-                                    <p>Tem certeza que deseja Ativar?</p>
+                                    <p>Tem certeza que deseja ativar a mesa {idMesa}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseAtivar() }}>Não</button>
                                         <button className='btn-salvar' onClick={(e) => { ativarMesa(e, idMesa); CloseAtivar(); setUpdateMesas(true); }}>Sim</button>
@@ -153,7 +153,7 @@ function Mesas(){
                         <div className='modal'>
                             <div className='btn-modal'>
                                 <div className='modal-desativar'>
-                                    <p>Tem certeza que deseja Desativar?</p>
+                                    <p>Tem certeza que deseja desativar a mesa {idMesa}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseDesativar() }}>Não</button>
                                         <button className='btn-salvar' onClick={(e) => { desativarMesa(e, idMesa); CloseDesativar(); setUpdateMesas(true); }}>Sim</button>

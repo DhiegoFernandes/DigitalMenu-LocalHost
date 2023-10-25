@@ -137,7 +137,7 @@ function Categorias(){
                         <div className='modal'>
                             <div className='btn-modal'>
                                 <div className='modal-ativar'>
-                                    <p>Tem certeza que deseja ativar?</p>
+                                    <p>Tem certeza que deseja ativar a categoria {idCategoria}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => CloseCatAtivar()}>Não</button>
                                         <button className='btn-salvar' onClick={(e) => { ativarCategoria(e, idCategoria); CloseCatAtivar(); setUpdateCategorias(true); }}>Sim</button>
@@ -158,7 +158,7 @@ function Categorias(){
                         <div className='modal'>
                             <div className='btn-modal'>
                                 <div className='modal-desativar'>
-                                    <p>Tem certeza que deseja desativar?</p>
+                                    <p>Tem certeza que deseja desativar a categoria {idCategoria}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => CloseCatDesativar()}>Não</button>
                                         <button className='btn-salvar' onClick={(e) => { desativarCategoria(e, idCategoria); CloseCatDesativar(); setUpdateCategorias(true);}}>Sim</button>

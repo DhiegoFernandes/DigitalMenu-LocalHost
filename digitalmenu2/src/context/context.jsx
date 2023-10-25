@@ -119,6 +119,18 @@ function MainProvider({ children }) {
         }
     }
 
+    async function listarItens(idPedido){
+        // e.preventDefault();
+        
+        try {
+            const { data } = await api.get(`/itens/pedidos/${idPedido}`);
+            console.log("Sucesso ao listar itens");
+            return data;
+        }catch (e){
+            console.log("Erro ao listar itens" , e);
+        }
+    }
+
     // ==================== Produtos ==================== //
 
     async function listarProdutos(){
@@ -344,7 +356,8 @@ function MainProvider({ children }) {
             desativarCategoria,
             cadastrarProduto,
             editaProduto,
-            desativarProduto
+            desativarProduto,
+            listarItens
         }}
         >
         {children}
