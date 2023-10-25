@@ -43,7 +43,7 @@ function Produtos(){
         {
             field: "nome",
             headerName: "Nome",
-            minWidth: 100,
+            minWidth: 150,
             hideable: false,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
         },
@@ -93,7 +93,7 @@ function Produtos(){
                         OpenEditar();
                         }}
                         >edit</i></button>
-                    <button><i className='material-symbols-outlined' onClick={() => {setIdproduto(params.row.idproduto); OpenDesativar();}}>delete</i></button>
+                    <button><i className='material-symbols-outlined' onClick={() => {setNome(params.row.nome); setIdproduto(params.row.idproduto);  OpenDesativar();}}>delete</i></button>
                 </div>
             ) 
         }
@@ -236,7 +236,7 @@ function Produtos(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                                <p>Tem certeza que deseja desativar o Produto de nº {idproduto}?</p>
+                                <p>Tem certeza que deseja desativar o produto {nome}?</p>
                                 <button className='btn-cancelar' onClick={() => CloseDesativar()}>Não</button>
                                 <button className='btn-salvar' onClick={(e) => {desativarProduto(e, idproduto); CloseDesativar(); setUpdateProdutos(true);}}>Sim</button>  
                             </div>
