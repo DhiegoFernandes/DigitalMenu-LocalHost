@@ -13,7 +13,7 @@ function Pedidos(){
     
         const [pedidos, setPedidos] = useState([]);
         const [itens, setItens] = useState([]);
-        const [updatePedidos, setUpdatePedidos] = useState(true)
+        const [updatePedidos, setUpdatePedidos] = useState(true);
         const [quantidade, setQuantidade] = useState("");
         const [idItem, setIdItem] = useState("");
       
@@ -81,7 +81,7 @@ function Pedidos(){
                                 console.log(params.row.idpedido);
                                 listarItens(params.row.idpedido).then((resp) => {
                                     setItens(resp);
-                                  });
+                                });
                                 OpenItem();
                             }}
                         >contract_edit</i></button>
@@ -243,7 +243,7 @@ function Pedidos(){
                                     <div className='form_div marg-grande'>
                                         <input
                                             className="inputAnimado"
-                                            type="number"
+                                            type="text"
                                             placeholder='Quantidade do Item'
                                             value={quantidade}
                                             autoFocus

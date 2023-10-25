@@ -131,11 +131,19 @@ function MainProvider({ children }) {
         }
     }
 
-    async function editarQuantidade(e, iditem, quantidade){
+    async function editarQuantidade(e, iditem, qtde ){
         e.preventDefault();
+        if(typeof qtde === "string"){
+            qtde = parseInt(qtde,10)
+        }
+
+        if(isNaN(qtde)){
+            console.error("Numero nao valido");
+            return
+        }
 
         try {
-            const { data } = await api.put("/itens/pedidos/quantidades", {iditem, quantidade})
+            const { data } = await api.put("/itens/pedidos/quantidades", {iditem, qtde})
             console.log("Quantidade editada com sucesso");
         } catch (e) {
             console.log("Erro ao editar quantidade" , e)            
