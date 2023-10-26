@@ -251,7 +251,7 @@ function Pedidos(){
                                         /><label htmlFor="name" className="form__label">Quantidade</label>
                                     </div>
                                     <button className='btn-cancelar marg-media' onClick={() => { CloseQntd() }}>Cancelar</button>
-                                    <button className='btn-salvar marg-pequena' onClick={(e) => { editarQuantidade(e, idItem, quantidade); setUpdatePedidos(true); CloseQntd();}}>Salvar</button>
+                                    <button className='btn-salvar marg-pequena' onClick={(e) => { editarQuantidade(e, idItem, quantidade); setUpdatePedidos(true); CloseQntd(); CloseItem();}}>Salvar</button>
                                 </div>
 
                             </div>
@@ -272,7 +272,7 @@ function Pedidos(){
                                     <p>Tem certeza que deseja cancelar o item {idItem}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseStatus() }}>Não</button>
-                                        <button className='btn-salvar' onClick={(e) => { cancelarItem(e, idItem); setUpdatePedidos(true); CloseStatus(); }}>Sim</button>
+                                        <button className='btn-salvar' onClick={(e) => { cancelarItem(e, idItem); setUpdatePedidos(true); CloseStatus(); CloseItem();}}>Sim</button>
                                     </div>
                                 </div>
 
