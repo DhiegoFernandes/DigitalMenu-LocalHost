@@ -185,7 +185,7 @@ function Pedidos(){
     return(
         <>
             <div className="container-pedido">
-                <div className='box'>
+                <div className='tabela-pedidos'>
                 <DataGrid
                     columns={columnPedidos}
                     rows={pedidos}

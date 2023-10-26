@@ -12,7 +12,7 @@ function Relatorios(){
                     <button>Total Pedidos (R$)</button>
                     <button>Gorjetas</button>
                 </div>
-                <div className='box'>
+                <div className='tabela-relatorios'>
                     
                 </div>
             </div>

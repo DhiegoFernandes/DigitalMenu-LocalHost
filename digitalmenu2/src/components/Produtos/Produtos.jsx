@@ -9,9 +9,9 @@ import './produtos.css'
 import '../Modal/modal_componentes.css';
 
 
-function Produtos(){
+function Produtos() {
 
-    const {listarProdutos, cadastrarProduto, editaProduto, desativarProduto} = useContext(MainContext);
+    const { listarProdutos, cadastrarProduto, editaProduto, desativarProduto } = useContext(MainContext);
 
     const [produtos, setProdutos] = useState([]);
 
@@ -22,12 +22,12 @@ function Produtos(){
     const [idproduto, setIdproduto] = useState("");
     const [status, setStatus] = useState("");
     const [updateProdutos, setUpdateProdutos] = useState(true)
-  
+
     useEffect(() => {
-        if(updateProdutos){
+        if (updateProdutos) {
             listarProdutos().then((resp) => {
-            setProdutos(resp);
-            setUpdateProdutos(false);
+                setProdutos(resp);
+                setUpdateProdutos(false);
             });
         }
     }, [updateProdutos]);
@@ -91,16 +91,18 @@ function Produtos(){
                         setDescricao(params.row.descricao)
                         setStatus(params.row.status);
                         OpenEditar();
+
                         }}
                         >edit</i></button>
                     <button><i className='material-symbols-outlined' onClick={() => {setNome(params.row.nome); setIdproduto(params.row.idproduto);  OpenDesativar();}}>delete</i></button>
+
                 </div>
-            ) 
+            )
         }
     ]
-    
-    const getRowId = (row) =>{
-    return row.idproduto;
+
+    const getRowId = (row) => {
+        return row.idproduto;
     }
 
     const [open, setOpen] = useState(false);
@@ -115,26 +117,26 @@ function Produtos(){
     const OpenDesativar = () => setOpenDesativar(true);
     const CloseDesativar = () => setOpenDesativar(false);
 
-    return(
+    return (
         <>
             <div className="container-produto">
-                <div className='box'>
-                  <DataGrid
-                    columns={colunmProdutos}
-                    rows={produtos}
-                    getRowId={getRowId}
-                    initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 5 },
-                        },
+                <div className='tabela-produtos'>
+                    <DataGrid
+                        columns={colunmProdutos}
+                        rows={produtos}
+                        getRowId={getRowId}
+                        initialState={{
+                            pagination: {
+                                paginationModel: { page: 0, pageSize: 5 },
+                            },
                         }}
-                    pageSizeOptions={[5, 10]}
-                    localeText={localePTBR}
-                />  
+                        pageSizeOptions={[5, 10]}
+                        localeText={localePTBR}
+                    />
                 </div>
                 <div className='btn-cadastro-produto'>
-                    <button onClick={() => {Open()}}>Cadastrar Produto</button> 
-                    
+                    <button onClick={() => { Open() }}>Cadastrar Produto</button>
+
                     {/* CADASTRAR */}
                     <Modal
                         open={open}
@@ -143,38 +145,60 @@ function Produtos(){
                         aria-describedby="modal-modal-description"
                     >
                         <div className='modal'>
-                            <p>Cadastrar Produto</p>
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='nome'
-                                value={nome}
-                                onChange={(e) => setNome(e.target.value)} 
-                            />
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='preço'
-                                value={preco}
-                                onChange={(e) => setPreco(e.target.value)}  
-                            />
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='descrição'
-                                value={descricao}
-                                onChange={(e) => setDescricao(e.target.value)} 
-                            />
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='categoria'
-                                value={categoria}
-                                onChange={(e) => setCategoria(e.target.value)} 
-                            />
                             <div className='btn-modal'>
-                                <button className='btn-cancelar' onClick={() => {Close()}}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {cadastrarProduto(e, nome, preco, descricao, categoria); Close(); setUpdateProdutos(true);}}>Salvar</button>  
+
+                                <div className='modal-cadastrar-grande'>
+
+                                    <p>Cadastrar Produto</p>
+                                    <div className='form_div'>
+                                        <div className='form_div'>
+                                            <input
+                                                className='inputAnimado'
+                                                required=""
+                                                type="text"
+                                                autoFocus
+                                                placeholder='nome'
+                                                value={nome}
+                                                onChange={(e) => setNome(e.target.value)}
+                                            /><label htmlFor="nome" className="form__label">Nome do produto</label>
+                                        </div>
+                                        <div className='form_div'>
+                                            <input
+                                                className='inputAnimado'
+                                                required=""
+                                                type="text"
+                                                autoFocus
+                                                placeholder='preço'
+                                                value={preco}
+                                                onChange={(e) => setPreco(e.target.value)}
+                                            /><label htmlFor="name" className="form__label">Preço</label>
+                                        </div>
+                                        <div className='form_div'>
+                                            <input
+                                                className='inputAnimado'
+                                                required=""
+                                                type="text"
+                                                autoFocus
+                                                placeholder='descrição'
+                                                value={descricao}
+                                                onChange={(e) => setDescricao(e.target.value)}
+                                            /><label htmlFor="name" className="form__label">Descrição</label>
+                                        </div>
+                                        <div className='form_div'>
+                                            <input
+                                                className='inputAnimado'
+                                                required=""
+                                                type="text"
+                                                autoFocus
+                                                placeholder='categoria'
+                                                value={categoria}
+                                                onChange={(e) => setCategoria(e.target.value)}
+                                            /><label htmlFor="name" className="form__label">Categoria</label>
+                                        </div>
+                                    </div>
+                                    <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
+                                    <button className='btn-salvar  marg-media' onClick={(e) => { cadastrarProduto(e, nome, preco, descricao, categoria); Close(); setUpdateProdutos(true); }}>Salvar</button>
+                                </div>
                             </div>
                         </div>
                     </Modal>
@@ -187,43 +211,67 @@ function Produtos(){
                         aria-describedby="modal-modal-description"
                     >
                         <div className='modal'>
-                            <p>Editar Produto: {nome} nº {idproduto}</p>
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='nome'
-                                value={nome}
-                                onChange={(e) => setNome(e.target.value)} 
-                            />
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='preço'
-                                value={preco}
-                                onChange={(e) => setPreco(e.target.value)}  
-                            />
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='descrição'
-                                value={descricao}
-                                onChange={(e) => setDescricao(e.target.value)} 
-                            />
-                            <input 
-                                type="text" 
-                                autoFocus
-                                placeholder='categoria'
-                                value={categoria}
-                                onChange={(e) => setCategoria(e.target.value)} 
-                            />
-                            <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                                <option value="ATIVADO">ATIVADO</option>
-                                <option value="DESATIVADO">DESATIVADO</option>
-                            </select>
                             <div className='btn-modal'>
-                                <button className='btn-cancelar' onClick={() => {CloseEditar()}}>Cancelar</button>
-                                <button className='btn-salvar' onClick={(e) => {editaProduto(e, nome, preco, descricao, categoria, status, idproduto); CloseEditar(); setUpdateProdutos(true);}}>Salvar</button>  
+                                <div className='modal-cadastrar-grande'>
+                                    <p>Editar Produto:</p>
+                                    <p className='nome-produto'> {nome}</p>
+                                    <p className='texto-id-produto'>IDº {idproduto}</p>
+                                    <div className='form_div '>
+                                        <input
+                                            className='inputAnimado'
+                                            required=""
+                                            type="text"
+                                            autoFocus
+                                            placeholder='nome'
+                                            value={nome}
+                                            onChange={(e) => setNome(e.target.value)}
+                                        /><label htmlFor="nome" className="form__label">Nome do produto</label>
+                                    </div>
+                                    <div className='form_div'>
+                                        <input
+                                            className='inputAnimado'
+                                            required=""
+                                            type="text"
+                                            autoFocus
+                                            placeholder='preço'
+                                            value={preco}
+                                            onChange={(e) => setPreco(e.target.value)}
+                                        /><label htmlFor="nome" className="form__label">Preço</label>
+                                    </div>
+                                    <div className='form_div'>
+                                        <input
+                                            className='inputAnimado'
+                                            required=""
+                                            type="text"
+                                            autoFocus
+                                            placeholder='descrição'
+                                            value={descricao}
+                                            onChange={(e) => setDescricao(e.target.value)}
+                                        /><label htmlFor="nome" className="form__label">Descrição</label>
+                                    </div>
+                                    <div className='form_div'>
+                                        <input
+                                            className='inputAnimado'
+                                            required=""
+                                            type="text"
+                                            autoFocus
+                                            placeholder='categoria'
+                                            value={categoria}
+                                            onChange={(e) => setCategoria(e.target.value)}
+                                        /><label htmlFor="nome" className="form__label">Categoria</label>
+                                    </div>
+                                    <div>
+                                        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                                            <option value="ATIVADO">ATIVADO</option>
+                                            <option value="DESATIVADO">DESATIVADO</option>
+                                        </select>
+                                    </div>
+                                    <button className='btn-cancelar marg-media' onClick={() => { CloseEditar() }}>Cancelar</button>
+                                    <button className='btn-salvar marg-pequena' onClick={(e) => { editaProduto(e, nome, preco, descricao, categoria, status, idproduto); CloseEditar(); setUpdateProdutos(true); }}>Salvar</button>
+                                </div>
                             </div>
+
+
                         </div>
                     </Modal>
 
@@ -236,9 +284,17 @@ function Produtos(){
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                                <p>Tem certeza que deseja desativar o produto {nome}?</p>
-                                <button className='btn-cancelar' onClick={() => CloseDesativar()}>Não</button>
-                                <button className='btn-salvar' onClick={(e) => {desativarProduto(e, idproduto); CloseDesativar(); setUpdateProdutos(true);}}>Sim</button>  
+
+                                <div className='modal-desativar'>
+                                    <p>Tem certeza que deseja desativar o produto:</p>
+                                    <p className='nome-produto'>{nome}?</p>
+                                    <div className='botoes-sim-nao marg-grande'>
+                                        <button className='btn-cancelar' onClick={() => CloseDesativar()}>Não</button>
+                                        <button className='btn-salvar' onClick={(e) => { desativarProduto(e, idproduto); CloseDesativar(); setUpdateProdutos(true); }}>Sim</button>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </Modal>

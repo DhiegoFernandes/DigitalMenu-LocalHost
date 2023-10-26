@@ -79,7 +79,7 @@ function Categorias(){
     return(
         <>
             <div className="container-categoria">
-                <div className='box border'>
+                <div className='tabela-categorias'>
                 <DataGrid
                     columns={columnCategorias}
                     rows={categorias}

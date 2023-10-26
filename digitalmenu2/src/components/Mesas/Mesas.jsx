@@ -74,7 +74,7 @@ function Mesas(){
     return (
         <>
             <div className="container-mesa">
-                <div className='box'>
+                <div className='tabela-mesa'>
                     <DataGrid
                         columns={colunmMesas}
                         rows={mesas}
