@@ -25,12 +25,12 @@
 }
 
 .produtos-cardapio {
-    width: 90%;
-    margin-top: 1em;
+        width: 90%;
+        margin-top: 1em;
 
 }
 
-.inforacoes__produto {
+.informacoes__produto {
     display: flex;
     gap: 1em;
 
@@ -59,11 +59,11 @@
 
 }
 
-.inforacoes__produto {
+.informacoes__produto {
     height: 100px;
 }
 
-.inforacoes__produto__texto {
+.informacoes__produto__texto {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -75,7 +75,7 @@
     max-height: 90px;
 }
 
-.inforacoes__produto__valores {
+.informacoes__produto__valores {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -117,7 +117,7 @@
         height: auto;
     }
 
-    .inforacoes__produto__texto {
+    .informacoes__produto__texto {
         font-size: 0.9em;
     }
 

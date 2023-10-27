@@ -31,12 +31,12 @@ function Home() {
                     <div className='home_apresentacao'>
                         <div className='home_imagem'>
                             <img className='fotoApresentacao' src={fotoApresentacao} alt="" />
-                            <p className='home-descricao'>DIGITAL MENU é um sistema de gerenciamento de pedidos de restaurantes...</p>
+                            <p className='home-descricao'>Facilite a visualização e gestão de pedidos no seu restaurante com o inovador sistema Digital Menu. Projetado para otimizar a eficiência operacional.</p>
 
                         </div>
 
                         <div className='home_opcoes'>
-                            <p className='home-entrar-descricao'>DigitalMenu, entre como administrador ou cliente:</p>
+                            <p className='home-entrar-descricao'>Digital Menu, entre como administrador ou cliente:</p>
                             
                             <button onClick={() => navigate('/system')}>Área do Sistema</button>
                             <button onClick={() => navigate('/client')}>Área do Cliente</button>

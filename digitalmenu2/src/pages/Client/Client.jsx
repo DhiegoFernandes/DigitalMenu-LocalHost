@@ -26,7 +26,7 @@ function Client() {
 
     return (
         <>
-            <div>
+            <div className='main-client'>
 
                 <header>
                     <nav>
@@ -40,7 +40,7 @@ function Client() {
                     </nav>
                 </header>
 
-                <main className='client_principal'>
+                <div className='client_principal'>
                     <div className="client_mensagem">
                         <h1>(RESTAURANTE)</h1>
                         <h2>Escolha sua mesa</h2>
@@ -83,7 +83,7 @@ function Client() {
                             </div>
                         </div>
                     </div>
-                </main>
+                </div>
             </div>
         </>
     );

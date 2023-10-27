@@ -1,9 +1,13 @@
+.main-client{
+    background-color: #525252;
+    height: 100vh;
+}
+
 .client_principal{
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: #525252;
     justify-content: center;
+    margin-top: 10vh;
 }
 
 .div_principal_client {
@@ -14,14 +18,14 @@
     border-radius: 20px;
     padding: 10px;
 
-    
 
 }
 
 .client_mensagem {
-    margin-bottom: 2vh;
+    margin-bottom: 2h;
     text-align: center;
     color: white;
+    margin-bottom: 2vh;
     
 }
 

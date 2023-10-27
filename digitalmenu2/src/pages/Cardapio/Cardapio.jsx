@@ -6,7 +6,7 @@ function Cardapio() {
         <>
 
             <div className='home_cabecalho'>
-                <img className='tam_logo_client' src={logoDM} alt="" />
+                <img className='home_dmLogo' src={logoDM} alt="" />
                 <div className="header__informacoes">
                     <div className="header__informacoes__informacoesPedido">
                         <p>Numero Mesa</p>
@@ -24,15 +24,17 @@ function Cardapio() {
             <div className='cardapio-global'>
                 <div className='produtos-cardapio'>
                     <tr className='cardapio-linha'>
+
+
                         <td className='cardapio-celula'>
-                            <div className="inforacoes__produto">
-                                <div className="inforacoes__produto__texto">
+                            <div className="informacoes__produto">
+                                <div className="informacoes__produto__texto">
                                     <p>Nome do Produto</p>
-                                    <p className="desc-produto-cardapio">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                    <p className="desc-produto-cardapio">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy</p>
                                 </div>
                                 <img className="imagemProduto" src="https://receitinhas.com.br/wp-content/uploads/2022/06/cachorro-quente-tradicional-730x365.jpg" />
                             </div>
-                            <div className="inforacoes__produto__valores">
+                            <div className="informacoes__produto__valores">
                                 <p className="valorProduto">Valor Produto</p>
                                 <button className="botaoQuantidade">-</button>
                                 <p className="quantidade">0</p>
@@ -42,14 +44,14 @@ function Cardapio() {
                         </td>
 
                         <td className='cardapio-celula'>
-                            <div className="inforacoes__produto">
-                                <div className="inforacoes__produto__texto">
+                            <div className="informacoes__produto">
+                                <div className="informacoes__produto__texto">
                                     <p>Nome do Produto</p>
-                                    <p className="desc-produto-cardapio"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                    <p className="desc-produto-cardapio"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy</p>
                                 </div>
                                 <img className="imagemProduto" src="https://receitinhas.com.br/wp-content/uploads/2022/06/cachorro-quente-tradicional-730x365.jpg" />
                             </div>
-                            <div className="inforacoes__produto__valores">
+                            <div className="informacoes__produto__valores">
                                 <p className="valorProduto">Valor Produto</p>
                                 <button className="botaoQuantidade">-</button>
                                 <p className="quantidade">0</p>
@@ -57,9 +59,9 @@ function Cardapio() {
                                 <button className="botaoAdicionar">Adicionar R$ 0,00</button>
                             </div>
                         </td>
+
+
                     </tr>
-
-
                 </div>
             </div>
         </>
