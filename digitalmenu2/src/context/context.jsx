@@ -2,7 +2,7 @@ import { createContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import api from '../api'
 import { createNotification } from '../util/toastify'
-import { inputAdornmentClasses } from "@mui/material";
+
 
 // Criação do contexto
 export const MainContext = createContext({});
@@ -33,7 +33,15 @@ function MainProvider({ children }) {
     //Login para as mesas
     async function autenticacaoMesa(e, idMesa) {
         e.preventDefault();
-        idMesa = idMesa.trim();
+
+        if(typeof idMesa === "string"){
+            idMesa = parseInt(idMesa,10)
+        }
+
+        if(isNaN(idMesa)){
+            console.error("Numero nao valido");
+            return
+        }
 
         try {
             const { data } = await api.post("/mesa/check", { idMesa });
