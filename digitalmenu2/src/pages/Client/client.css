@@ -29,7 +29,7 @@
     
 }
 
-/* logo da navbar*/
+
 .btn_logo_client {
     border: 0;
     background-color: transparent;
@@ -47,7 +47,7 @@
 
 }
 
-/* botao home */
+
 .btn_home_client {
     margin-right: 2vw;
     background-color: transparent;
@@ -63,7 +63,7 @@
 }
 
 
-/* div das mesas */
+
 .mesas {
     font-weight: bold;
 
