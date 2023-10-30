@@ -1,7 +1,17 @@
+import { useContext, useEffect, useState } from "react";
 import './cardapio.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png'
 
 function Cardapio() {
+
+    const [numeroMesa, setNumeroMesa] = useState("");
+
+    useEffect(() => {
+        const numeroMesa = localStorage.getItem("numeroMesa");
+        if (numeroMesa) {
+            setNumeroMesa(numeroMesa);
+        }
+    }, []);
     return (
         <>
 
@@ -9,7 +19,7 @@ function Cardapio() {
                 <img className='home_dmLogo' src={logoDM} alt="" />
                 <div className="header__informacoes">
                     <div className="header__informacoes__informacoesPedido">
-                        <p>Numero Mesa</p>
+                        <p>Numero Mesa: {numeroMesa}</p>
                         <p>Numero Pedido</p>
                     </div>
 
