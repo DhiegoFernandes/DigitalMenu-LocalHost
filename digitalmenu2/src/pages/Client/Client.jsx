@@ -42,21 +42,19 @@ function Client() {
                     <h2>Escolha sua mesa</h2>
                 </div>
                 <div className="div_principal_client">
-                    <div className="Formato-mesa">
-                        {mesas.map((mesa) => (
-                            <div className="mesas" key={mesa.idmesa}>
-                                <p>Mesa {mesa.idmesa}</p>
-                                <button
-                                    className=""
-                                    type="submit"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        const idMesa = parseInt(mesa.idmesa,10);
-                                        autenticacaoMesa(e, idMesa);
-                                    }}
-                                >
-                                </button>
-                            </div>
+                    <div className="mesas-container">
+                    {mesas.map((mesa) => (
+                        <div
+                            className="mesas"
+                            key={mesa.idmesa}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const idMesa = parseInt(mesa.idmesa, 10);
+                                autenticacaoMesa(e, idMesa);
+                            }}
+                        >
+                            <p><i className="material-symbols-outlined icone-customizado">table_restaurant</i> {mesa.idmesa}</p>
+                        </div>
                         ))}
                     </div>
                 </div>
