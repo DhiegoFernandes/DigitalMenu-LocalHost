@@ -5,12 +5,12 @@ import './client.css';
 import { useNavigate } from 'react-router-dom';
 
 function Client() {
-    const { listarMesas, autenticacaoMesa } = useContext(MainContext);
+    const { listarMesasAtivas, autenticacaoMesa } = useContext(MainContext);
     const [mesas, setMesas] = useState([]);
     const navigate = useNavigate();
   
     useEffect(() => {
-        listarMesas()
+        listarMesasAtivas()
         .then(data => {
             setMesas(data); 
             console.log(data);

@@ -274,6 +274,17 @@ function MainProvider({ children }) {
         }
     }
 
+    async function listarMesasAtivas(){
+        const token = localStorage.getItem("token");
+
+        try {
+            const { data } = await api.get("/mesas/todas-mesas/ativas");
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async function desativarMesa(e, idMesa) {
         e.preventDefault();
     
@@ -380,6 +391,7 @@ function MainProvider({ children }) {
             autenticar,
             listarCategorias,
             listarMesas,
+            listarMesasAtivas,
             listarPedidos,
             listarProdutos,
             gorjetas,
