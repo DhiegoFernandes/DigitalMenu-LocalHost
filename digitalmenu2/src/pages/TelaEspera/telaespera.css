@@ -1,0 +1,39 @@
+.main_telaespera{
+    display: grid;
+    background-color: #F6F2D9;
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
+    grid-template-rows: 5vh 40vh 40vh 15vh;
+}
+
+.telaEsperaOpcoes {
+    background-color: #505050;
+    grid-row: 2/4;
+    grid-column: 2/6;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.telaEsperaOpcoes button {
+    margin-left: 10vw;
+    margin-right: 10vw;
+
+    height: 10vh;
+    margin-bottom: 10px;
+
+
+    background-color: rgb(230, 157, 2);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 1rem;
+
+}
+
+.telaEsperaOpcoes button:hover{
+    background-color: #2C2C2C;
+    cursor: pointer;
+}

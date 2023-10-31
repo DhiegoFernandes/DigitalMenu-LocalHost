@@ -8,6 +8,7 @@ import System from './pages/Settings/System';
 import Login from './pages/Log/Login';
 import Client from './pages/Client/Client';
 import Cardapio from './pages/Cardapio/Cardapio';
+import TelaEspera from './pages/TelaEspera/TelaEspera';
 
 import Pedidos from './components/Pedidos/Pedidos';
 import Produtos from './components/Produtos/Produtos';
@@ -15,63 +16,63 @@ import Categorias from './components/Categorias/Categorias';
 import Relatorios from './components/Relatorios/Relatorios';
 import Mesas from './components/Mesas/Mesas';
 
-function Router(){
-    return(
+function Router() {
+    return (
         <BrowserRouter>
             <MainProvider>
                 <Routes>
-                    <Route 
+                    <Route
                         path='/'
                         element={<Login />}
                     />
-                    <Route 
+                    <Route
                         path='/home'
                         element={
-                        <PrivateRoute>
-                            <Home />
-                        </PrivateRoute>
+                            <PrivateRoute>
+                                <Home />
+                            </PrivateRoute>
                         }
                     />
-                    <Route 
+                    <Route
                         path='/system'
                         element={
-                        <PrivateRoute>
-                            <System />
-                        </PrivateRoute>
+                            <PrivateRoute>
+                                <System />
+                            </PrivateRoute>
                         }
                     >
                         <Route path='produtos' element={
-                        <PrivateRoute>
-                            <Produtos />
-                        </PrivateRoute>
-                        }/>
+                            <PrivateRoute>
+                                <Produtos />
+                            </PrivateRoute>
+                        } />
                         <Route path='pedidos' element={
-                        <PrivateRoute>
-                            <Pedidos />
-                        </PrivateRoute>
-                        }/>
+                            <PrivateRoute>
+                                <Pedidos />
+                            </PrivateRoute>
+                        } />
                         <Route path='categorias' element={
-                        <PrivateRoute>
-                            <Categorias />
-                        </PrivateRoute>
-                        }/>
+                            <PrivateRoute>
+                                <Categorias />
+                            </PrivateRoute>
+                        } />
                         <Route path='relatorios' element={
-                        <PrivateRoute>
-                            <Relatorios />
-                        </PrivateRoute>
-                        }/>
+                            <PrivateRoute>
+                                <Relatorios />
+                            </PrivateRoute>
+                        } />
                         <Route path='mesas' element={
-                        <PrivateRoute>
-                            <Mesas />
-                        </PrivateRoute>
-                        }/>
+                            <PrivateRoute>
+                                <Mesas />
+                            </PrivateRoute>
+                        } />
                     </Route>
-                    <Route 
+                    <Route
                         path='/client'
-                        element={      
-                        <PrivateRoute>   
-                            <Client />
-                        </PrivateRoute> 
+                        element={
+                            <PrivateRoute>
+                                <Client />
+                            </PrivateRoute>
                         }
                     />
                     <Route
@@ -81,6 +82,16 @@ function Router(){
                                 <Cardapio />
                             </PrivateRoute>
                         }
+
+                    />
+                    <Route
+                        path='/TelaEspera'
+                        element={
+                            <PrivateRoute>
+                                <TelaEspera />
+                            </PrivateRoute>
+                        }
+
                     />
                 </Routes>
             </MainProvider>

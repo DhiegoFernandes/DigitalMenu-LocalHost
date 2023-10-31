@@ -26,7 +26,6 @@ function Home() {
                     </nav>
                 </header>
 
-
                 <main>
                     <div className='home_apresentacao'>
                         <div className='home_imagem'>

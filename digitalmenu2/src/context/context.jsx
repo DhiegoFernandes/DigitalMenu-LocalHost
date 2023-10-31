@@ -46,7 +46,7 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.post("/mesa/check", { idMesa });
             localStorage.setItem('numeroMesa', idMesa);
-            navigate("/cardapio");
+            navigate("/TelaEspera");
         } catch (e) {
             console.log("Erro na autenticação" + e);
         }
