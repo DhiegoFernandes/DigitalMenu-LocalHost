@@ -189,22 +189,17 @@ function MainProvider({ children }) {
     }
 
     async function cadastrarProduto(e, nome, preco, descricao, categoria, imagem){
+        console.log("fenfoefnefo")
         e.preventDefault();
         nome = nome.trim();
         preco = preco.trim();
         descricao = descricao.trim();
         categoria = categoria.trim();
-
+    
         try{
-            const formData = new FormData();
-            formData.append('nome', nome);
-            formData.append('preco', preco);
-            formData.append('descricao', descricao);
-            formData.append('categoria', categoria);
-            formData.append('imagem', imagem);
-            console.log(imagem);
-            const { data } = await api.post("/produto", formData);
-            console.log("Produto cadastrado com sucesso:", nome)
+            console.log('Entrou no try e esta assim: ', imagem)
+            const {data} = await api.post('/produto', {nome, preco, descricao, categoria, imagem})
+            console.log('datatinha: '+data)
         }catch(e){
             console.log("Erro ao cadastrar produto", e)
         }

@@ -21,7 +21,7 @@ function Produtos() {
     const [categoria, setCategoria] = useState("");
     const [idproduto, setIdproduto] = useState("");
     const [status, setStatus] = useState("");
-    const [imagem, setImagem] = useState([]);
+    const [imagem, setImagem] = useState("");
     const [updateProdutos, setUpdateProdutos] = useState(true)
 
     useEffect(() => {
@@ -118,6 +118,21 @@ function Produtos() {
     const OpenDesativar = () => setOpenDesativar(true);
     const CloseDesativar = () => setOpenDesativar(false);
 
+
+
+    const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const base64Image = e.target.result;
+            setImagem(base64Image);
+          };
+          reader.readAsDataURL(selectedFile);
+        }
+    };
+
+
     return (
         <>
             <div className="container-produto">
@@ -147,7 +162,7 @@ function Produtos() {
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-
+                            <form action="/produto" method="POST" encType="multipart/form-data">
                                 <div className='modal-cadastrar-grande'>
 
                                     <p>Cadastrar Produto</p>
@@ -188,9 +203,8 @@ function Produtos() {
                                         <div className='form_div'>
                                             <input
                                                 type="file"
-                                                accept="image/*"
-                                                name='imagem'
-                                                onChange={(e) => setImagem(e.target.files[0])}
+                                                name="imagem"
+                                                onChange={handleFileChange}
                                             />
                                         </div>
 
@@ -207,8 +221,12 @@ function Produtos() {
                                         </div>
                                     </div>
                                     <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
-                                    <button className='btn-salvar  marg-media' onClick={(e) => { cadastrarProduto(e, nome, preco, descricao, categoria, imagem); Close(); setUpdateProdutos(true); }}>Salvar</button>
+                                    <button className='btn-salvar  marg-media' onClick={(e) => {
+                                        cadastrarProduto(e, nome, preco, descricao, categoria, imagem)
+                                        Close(); 
+                                        setUpdateProdutos(true); }}>Salvar</button>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </Modal>
