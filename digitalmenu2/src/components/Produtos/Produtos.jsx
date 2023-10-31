@@ -21,6 +21,7 @@ function Produtos() {
     const [categoria, setCategoria] = useState("");
     const [idproduto, setIdproduto] = useState("");
     const [status, setStatus] = useState("");
+    const [imagem, setImagem] = useState([]);
     const [updateProdutos, setUpdateProdutos] = useState(true)
 
     useEffect(() => {
@@ -186,6 +187,15 @@ function Produtos() {
                                         </div>
                                         <div className='form_div'>
                                             <input
+                                                type="file"
+                                                accept="image/*"
+                                                name='imagem'
+                                                onChange={(e) => setImagem(e.target.files[0])}
+                                            />
+                                        </div>
+
+                                        <div className='form_div'>
+                                            <input
                                                 className='inputAnimado'
                                                 required=""
                                                 type="text"
@@ -197,7 +207,7 @@ function Produtos() {
                                         </div>
                                     </div>
                                     <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
-                                    <button className='btn-salvar  marg-media' onClick={(e) => { cadastrarProduto(e, nome, preco, descricao, categoria); Close(); setUpdateProdutos(true); }}>Salvar</button>
+                                    <button className='btn-salvar  marg-media' onClick={(e) => { cadastrarProduto(e, nome, preco, descricao, categoria, imagem); Close(); setUpdateProdutos(true); }}>Salvar</button>
                                 </div>
                             </div>
                         </div>
