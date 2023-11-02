@@ -1,39 +1,163 @@
-.main_telaespera{
+.main_telaespera {
     display: grid;
-    background-color: #F6F2D9;
-    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
+    background: rgb(246, 242, 217);
+    background: linear-gradient(90deg, rgba(246, 242, 217, 1) 0%, rgb(245, 236, 179) 50%, rgba(246, 242, 217, 1) 100%);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 5vh 40vh 40vh 15vh;
+
 }
 
-.telaEsperaOpcoes {
-    background-color: #505050;
+.telaEspera_opcoes {
+/*     background-color: #15f024; */
     grid-row: 2/4;
     grid-column: 2/6;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
     text-align: center;
+
 }
 
-.telaEsperaOpcoes button {
-    margin-left: 10vw;
-    margin-right: 10vw;
+.telaEspera_escolha {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-    height: 10vh;
-    margin-bottom: 10px;
+    justify-content: space-evenly;
+    margin-top: 40px;
+
+}
+
+.texto_telaespera {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: rgb(44, 44, 44);
+
+    
+    border-top: 5px solid rgb(230, 157, 2);
+
+    padding: 1vh 5vw 1vh 5vw;
+}
+
+/* --------------- CARD ----------------- */
+.card {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    /* background: #333; */
+    transition-delay: 0.5s;
+}
+
+.card:hover {
+    width: 350px;
+    height: 400px;
+    transition-delay: 0.5s;
+}
+
+.card .circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .circle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: #525252;
+    border: 8px solid rgb(230, 157, 2);
+
+    filter: drop-shadow(0 0 10px rgb(230, 157, 2)) drop-shadow(0 0 20px rgb(216, 186, 121));
+    transition: 0.5s, background 0.5s;
+    transition-delay: 0.75s, 1s;
+}
+
+.card:hover .circle::before {
+    transition-delay: 0.5s;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #ffae00;
+}
+
+.card .circle .logo_opcao {
+    position: relative;
+    width: 250px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+
+}
+
+.card:hover .circle .logo_opcao {
+    transform: scale(0);
+    transition-delay: 0s;
+
+}
 
 
-    background-color: rgb(230, 157, 2);
+/* spinning */
+.card .product_img {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    transform: translate(-50%, -50%) scale(0) rotate(120deg);
+    height: 100px;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover .product_img {
+    transition-delay: 0.75s;
+    top: 45%;
+    left: 100%;
+    height: 500px;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+
+
+/* texto */
+.card .content {
+    position: absolute;
+    width: 75%;
+    margin-top: 15vh;
+    margin-left: 1vw;
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+}
+
+.card:hover .content {
+    transition-delay: 0.50s;
+    opacity: 1;
+    visibility: visible;
+    left: 0px;
+
+}
+
+.card .content h2 {
     color: white;
     font-weight: bold;
-    font-size: 1rem;
-    border-radius: 1rem;
-
+    text-transform: uppercase;
+    font-size: 2.8em;
+    line-height: 1em;
 }
 
-.telaEsperaOpcoes button:hover{
-    background-color: #2C2C2C;
-    cursor: pointer;
+.card .content p {
+    color: white;
 }
