@@ -188,18 +188,42 @@ function MainProvider({ children }) {
         }
     }
 
+    async function listarProdutosComImagens(){
+        
+        const token = localStorage.getItem("token");
+        
+        try{
+            const { data } = await api.get("/produto/imagens", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            return data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
     async function cadastrarProduto(e, nome, preco, descricao, categoria, imagem){
-        console.log("fenfoefnefo")
+        console.log("Imagem para envio:", imagem); // Adicione esta linha
         e.preventDefault();
         nome = nome.trim();
         preco = preco.trim();
         descricao = descricao.trim();
         categoria = categoria.trim();
+
+        const formData = new FormData();
+
+        formData.append('nome', nome);
+        formData.append('preco', preco);
+        formData.append('descricao', descricao);
+        formData.append('categoria', categoria);
+        formData.append('imagem', imagem)
     
         try{
-            console.log('Entrou no try e esta assim: ', imagem)
-            const {data} = await api.post('/produto', {nome, preco, descricao, categoria, imagem})
-            console.log('datatinha: '+data)
+            console.log('Entrou no try e esta assim: ', formData)
+            const {data} = await api.post('/produto', formData)
+            console.log('datatinha: '+imagem)
         }catch(e){
             console.log("Erro ao cadastrar produto", e)
         }
@@ -396,6 +420,7 @@ function MainProvider({ children }) {
             listarMesasAtivas,
             listarPedidos,
             listarProdutos,
+            listarProdutosComImagens,
             gorjetas,
             totalPedidos,
             totalProdutosUni,

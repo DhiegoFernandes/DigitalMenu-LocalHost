@@ -120,19 +120,6 @@ function Produtos() {
 
 
 
-    const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
-        if (selectedFile) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const base64Image = e.target.result;
-            setImagem(base64Image);
-          };
-          reader.readAsDataURL(selectedFile);
-        }
-    };
-
-
     return (
         <>
             <div className="container-produto">
@@ -204,7 +191,7 @@ function Produtos() {
                                             <input
                                                 type="file"
                                                 name="imagem"
-                                                onChange={handleFileChange}
+                                                onChange={(e) => setImagem(e.target.files[0])}
                                             />
                                         </div>
 
@@ -222,6 +209,7 @@ function Produtos() {
                                     </div>
                                     <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
                                     <button className='btn-salvar  marg-media' onClick={(e) => {
+                                         console.log('Imagem para envio:', document.querySelector('input[name="imagem"]').files[0]); // Adicione esta linha
                                         cadastrarProduto(e, nome, preco, descricao, categoria, imagem)
                                         Close(); 
                                         setUpdateProdutos(true); }}>Salvar</button>
