@@ -1,17 +1,26 @@
 import { useContext, useEffect, useState } from "react";
 import './cardapio.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png'
+import { MainContext } from "../../context/context";
 
 function Cardapio() {
 
+    const { listarProdutosComImagens} = useContext(MainContext);
     const [numeroMesa, setNumeroMesa] = useState("");
+    const [produto, setProduto] = useState([])
 
     useEffect(() => {
         const numeroMesa = localStorage.getItem("numeroMesa");
         if (numeroMesa) {
             setNumeroMesa(numeroMesa);
         }
-    }, []);
+
+        // Chame a função listarProdutos para obter os produtos
+        listarProdutosComImagens().then((data) => {
+            setProduto(data);
+            console.log(data);
+        });
+    }, [listarProdutosComImagens]);
     return (
         <>
 
@@ -33,45 +42,22 @@ function Cardapio() {
 
             <div className='cardapio-global'>
                 <div className='produtos-cardapio'>
-                    <tr className='cardapio-linha'>
-
-
-                        <td className='cardapio-celula'>
-                            <div className="informacoes__produto">
-                                <div className="informacoes__produto__texto">
-                                    <p>Nome do Produto</p>
-                                    <p className="desc-produto-cardapio">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy</p>
+                    <h2>Listando os pedidos</h2>
+                    <div className="cardapio-linha">
+                        {produto.map((produtos, index) => (
+                            <div key={produto.idproduto} className="cardapio-celula">
+                                <div className="informacoes__produto">
+                                    <div className="produto-info">
+                                        <p>Nome: {produtos.nome}</p>
+                                        <p>Preço: {produtos.preco}</p>
+                                        <p>Descrição: {produtos.descricao}</p>
+                                    </div>
+                                    <p className="imagem-produto"> {produtos.imagem ? <img src={`http://localhost:3333/uploads/${produtos.imagem}`} alt="Imagem" width="150" /> : 'Nenhuma imagem disponível'}</p>
+                                    <hr />
                                 </div>
-                                <img className="imagemProduto" src="https://receitinhas.com.br/wp-content/uploads/2022/06/cachorro-quente-tradicional-730x365.jpg" />
                             </div>
-                            <div className="informacoes__produto__valores">
-                                <p className="valorProduto">Valor Produto</p>
-                                <button className="botaoQuantidade">-</button>
-                                <p className="quantidade">0</p>
-                                <button className="botaoQuantidade">+</button>
-                                <button className="botaoAdicionar">Adicionar R$ 0,00</button>
-                            </div>
-                        </td>
-
-                        <td className='cardapio-celula'>
-                            <div className="informacoes__produto">
-                                <div className="informacoes__produto__texto">
-                                    <p>Nome do Produto</p>
-                                    <p className="desc-produto-cardapio"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy</p>
-                                </div>
-                                <img className="imagemProduto" src="https://receitinhas.com.br/wp-content/uploads/2022/06/cachorro-quente-tradicional-730x365.jpg" />
-                            </div>
-                            <div className="informacoes__produto__valores">
-                                <p className="valorProduto">Valor Produto</p>
-                                <button className="botaoQuantidade">-</button>
-                                <p className="quantidade">0</p>
-                                <button className="botaoQuantidade">+</button>
-                                <button className="botaoAdicionar">Adicionar R$ 0,00</button>
-                            </div>
-                        </td>
-
-
-                    </tr>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

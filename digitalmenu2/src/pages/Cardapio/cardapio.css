@@ -134,4 +134,21 @@
     .header__informacoes {
         gap: 10%;
     }
+
+    .produto-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .produto-info p {
+        flex: 1;
+    }
+    
+    .imagem-produto {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
 }
