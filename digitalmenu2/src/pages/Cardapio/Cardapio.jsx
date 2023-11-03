@@ -5,7 +5,7 @@ import { MainContext } from "../../context/context";
 
 function Cardapio() {
 
-    const { listarProdutosComImagens} = useContext(MainContext);
+    const { listarProdutosComImagens } = useContext(MainContext);
     const [numeroMesa, setNumeroMesa] = useState("");
     const [produto, setProduto] = useState([])
 
@@ -41,20 +41,34 @@ function Cardapio() {
             </div>
 
             <div className='cardapio-global'>
+                <div className="categorias-cardapio">
+                    <button>Categoria1</button>
+                    <button>Categoria2</button>
+                    <button>Categoria3</button>
+                </div>
                 <div className='produtos-cardapio'>
-                    <h2>Listando os pedidos</h2>
                     <div className="cardapio-linha">
+
                         {produto.map((produtos, index) => (
                             <div key={produto.idproduto} className="cardapio-celula">
+
                                 <div className="informacoes__produto">
-                                    <div className="produto-info">
-                                        <p>Nome: {produtos.nome}</p>
-                                        <p>Preço: {produtos.preco}</p>
-                                        <p>Descrição: {produtos.descricao}</p>
+                                    <p className="nome-produtoCardapio">{produtos.nome}</p>
+                                    <p className="preco-produtoCardapio">{produtos.preco}R$</p>
+                                    <p className="descricao-produtoCardapio">{produtos.descricao}</p>
+
+                                    
+                                    <div className="botoes-MaisMenos">
+                                        <button>+</button>
+                                        <button>-</button>
                                     </div>
-                                    <p className="imagem-produto"> {produtos.imagem ? <img src={`http://localhost:3333/uploads/${produtos.imagem}`} alt="Imagem" width="150" /> : 'Nenhuma imagem disponível'}</p>
-                                    <hr />
+
                                 </div>
+                                <div className="areaImagem">
+                                    <p> {produtos.imagem ? <img className="imagemProduto" src={`http://localhost:3333/uploads/${produtos.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Nenhuma imagem disponível'}</p>
+                                </div>
+
+
                             </div>
                         ))}
                     </div>

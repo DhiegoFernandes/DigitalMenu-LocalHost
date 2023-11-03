@@ -32,7 +32,7 @@ function TelaEspera() {
                     <div className='telaEspera_escolha'>
 
 
-                        <div className='card' onClick={() => navigate('/client')}>
+                        <div className='card' onClick={() => navigate('/cardapio')}>
                             <div className='circle'>
                                 <img className="logo_opcao" src={iniciarPedido} alt="" />
                             </div>
