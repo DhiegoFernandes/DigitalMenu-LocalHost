@@ -44,7 +44,6 @@
     height: 40px;
     gap: 20px;
     
-        background-color: rgb(255, 145, 0);
 
 }
 
@@ -81,7 +80,7 @@
     display: flex;
     width: 200px;
     height: 200px;
-    background-color: rgb(232, 9, 161);
+    
 }
 
 .imagemProduto {
@@ -123,6 +122,36 @@
 
 
 /* ---------- Botoes  --------*/
+
+.categoriaSelecionada{
+    background-color: black;
+}
+.botao-categoria.active {
+    color: black;
+}
+
+.botao-categoria.active:hover {
+    color: black;
+}
+.botao-categoria {
+    background-color: orange;
+    border: 2px solid orange;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    border-radius: 10%;
+    margin-top: 1%;
+}
+
+
+.botao-categoria:hover {
+background-color: orange;
+}
+
+
+
 .botaoQuantidade {
     height: 50px;
     width: 50px;
@@ -171,5 +200,8 @@
     .header__informacoes {
         gap: 10%;
     }
+
+
+
 
 }
