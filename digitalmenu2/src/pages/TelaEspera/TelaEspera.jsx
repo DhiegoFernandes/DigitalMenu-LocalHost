@@ -45,7 +45,7 @@ function TelaEspera() {
                         </div>
 
 
-                        <div className='card' onClick={() => navigate('')}>
+                        <div className='card' onClick={() => navigate('/menu')}>
                             <div className='circle'>
                                 <img className="logo_opcao" src={cardapio} alt="" />
                             </div>

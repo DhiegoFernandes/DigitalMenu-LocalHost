@@ -6,15 +6,13 @@ function Relatorios(){
         <>
             <div className="container-relatorio">
                 <div className='btn-relatorios'>
-                    <button>Produtos + vendidos</button>
-                    <button>Produtos + faturados</button>
-                    <button>Total produtos (uni.)</button>
-                    <button>Total Pedidos (R$)</button>
-                    <button>Gorjetas</button>
+                    <button className='btn'>Produtos + vendidos</button>
+                    <button className='btn'>Produtos + faturados</button>
+                    <button className='btn'>Total (R$) por Pedido</button>
                 </div>
-                <div className='tabela-relatorios'>
+                {/* <div className='tabela-relatorios'>
                     
-                </div>
+                </div> */}
             </div>
         </>
     );

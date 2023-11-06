@@ -143,7 +143,15 @@ function Produtos() {
                     />
                 </div>
                 <div className='btn-cadastro-produto'>
-                    <button onClick={() => { Open() }}>Cadastrar Produto</button>
+                    <button onClick={() => {
+                            setIdproduto("");
+                            setNome("");
+                            setPreco("");
+                            setCategoria("");
+                            setDescricao("")
+                            setStatus(""); 
+                            Open();  
+                        }}>Cadastrar Produto</button>
 
                     {/* CADASTRAR */}
                     <Modal
@@ -262,7 +270,7 @@ function Produtos() {
                                             type="text"
                                             autoFocus
                                             placeholder='descrição'
-                                            value={descricao}
+                                            value={descricao}ya
                                             onChange={(e) => setDescricao(e.target.value)}
                                         /><label htmlFor="nome" className="form__label">Descrição</label>
                                     </div>

@@ -9,6 +9,7 @@ import Login from './pages/Log/Login';
 import Client from './pages/Client/Client';
 import Cardapio from './pages/Cardapio/Cardapio';
 import TelaEspera from './pages/TelaEspera/TelaEspera';
+import Menu from './pages/Cardapio/Menu';
 
 import Pedidos from './components/Pedidos/Pedidos';
 import Produtos from './components/Produtos/Produtos';
@@ -80,6 +81,14 @@ function Router() {
                         element={
                             <PrivateRoute>
                                 <Cardapio />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path='/menu'
+                        element={
+                            <PrivateRoute>
+                                <Menu />
                             </PrivateRoute>
                         }
 
