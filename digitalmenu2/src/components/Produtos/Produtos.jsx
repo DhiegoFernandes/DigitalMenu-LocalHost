@@ -11,9 +11,10 @@ import '../Modal/modal_componentes.css';
 
 function Produtos() {
 
-    const { listarProdutos, cadastrarProduto, editaProduto, desativarProduto } = useContext(MainContext);
+    const { listarProdutos, cadastrarProduto, editaProduto, desativarProduto, listarCategorias } = useContext(MainContext);
 
     const [produtos, setProdutos] = useState([]);
+    const [categorias, setCategorias] = useState([]);
 
     const [nome, setNome] = useState("");
     const [preco, setPreco] = useState("");
@@ -28,6 +29,10 @@ function Produtos() {
         if (updateProdutos) {
             listarProdutos().then((resp) => {
                 setProdutos(resp);
+                setUpdateProdutos(false);
+            });
+            listarCategorias().then((resp) => {
+                setCategorias(resp);
                 setUpdateProdutos(false);
             });
         }
@@ -196,16 +201,12 @@ function Produtos() {
                                         </div>
 
                                         <div className='form_div'>
-                                            <input
-                                                className='inputAnimado'
-                                                required=""
-                                                type="text"
-                                                autoFocus
-                                                placeholder='categoria'
-                                                value={categoria}
-                                                onChange={(e) => setCategoria(e.target.value)}
-                                            /><label htmlFor="name" className="form__label">Categoria</label>
-                                        </div>
+                                        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                                        {categorias.map((categoria) => (
+                                                <option key={categoria.nome} value={categoria.nome}> {categoria.nome} </option>
+                                        ))}
+                                        </select>
+                                    </div>
                                     </div>
                                     <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
                                     <button className='btn-salvar  marg-media' onClick={(e) => {
@@ -266,15 +267,11 @@ function Produtos() {
                                         /><label htmlFor="nome" className="form__label">Descrição</label>
                                     </div>
                                     <div className='form_div'>
-                                        <input
-                                            className='inputAnimado'
-                                            required=""
-                                            type="text"
-                                            autoFocus
-                                            placeholder='categoria'
-                                            value={categoria}
-                                            onChange={(e) => setCategoria(e.target.value)}
-                                        /><label htmlFor="nome" className="form__label">Categoria</label>
+                                        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                                        {categorias.map((categoria) => (
+                                                <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
+                                        ))}
+                                        </select>
                                     </div>
                                     <div>
                                         <select value={status} onChange={(e) => setStatus(e.target.value)}>
