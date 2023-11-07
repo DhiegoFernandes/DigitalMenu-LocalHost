@@ -10,9 +10,6 @@ function Relatorios(){
                     <button className='btn'>Produtos + faturados</button>
                     <button className='btn'>Total (R$) por Pedido</button>
                 </div>
-                {/* <div className='tabela-relatorios'>
-                    
-                </div> */}
             </div>
         </>
     );

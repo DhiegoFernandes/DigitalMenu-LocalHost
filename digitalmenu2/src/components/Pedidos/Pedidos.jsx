@@ -124,6 +124,13 @@ function Pedidos(){
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
+                field: "preco",
+                headerName: "Preço",
+                minWidth: 50,
+                hideable: false,
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+            },
+            {
                 field: "subtotal",
                 headerName: "Subtotal",
                 minWidth: 50,
@@ -146,15 +153,15 @@ function Pedidos(){
             },
             {
                 field: "horapedido",
-                headerName: "Horário do Pedido",
-                minWidth: 170,
+                headerName: "Hora do Pedido",
+                minWidth: 120,
                 hideable: false,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
                 field: "actions",
                 headerName: "Ações",
-                minWidth: 90,
+                minWidth: 50,
                 hideable: false,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
                 renderCell: (params) => (
