@@ -147,7 +147,6 @@ function Produtos() {
                             setIdproduto("");
                             setNome("");
                             setPreco("");
-                            setCategoria("");
                             setDescricao("")
                             setStatus(""); 
                             Open();  
@@ -211,7 +210,7 @@ function Produtos() {
                                         <div className='form_div'>
                                         <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                                         {categorias.map((categoria) => (
-                                                <option key={categoria.nome} value={categoria.nome}> {categoria.nome} </option>
+                                                <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
                                         ))}
                                         </select>
                                     </div>
@@ -270,7 +269,7 @@ function Produtos() {
                                             type="text"
                                             autoFocus
                                             placeholder='descrição'
-                                            value={descricao}ya
+                                            value={descricao}
                                             onChange={(e) => setDescricao(e.target.value)}
                                         /><label htmlFor="nome" className="form__label">Descrição</label>
                                     </div>
