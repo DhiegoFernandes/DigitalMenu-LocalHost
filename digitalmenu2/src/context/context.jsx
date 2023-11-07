@@ -437,7 +437,7 @@ function MainProvider({ children }) {
             desativarProduto,
             listarItens,
             editarQuantidade,
-            cancelarItem
+            cancelarItem,
         }}
         >
         {children}

@@ -8,6 +8,14 @@ function Home() {
 
     const navigate = useNavigate();
 
+    const userToken = localStorage.getItem("token");
+
+   
+    if (!userToken) {
+        navigate('/');
+        return null; 
+    }
+
     return (
         <>
             <div>

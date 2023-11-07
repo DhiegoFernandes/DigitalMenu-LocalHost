@@ -18,8 +18,11 @@ function Login(){
     // Redirecionamento se já estiver logado
     const user = localStorage.getItem("token")
     useEffect(() => {
-        user != null ? navigate('/home') : navigate('/')
-    }, []);
+        if (user != null) {
+            navigate('/home');
+        }
+    }, [user]);
+    
 
     const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("");
