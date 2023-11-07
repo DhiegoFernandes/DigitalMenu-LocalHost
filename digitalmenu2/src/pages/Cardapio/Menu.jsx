@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import './cardapio.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
 import { MainContext } from "../../context/context";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
     const { listarProdutosComImagens } = useContext(MainContext);
@@ -28,11 +29,16 @@ function Menu() {
         ? produtos.filter((produto) => produto.categoria === categoriaSelecionada)
         : produtos;
 
+        const navigate = useNavigate();
+
     return (
         <>
             <div className='home_cabecalho'>
-                <img className='home_dmLogo' src={logoDM} alt="" />
+                <img className='home_dmLogo' src={logoDM} alt="Logo" />
                 <div className="header__informacoes">
+                    <button className="btn_home_client" onClick={() => navigate('/TelaEspera')}>
+                        <i className="material-symbols-outlined">arrow_back</i>
+                    </button>
                 </div>
             </div>
 

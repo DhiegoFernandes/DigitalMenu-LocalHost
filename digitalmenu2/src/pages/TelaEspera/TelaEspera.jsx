@@ -25,13 +25,7 @@ function TelaEspera() {
             <header>
                 <nav>
                     <div className='home_cabecalho'>
-                        <img className='home_dmLogo' onClick={() => navigate('/home')} src={logoDM} alt="" />
-
-      
-                        <button className="btn_home_client" onClick={() => navigate('/home')}>
-                            <i className="material-symbols-outlined">home</i>
-                        </button>
-
+                        <img className='home_dmLogo' onClick={() => navigate('/TelaEspera')} src={logoDM} alt="" />
                     </div>
                 </nav>
             </header>
