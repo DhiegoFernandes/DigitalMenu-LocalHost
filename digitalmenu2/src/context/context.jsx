@@ -170,6 +170,44 @@ function MainProvider({ children }) {
         }
     }
 
+    async function abrirPedido(idMesa){
+
+
+        try {
+            console.log(idMesa);
+            const {data} = await api.post(`/pedidos/${idMesa}`);
+            console.log("Sucesso ao abrir pedido na mesa" + idMesa + " e numero do pedido: " , data);
+            localStorage.setItem('numeroPedido', JSON.stringify(data));
+            navigate('/cardapio')
+            return data;
+        } catch (error) {
+            console.log("Erro ao abrir pedido com a  "+ idMesa)
+        }
+    }
+
+    async function encerraPedido(idPedido){
+        try {
+            const {data} = await api.put(`/pedidos/encerra-pedido/${idPedido}`);
+            console.log("Sucesso ao encerrar o pedido do numero ", idPedido);
+            navigate('/TelaEspera');
+        } catch (error) {
+            console.log("Erro ao encerrar o pedido do numero ", idPedido)
+        }
+    }
+
+    async function inserirItemNoPedido(id_pedido, id_produto,qtde,observacao){
+        if (typeof observacao === 'string') {
+            observacao = observacao.trim();
+          }
+        console.log("recebendo aqui no context assim", id_pedido, id_produto,qtde,observacao);
+        try {
+            const {data} = await api.post("/itens", { numeroPedido: id_pedido, itensDoCarrinho: [{ id_produto, qtde, observacao }] });
+            return data;
+        } catch (error) {
+            console.log("Erro ao inserir item no pedido", error);
+        }
+    }
+
     // ==================== Produtos ==================== //
 
     async function listarProdutos(){
@@ -419,6 +457,9 @@ function MainProvider({ children }) {
             listarMesas,
             listarMesasAtivas,
             listarPedidos,
+            abrirPedido,
+            inserirItemNoPedido,
+            encerraPedido,
             listarProdutos,
             listarProdutosComImagens,
             gorjetas,

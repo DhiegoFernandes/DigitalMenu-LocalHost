@@ -8,6 +8,7 @@ import '../../components/Carrinho/Carrinho.css';
 function Cardapio(props) {
     const { listarProdutosComImagens } = useContext(MainContext);
     const [numeroMesa, setNumeroMesa] = useState("");
+    const [numeroPedido, setNumeroPedido] = useState("");
     const [produtos, setProdutos] = useState([]);
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
     const [mostrarCarrinho, setMostrarCarrinho] = useState(false);
@@ -16,11 +17,11 @@ function Cardapio(props) {
 
     const adicionarProdutoAoCarrinho = (produto) => {
 
-
+console.log("Produto adicionado ao carrinho:", produto);
         const novoCarrinho = [...produtosNoCarrinho];
-
+        var produtoExistenteIndex = novoCarrinho.findIndex((item) => item.nome === produto.nome);
       
-        let produtoExistenteIndex = -1;
+        //let produtoExistenteIndex = -1;
       
         novoCarrinho.forEach((item, index) => {
           if (saoIguais(item, produto.nome)) {
@@ -74,10 +75,17 @@ function Cardapio(props) {
             setProdutosNoCarrinho(novoCarrinho);
           };
           
-          useEffect(() => {
+        useEffect(() => {
             const numeroMesa = localStorage.getItem("numeroMesa");
             if (numeroMesa) {
                 setNumeroMesa(numeroMesa);
+            }
+
+            const valorArmazenado = localStorage.getItem("numeroPedido");
+            const numeroPedido = JSON.parse(valorArmazenado);
+            console.log("numeroPedido: " + numeroPedido);
+            if(numeroPedido) {
+                setNumeroPedido(numeroPedido);
             }
     
             listarProdutosComImagens().then((data) => {
@@ -100,7 +108,7 @@ function Cardapio(props) {
                 <div className="header__informacoes">
                     <div className="header__informacoes__informacoesPedido">
                         <p>Numero Mesa: {numeroMesa}</p>
-                        <p>Numero Pedido</p>
+                        <p>Numero Pedido: {numeroPedido.idpedido}</p>
                     </div>
                     <div className="header__informacoes__valores">
                         <p>R$ {total}</p>
@@ -139,8 +147,9 @@ function Cardapio(props) {
                 <div className='produtos-cardapio'>
                     <div className="cardapio-linha">
                         {produtosFiltrados.map((produto) => (
-                            <div key={produto.idproduto} className="cardapio-celula">
+                            <div key={produto.id} className="cardapio-celula">
                                 <div className="informacoes_produto">
+                                    <p>{produto.idproduto}</p>
                                     <p className="nome-produtoCardapio">{produto.nome}</p>
                                     <p className="preco-produtoCardapio">R$ {produto.preco}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>

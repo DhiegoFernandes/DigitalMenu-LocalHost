@@ -1,12 +1,22 @@
 import { useNavigate } from 'react-router-dom'
 import './telaespera.css';
-
+import React, { useContext, useEffect, useState } from "react";
+import { MainContext } from "../../context/context";
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
 import iniciarPedido from '../../assets/image/iniciarPedido.png';
 import cardapio from '../../assets/image/cardapio.png';
 import garcon from '../../assets/image/garcon.png';
 import garconete from '../../assets/image/garconete.png';
 function TelaEspera() {
+    const [idMesa, setIdMesa] = useState("");
+    const { abrirPedido } = useContext(MainContext);
+
+    useEffect(() => {
+        const numeroMesa = localStorage.getItem("numeroMesa");
+        if (numeroMesa) {
+            setIdMesa(numeroMesa);
+        }
+    }, []);
 
     const navigate = useNavigate();
 
@@ -32,7 +42,7 @@ function TelaEspera() {
                     <div className='telaEspera_escolha'>
 
 
-                        <div className='card' onClick={() => navigate('/cardapio')}>
+                        <div className='card' onClick={() =>{abrirPedido(idMesa)}}>
                             <div className='circle'>
                                 <img className="logo_opcao" src={iniciarPedido} alt="" />
                             </div>
