@@ -13,32 +13,32 @@ function Carrinho(props) {
     const valorArmazenado = localStorage.getItem("numeroPedido");
     const numeroPedido = JSON.parse(valorArmazenado);
     console.log("numeroPedido: " + numeroPedido.idpedido);
-    if(numeroPedido) {
-        setNumeroPedido(numeroPedido);
+    if (numeroPedido) {
+      setNumeroPedido(numeroPedido);
     }
-}, []);
+  }, []);
 
-const enviarPedido = () => {
-  if (props.produtosNoCarrinho.length === 0) {
-    alert("Seu carrinho está vazio. Adicione itens antes de enviar o pedido.");
-    return;
-  }
+  const enviarPedido = () => {
+    if (props.produtosNoCarrinho.length === 0) {
+      alert("Seu carrinho está vazio. Adicione itens antes de enviar o pedido.");
+      return;
+    }
 
-  if (!numeroPedido || !numeroPedido.idpedido) {
-    console.log("Número de pedido inválido. Verifique se você tem um número de pedido válido.");
-    return;
-  }
+    if (!numeroPedido || !numeroPedido.idpedido) {
+      console.log("Número de pedido inválido. Verifique se você tem um número de pedido válido.");
+      return;
+    }
 
-  props.produtosNoCarrinho.forEach((produto) => {
-    const { idproduto } = produto;
-    const observacoesProduto = observacoes[produto.nome] || ""; // Obtenha a observação correta para o produto atual
-    console.log(numeroPedido.idpedido, idproduto, produto.quantidade, observacoesProduto);
-    inserirItemNoPedido(numeroPedido.idpedido, idproduto, produto.quantidade, observacoesProduto);
-  });
+    props.produtosNoCarrinho.forEach((produto) => {
+      const { idproduto } = produto;
+      const observacoesProduto = observacoes[produto.nome] || ""; // Obtenha a observação correta para o produto atual
+      console.log(numeroPedido.idpedido, idproduto, produto.quantidade, observacoesProduto);
+      inserirItemNoPedido(numeroPedido.idpedido, idproduto, produto.quantidade, observacoesProduto);
+    });
 
-  props.setProdutosNoCarrinho([]);
-  setObservacoes("");
-};
+    props.setProdutosNoCarrinho([]);
+    setObservacoes("");
+  };
 
   const calcularTotal = () => {
     let total = 0;
@@ -61,7 +61,7 @@ const enviarPedido = () => {
       props.setProdutosNoCarrinho(novoCarrinho);
     }
   };
-  
+
   const diminuirQuantidade = (produto) => {
     const novoCarrinho = [...props.produtosNoCarrinho];
     const produtoIndex = novoCarrinho.findIndex((item) => item.nome === produto.nome);
@@ -82,48 +82,52 @@ const enviarPedido = () => {
     };
     return (
       <input
-      type="text"
-      value={observacoes[produto.nome] || ""}
-      onChange={(e) => {
-        setObservacoes({
-          ...observacoes,
-          [produto.nome]: e.target.value
-        });
-      }}
-      placeholder="Observações"
-    />
-    );}
+        type="text"
+        value={observacoes[produto.nome] || ""}
+        onChange={(e) => {
+          setObservacoes({
+            ...observacoes,
+            [produto.nome]: e.target.value
+          });
+        }}
+        placeholder="Observações"
+      />
+    );
+  }
   return (
     <div className="carrinho-modal">
-      <div className="carrinho-conteudo">
-        <h2>Carrinho</h2>
-        <ul>
+      <div className="carrinho-conteudo-superior">
+        <p className="texto-carrinho">Carrinho</p>
+        <ul className="ul-pedidosCarrinho">
           {props.produtosNoCarrinho.length === 0 ? (
-            <li>Seu carrinho está vazio.</li>
+            <li><p className="txt-carrinhoVazio">Seu carrinho está vazio.</p></li>
           ) : (
             props.produtosNoCarrinho.map((produto) => (
               <li key={produto.id}>
-                <div className="carrinho-item-info">
-                  <h3>{produto.nome}</h3>
-                  <p>Preço: R${produto.preco}</p>
-                  <p>Quantidade:</p>
-                  <div className="botoes-MaisMenos">
-                    <button onClick={() => diminuirQuantidade(produto)}><i className="material-symbols-outlined">remove</i></button>
-                    {produto.quantidade}
-                    <button onClick={() => aumentarQuantidade(produto)}><i className="material-symbols-outlined">add </i></button>
+                <div className="info-produtosCarrinho">
+                  <p className="txt-tituloProdutoCarrinho">{produto.nome}</p>
+                  <p className="txt-produtoCarrinho">Preço: R${produto.preco}</p>
+                  <p className="txt-produtoCarrinho"> Quantidade</p>
+                  <div className="btn-adicionarCarrinho">
+                    <button className="btn-red"onClick={() => diminuirQuantidade(produto)}><i className="material-symbols-outlined">remove</i></button>
+                    <p className="txt-produtoCarrinho">{produto.quantidade}</p>
+                    <button className="btn-green"onClick={() => aumentarQuantidade(produto)}><i className="material-symbols-outlined">add </i></button>
                   </div>
-                  {renderizarObservacao(produto)}
+                  <p className="txt-observacaoCarrinho">{renderizarObservacao(produto)}</p>
+                  <button className="btn-removerCarrinho"onClick={() => removerDoCarrinho(produto.nome)}>Remover</button>
                 </div>
-                <button onClick={() => removerDoCarrinho(produto.nome)}>Remover</button>
               </li>
             ))
           )}
         </ul>
-        <button onClick={enviarPedido}>Enviar pedido</button>
-        
-        <p>Total: R$ {calcularTotal()}</p>
+      
       </div>
-      <button onClick={() => encerraPedido( numeroPedido.idpedido)}>Encerrar pedido</button>
+      <div className="carrinho-conteudo-inferior">
+        <p className="p-totalCarrinho">Total: R$ {calcularTotal()}</p>
+        <button className="btn-carrinhoEnviarPedido" onClick={enviarPedido}>Enviar pedido</button>
+        <button className="btn-carrinhoEncerrarPedido" onClick={() => encerraPedido(numeroPedido.idpedido)}>Encerrar pedido</button>
+      </div>
+
     </div>
   );
 }

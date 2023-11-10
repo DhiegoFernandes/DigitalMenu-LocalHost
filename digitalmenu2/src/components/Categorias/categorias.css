@@ -1,6 +1,6 @@
 .container-categoria{
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
     /* grid-template-rows: repeat(4,240px); */
     grid-template-rows: 25vh 25vh 25vh 25vh;
 }

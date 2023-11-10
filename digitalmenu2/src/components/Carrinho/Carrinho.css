@@ -1,13 +1,146 @@
 .carrinho-modal {
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
-  width: 300px;
+  width: 20vw;
   height: 100%;
   background-color: white;
-  }
-  
-  .carrinho-aberto {
-    transform: translateX(0); /* Move o modal para a esquerda (dentro da tela) quando aberto */
-  }
-  
+  overflow-y: auto
+}
+
+.carrinho-aberto {
+  transform: translateX(0);
+  /* Move o modal para a esquerda (dentro da tela) quando aberto */
+}
+
+/* ---------- CARRINHO SUPERIOR -----------*/
+
+.carrinho-conteudo-superior {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /*   background-color: aqua; */
+}
+
+.ul-pedidosCarrinho {
+  /*   background-color: #ae0f76; */
+  list-style-type: none;
+  margin-top: 5px;
+  margin-bottom: 120px;
+  width: 90%;
+
+}
+
+.info-produtosCarrinho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 10px;
+  border: 1px solid gray;
+}
+
+.btn-removerCarrinho {
+  background-color: #fffdfd;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 70%;
+  height: 25px;
+  margin: 5px;
+
+  cursor: pointer;
+}
+
+/* ----------  TEXTO CARRINHO  -----------*/
+.texto-carrinho {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.txt-carrinhoVazio{
+  text-align: center;
+}
+
+
+.txt-tituloProdutoCarrinho {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.txt-produtoCarrinho {
+  font-size: 1.5rem;
+}
+
+.txt-observacaoCarrinho {
+  margin-top: 2px;
+}
+
+
+
+/* ------------- Botoes -----------*/
+.btn-adicionarCarrinho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+/*   background-color: #ebe3e2; */
+
+}
+
+.btn-red {
+  color: white;
+  background-color: red;
+  cursor: pointer;
+}
+.btn-green {
+  color: rgb(0, 0, 0);
+  background-color: rgb(153, 255, 0);
+  cursor: pointer;
+}
+
+
+.btn-adicionarCarrinho button {
+  width: 30px;
+  height: 30px;
+}
+
+
+
+/* ----------- Inferior carrinho -----------*/
+
+
+.carrinho-conteudo-inferior {
+  background-color: #f44734;
+  position: fixed;
+  bottom: 0;
+  /* transform: translate(100%); */
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-carrinhoEnviarPedido {
+  width: 80%;
+  height: 5vh;
+  margin-bottom: 2vh;
+  font-size: 1rem;
+}
+
+.btn-carrinhoEncerrarPedido {
+  width: 50%;
+  height: 5vh;
+  margin-bottom: 1vh;
+  font-size: 1rem;
+}
+
+.p-totalCarrinho {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}

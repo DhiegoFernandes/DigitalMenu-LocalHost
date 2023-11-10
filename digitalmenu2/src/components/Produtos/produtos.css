@@ -1,6 +1,6 @@
 .container-produto {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
     /* grid-template-rows: repeat(4,240px); */
     grid-template-rows: 25vh 25vh 25vh 25vh;
 }
@@ -53,8 +53,77 @@
 .nome-produto {
     color: brown;
     text-decoration: underline;
+    font-size: 28px;
 }
 
-.texto-id-produto{
+.texto-id-produto {
     font-size: 18px;
+}
+
+
+.dropDown_categorias_div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /*     background-color: aqua; */
+}
+
+.dropDown_categorias {
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 30px;
+    width: 100%;
+    margin-top: 1%;
+}
+
+.label_cadastro_produto {
+    font-size: 17px;
+}
+
+.foto_cadastro_produto {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    flex-direction: column;
+
+
+}
+
+
+
+/* FOTO CADASTRO PRODUTO */
+.input_foto_produto {
+    display: none;
+}
+
+.imagem_cadastro_produto {
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    cursor: pointer;
+
+}
+
+.imagem_cadastro_produto:hover {
+    background-color: rgb(255, 193, 78);
+
+}
+
+.imagem_cadastro_produto p {
+    /*     background-color: aqua; */
+    margin-left: 5px;
+}
+
+.icone_Camera_produtos {
+    display: flex;
+    align-items: center;
+    width: 8%;
+    margin-left: 10px;
+
+    /*     background-color: blueviolet; */
 }

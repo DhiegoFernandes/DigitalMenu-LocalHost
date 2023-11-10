@@ -1,26 +1,35 @@
 .header__informacoes {
     display: flex;
-    gap: 25%;
-    width: 25%;
+    justify-content: space-between;
+    gap: 5%;
 }
 
-.header__informacoes__informacoesPedido{
-    background-color: rgb(221, 221, 221);
+.header__informacoes__informacoesPedido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-radius: 4px;
-    border: solid black 1px;
-    width: 70%;
-    margin: auto;
-    padding: 4px;
+    width: 10vw;
+
+    color: white;
+    text-align: end;
+    margin-right: 1vw;
 }
 
 .header__informacoes__valores {
-    background-color: rgb(221, 221, 221);
+    display: flex;
     border-radius: 4px;
     border: solid black 1px;
-    width: 70%;
-    margin: auto;
-    padding: 4px;
     margin-right: 1vw;
+    text-align: center;
+
+
+    width: 15vw;
+}
+
+.btn-Carrinho {
+    width: 100%;
+    cursor: pointer;
 }
 
 
@@ -43,7 +52,7 @@
     align-items: center;
     height: 40px;
     gap: 20px;
-    
+
 
 }
 
@@ -80,7 +89,7 @@
     display: flex;
     width: 200px;
     height: 200px;
-    
+
 }
 
 .imagemProduto {
@@ -91,13 +100,13 @@
 
 /* -------  Informacoes produto ------*/
 
-.informacoes__produto {
+.informacoes_produto {
     display: flex;
     flex-direction: column;
     width: 450px;
     justify-content: center;
     text-align: center;
-/*     background-color: antiquewhite; */
+    /*     background-color: antiquewhite; */
 
 }
 
@@ -123,9 +132,10 @@
 
 /* ---------- Botoes  --------*/
 
-.categoriaSelecionada{
+.categoriaSelecionada {
     background-color: black;
 }
+
 .botao-categoria.active {
     color: black;
 }
@@ -133,45 +143,48 @@
 .botao-categoria.active:hover {
     color: black;
 }
+
 .botao-categoria {
-    background-color: orange;
-    border: 2px solid orange;
+    background-color: #f44734;
+    border: 2px solid #f44734;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
     border-radius: 10%;
     margin-top: 1%;
 }
 
 
 .botao-categoria:hover {
-background-color: orange;
+    background-color: rgb(164, 3, 3)
 }
 
-
-
-.botaoQuantidade {
-    height: 50px;
-    width: 50px;
-    background: none;
-    border: none;
-    font-size: 2em;
-}
-
-.botoes-MaisMenos {
+.btn-AdicionarProdutoCarrinho {
     display: flex;
     justify-content: center;
     align-items: end;
-    gap: 10px;  
-/*     background-color: red; */
-    
+    gap: 10px;
+    /*   background-color: #f44734; */
+
 }
 
-.botoes-MaisMenos button {
-    width: 40px;
+
+.btn-AdicionarProdutoCarrinho button {
+    color: white;
+    font-weight: bold;
+    width: 15vw;
     height: 40px;
+
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #f44734;
+}
+
+.btn-AdicionarProdutoCarrinho button:hover {
+    background-color: rgb(164, 3, 3)
 }
 
 
@@ -200,5 +213,5 @@ background-color: orange;
     .header__informacoes {
         gap: 10%;
     }
- 
+
 }
