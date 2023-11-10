@@ -7,6 +7,7 @@ import localePTBR from '../../util/locale';
 
 import './produtos.css'
 import '../Modal/modal_componentes.css';
+import camera from '../../assets/image/camera.png' 
 
 
 function Produtos() {
@@ -98,9 +99,9 @@ function Produtos() {
                         setStatus(params.row.status);
                         OpenEditar();
 
-                        }}
-                        >edit</i></button>
-                    <button><i className='material-symbols-outlined' onClick={() => {setNome(params.row.nome); setIdproduto(params.row.idproduto);  OpenDesativar();}}>delete</i></button>
+                    }}
+                    >edit</i></button>
+                    <button><i className='material-symbols-outlined' onClick={() => { setNome(params.row.nome); setIdproduto(params.row.idproduto); OpenDesativar(); }}>delete</i></button>
 
                 </div>
             )
@@ -144,13 +145,13 @@ function Produtos() {
                 </div>
                 <div className='btn-cadastro-produto'>
                     <button onClick={() => {
-                            setIdproduto("");
-                            setNome("");
-                            setPreco("");
-                            setDescricao("")
-                            setStatus(""); 
-                            Open();  
-                        }}>Cadastrar Produto</button>
+                        setIdproduto("");
+                        setNome("");
+                        setPreco("");
+                        setDescricao("")
+                        setStatus("");
+                        Open();
+                    }}>Cadastrar Produto</button>
 
                     {/* CADASTRAR */}
                     <Modal
@@ -161,67 +162,78 @@ function Produtos() {
                     >
                         <div className='modal'>
                             <div className='btn-modal'>
-                            <form action="/produto" method="POST" encType="multipart/form-data">
-                                <div className='modal-cadastrar-grande'>
+                                <form action="/produto" method="POST" encType="multipart/form-data">
+                                    <div className='modal-cadastrar-grande'>
 
-                                    <p>Cadastrar Produto</p>
-                                    <div className='form_div'>
+                                        <p>Cadastrar Produto</p>
                                         <div className='form_div'>
-                                            <input
-                                                className='inputAnimado'
-                                                required=""
-                                                type="text"
-                                                autoFocus
-                                                placeholder='nome'
-                                                value={nome}
-                                                onChange={(e) => setNome(e.target.value)}
-                                            /><label htmlFor="nome" className="form__label">Nome do produto</label>
-                                        </div>
-                                        <div className='form_div'>
-                                            <input
-                                                className='inputAnimado'
-                                                required=""
-                                                type="text"
-                                                autoFocus
-                                                placeholder='preço'
-                                                value={preco}
-                                                onChange={(e) => setPreco(e.target.value)}
-                                            /><label htmlFor="name" className="form__label">Preço</label>
-                                        </div>
-                                        <div className='form_div'>
-                                            <input
-                                                className='inputAnimado'
-                                                required=""
-                                                type="text"
-                                                autoFocus
-                                                placeholder='descrição'
-                                                value={descricao}
-                                                onChange={(e) => setDescricao(e.target.value)}
-                                            /><label htmlFor="name" className="form__label">Descrição</label>
-                                        </div>
-                                        <div className='form_div'>
-                                            <input
-                                                type="file"
-                                                name="imagem"
-                                                onChange={(e) => setImagem(e.target.files[0])}
-                                            />
-                                        </div>
+                                            <div className='form_div'>
+                                                <input
+                                                    className='inputAnimado'
+                                                    required=""
+                                                    type="text"
+                                                    autoFocus
+                                                    placeholder='nome'
+                                                    value={nome}
+                                                    onChange={(e) => setNome(e.target.value)}
+                                                /><label htmlFor="nome" className="form__label">Nome do produto</label>
+                                            </div>
+                                            <div className='form_div'>
+                                                <input
+                                                    className='inputAnimado'
+                                                    required=""
+                                                    type="text"
+                                                    autoFocus
+                                                    placeholder='preço'
+                                                    value={preco}
+                                                    onChange={(e) => setPreco(e.target.value)}
+                                                /><label htmlFor="name" className="form__label">Preço</label>
+                                            </div>
+                                            <div className='form_div'>
+                                                <input
+                                                    className='inputAnimado'
+                                                    required=""
+                                                    type="text"
+                                                    autoFocus
+                                                    placeholder='descrição'
+                                                    value={descricao}
+                                                    onChange={(e) => setDescricao(e.target.value)}
+                                                /><label htmlFor="name" className="form__label">Descrição</label>
+                                            </div>
+                                            <div className='dropDown_categorias_div marg-media'>
+                                                <p className='label_cadastro_produto '>Categoria</p>
+                                                <select className="dropDown_categorias " value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                                                    {categorias.map((categoria) => (
+                                                        <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
 
-                                        <div className='form_div'>
-                                        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                                        {categorias.map((categoria) => (
-                                                <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
-                                        ))}
-                                        </select>
+                                            <div className='foto_cadastro_produto'>
+                                                <p className='label_cadastro_produto marg-pequena'>Imagem</p>
+                                                <label className="imagem_cadastro_produto" htmlFor="inputTag">
+                                                    <img className="icone_Camera_produtos"src={camera} alt="" />
+                                                    <p>Imagem Produto</p>
+                                                    <input className='input_foto_produto marg-pequena'
+                                                        id='inputTag'
+                                                        type="file"
+                                                        name="imagem"
+                                                        onChange={(e) => setImagem(e.target.files[0])}
+                                                    />
+                                                </label>
+
+                                            </div>
+
+
+                                        </div>
+                                        <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
+                                        <button className='btn-salvar  marg-media' onClick={(e) => {
+                                            console.log('Imagem para envio:', document.querySelector('input[name="imagem"]').files[0]); // Adicione esta linha
+                                            cadastrarProduto(e, nome, preco, descricao, categoria, imagem)
+                                            Close();
+                                            setUpdateProdutos(true);
+                                        }}>Salvar</button>
                                     </div>
-                                    </div>
-                                    <button className='btn-cancelar  marg-media' onClick={() => { Close() }}>Cancelar</button>
-                                    <button className='btn-salvar  marg-media' onClick={(e) => {
-                                         console.log('Imagem para envio:', document.querySelector('input[name="imagem"]').files[0]); // Adicione esta linha
-                                        cadastrarProduto(e, nome, preco, descricao, categoria, imagem)
-                                        Close(); 
-                                        setUpdateProdutos(true); }}>Salvar</button>
-                                </div>
                                 </form>
                             </div>
                         </div>
@@ -273,15 +285,17 @@ function Produtos() {
                                             onChange={(e) => setDescricao(e.target.value)}
                                         /><label htmlFor="nome" className="form__label">Descrição</label>
                                     </div>
-                                    <div className='form_div'>
-                                        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                                        {categorias.map((categoria) => (
+                                    <div className='dropDown_categorias_div marg-pequena'>
+                                        <p className='label_cadastro_produto '>Categoria</p>
+                                        <select className='dropDown_categorias' value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                                            {categorias.map((categoria) => (
                                                 <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
-                                        ))}
+                                            ))}
                                         </select>
                                     </div>
-                                    <div>
-                                        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                                    <div className='dropDown_categorias_div marg-pequena'>
+                                        <p className='label_cadastro_produto '>Status</p>
+                                        <select className="dropDown_categorias" value={status} onChange={(e) => setStatus(e.target.value)}>
                                             <option value="ATIVADO">ATIVADO</option>
                                             <option value="DESATIVADO">DESATIVADO</option>
                                         </select>

@@ -31,10 +31,9 @@
 /* APRESENTACAO */
 .home_apresentacao {
     display: grid;
-    background: rgb(246,242,217);
     background: linear-gradient(90deg, rgba(246,242,217,1) 0%, rgb(249, 242, 197) 50%, rgba(246,242,217,1) 100%);
     grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
-    grid-template-rows: 5vh 40vh 40vh 15vh;
+    grid-template-rows: 5vh 40vh 40vh 5vh;
 
     width: auto;
     height: auto;

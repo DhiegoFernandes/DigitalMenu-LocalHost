@@ -26,7 +26,7 @@ function System(){
             <div className='body-sidebar'>
                 <aside className='menu-lateral'>
                     <header className='div-logo'>
-                        <button className='btn-logo' onClick={() => {navigate('/home')}}><img className='logo' src={logoDM} alt="" /></button>
+                        <button className='btn-logo' onClick={() => {navigate('/home')}}><img className='logoDM' src={logoDM} alt="" /></button>
                     </header>
 
                     <header className='div-logo2'>
