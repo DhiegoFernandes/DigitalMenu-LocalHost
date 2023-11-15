@@ -38,6 +38,7 @@ function Carrinho(props) {
 
     props.setProdutosNoCarrinho([]);
     setObservacoes("");
+
   };
 
   const calcularTotal = () => {

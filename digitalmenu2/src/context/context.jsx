@@ -128,6 +128,18 @@ function MainProvider({ children }) {
         }
     }
 
+    async function listarTotal(idPedido){
+
+        try {
+            const { data } = await api.get(`/pedidos/total/${idPedido}`);
+            console.log("isisis pedido",idPedido)
+            console.log("Sucesso ao listar total ", data);
+            return data;
+        } catch (error) {
+            console.log('erro ao listar total', error);
+        }
+    }
+
     async function listarItens(idPedido){
         // e.preventDefault();
         
@@ -464,6 +476,7 @@ function MainProvider({ children }) {
             listarProdutosComImagens,
             gorjetas,
             totalPedidos,
+            listarTotal,
             totalProdutosUni,
             produtosVendidos,
             autenticacaoMesa,

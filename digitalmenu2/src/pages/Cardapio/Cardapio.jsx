@@ -6,13 +6,14 @@ import Carrinho from "../../components/Carrinho/Carrinho";
 import '../../components/Carrinho/Carrinho.css';
 
 function Cardapio(props) {
-    const { listarProdutosComImagens } = useContext(MainContext);
+    const { listarProdutosComImagens, listarTotal } = useContext(MainContext);
     const [numeroMesa, setNumeroMesa] = useState("");
     const [numeroPedido, setNumeroPedido] = useState("");
     const [produtos, setProdutos] = useState([]);
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
     const [mostrarCarrinho, setMostrarCarrinho] = useState(false);
     const [produtosNoCarrinho, setProdutosNoCarrinho] = useState(props.produtosNoCarrinho || []);
+    const [totalPedido, setTotalPedido] = useState(0);
     const [total, setTotal] = useState(0);
 
     const adicionarProdutoAoCarrinho = (produto) => {
@@ -90,8 +91,18 @@ function Cardapio(props) {
 
         listarProdutosComImagens().then((data) => {
             setProdutos(data);
-        });
+        });    
     }, [listarProdutosComImagens]);
+
+    useEffect(() => {
+        listarTotal(numeroPedido.idpedido).then((data) => {
+            console.log("Data de listarTotal:", data);
+            setTotalPedido(data[0]?.TOTAL || 0);
+
+        });
+        console.log("Chamou", listarTotal)
+    }, [mostrarCarrinho, numeroPedido.idpedido]);
+    
 
     useEffect(() => {
         const novoTotal = produtosNoCarrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
@@ -114,7 +125,8 @@ function Cardapio(props) {
                         <button className="btn-Carrinho" onClick={toggleCarrinho}>
                             <i className="material-symbols-outlined" id="icone-canto-tela">shopping_cart</i>
                             <p>{produtosNoCarrinho.length} item{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p>
-                            <p>Total R$ {total}</p>
+                            <p>Total R$ {totalPedido}</p>
+
                         </button>
                         {mostrarCarrinho && (
                             <Carrinho
@@ -122,6 +134,7 @@ function Cardapio(props) {
                                 total={total}
                                 onRemoverProdutoDoCarrinho={onRemoverProdutoDoCarrinho}
                                 setProdutosNoCarrinho={setProdutosNoCarrinho}
+                                listarTotal={listarTotal}
                             />
                         )}
 
