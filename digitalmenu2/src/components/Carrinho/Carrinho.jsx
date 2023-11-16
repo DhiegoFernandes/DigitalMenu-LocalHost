@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./Carrinho.css";
 import { MainContext } from "../../context/context";
+import botaoFechar from '../../assets/image/close.png';
 
 function Carrinho(props) {
   const [numeroPedido, setNumeroPedido] = useState("");
@@ -97,6 +98,11 @@ function Carrinho(props) {
   }
   return (
     <div className="carrinho-modal">
+
+      <button className="btn-sairCardapio">
+        <img className="img-sairCardapio" src={botaoFechar} />
+      </button>
+
       <div className="carrinho-conteudo-superior">
         <p className="texto-carrinho">Carrinho</p>
         <ul className="ul-pedidosCarrinho">
@@ -108,20 +114,20 @@ function Carrinho(props) {
                 <div className="info-produtosCarrinho">
                   <p className="txt-tituloProdutoCarrinho">{produto.nome}</p>
                   <p className="txt-produtoCarrinho">Preço: R${produto.preco}</p>
-                  <p className="txt-produtoCarrinho"> Quantidade</p>
+                  <p className="txt-quantidadeCarrinho"> Quantidade</p>
                   <div className="btn-adicionarCarrinho">
-                    <button className="btn-red"onClick={() => diminuirQuantidade(produto)}><i className="material-symbols-outlined">remove</i></button>
+                    <button className="btn-red" onClick={() => diminuirQuantidade(produto)}><i className="material-symbols-outlined">remove</i></button>
                     <p className="txt-produtoCarrinho">{produto.quantidade}</p>
-                    <button className="btn-green"onClick={() => aumentarQuantidade(produto)}><i className="material-symbols-outlined">add </i></button>
+                    <button className="btn-green" onClick={() => aumentarQuantidade(produto)}><i className="material-symbols-outlined">add </i></button>
                   </div>
                   <p className="txt-observacaoCarrinho">{renderizarObservacao(produto)}</p>
-                  <button className="btn-removerCarrinho"onClick={() => removerDoCarrinho(produto.nome)}>Remover</button>
+                  <button className="btn-removerCarrinho" onClick={() => removerDoCarrinho(produto.nome)}>Remover</button>
                 </div>
               </li>
             ))
           )}
         </ul>
-      
+
       </div>
       <div className="carrinho-conteudo-inferior">
         <p className="p-totalCarrinho">Total: R$ {calcularTotal()}</p>

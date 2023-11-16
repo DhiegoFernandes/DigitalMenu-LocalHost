@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 20vw;
+  width: 30vw;
   height: 100%;
   background-color: white;
   overflow-y: auto
@@ -58,7 +58,7 @@
 .texto-carrinho {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-top: 30px;
+  
 }
 
 .txt-carrinhoVazio{
@@ -75,6 +75,11 @@
   font-size: 1.5rem;
 }
 
+.txt-quantidadeCarrinho {
+  margin-top: 1vh;
+  font-size: 1.5rem;
+}
+
 .txt-observacaoCarrinho {
   margin-top: 2px;
 }
@@ -82,6 +87,20 @@
 
 
 /* ------------- Botoes -----------*/
+.btn-sairCardapio{
+  display: flex;
+  margin-left: 2vh;
+  margin-top: 2vh;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.img-sairCardapio{
+  width: 20px;
+}
+
+
 .btn-adicionarCarrinho {
   display: flex;
   justify-content: center;
@@ -118,7 +137,7 @@
   position: fixed;
   bottom: 0;
   /* transform: translate(100%); */
-  width: 20vw;
+  width: 30vw;
   display: flex;
   flex-direction: column;
   align-items: center;
