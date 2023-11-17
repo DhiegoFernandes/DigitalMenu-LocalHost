@@ -44,7 +44,7 @@ function Home() {
 
                         <div className='home_opcoes'>
                             <p className='home-entrar-DigitalMenu marg-grande'>Digital Menu</p>
-                            <p className='home-entrar-descricao marg-grande'>Facilite a visualização e gestão de pedidos no seu restaurante com o inovador sistema Digital Menu. Projetado para otimizar a eficiência operacional.</p>
+                            <p className='home-entrar-descricao marg-media'>Facilite a visualização e gestão de pedidos no seu restaurante com o inovador sistema Digital Menu. Projetado para otimizar a eficiência operacional.</p>
 
                             <button className='btn_opcoes_home marg-grande' onClick={() => navigate('/client')}>Área do Cliente</button>
                             <button className='btn_opcoes_home' onClick={() => navigate('/system')}>Área do Sistema</button>

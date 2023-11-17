@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Nabla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nabla&display=swap');
 /* HEADER */
 .home_cabecalho {
     display: flex;
@@ -88,11 +90,13 @@
 .home-entrar-DigitalMenu {
     color: #E45647;
     text-align: left;
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
+    font-family: 'Lobster';
+    text-shadow: 1px 2px white;
+    
     margin-right: 5vw;
+
 
 
 }
