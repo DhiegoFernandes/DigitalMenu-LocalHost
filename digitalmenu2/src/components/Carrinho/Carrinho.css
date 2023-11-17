@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nabla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Nabla&display=swap'); 
+
 .carrinho-modal {
   position: fixed;
   bottom: 0;
@@ -20,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /*   background-color: aqua; */
+/*     background-color: aqua; */
 }
 
 .ul-pedidosCarrinho {
@@ -28,7 +31,7 @@
   list-style-type: none;
   margin-top: 5px;
   margin-bottom: 120px;
-  width: 90%;
+  width: 95%;
 
 }
 
@@ -40,7 +43,7 @@
   text-align: center;
 
   margin-bottom: 10px;
-  border: 1px solid gray;
+  border-top: 1px solid black;
 }
 
 .btn-removerCarrinho {
@@ -58,6 +61,8 @@
 .texto-carrinho {
   font-size: 2.5rem;
   font-weight: bold;
+  font-family: 'Bebas Neue';
+
   
 }
 
@@ -133,7 +138,7 @@
 
 
 .carrinho-conteudo-inferior {
-  background-color: #f44734;
+  background-color: #F44734;
   position: fixed;
   bottom: 0;
   /* transform: translate(100%); */

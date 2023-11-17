@@ -1,35 +1,81 @@
-.main-client{
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nabla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Nabla&display=swap');
+
+.main-client {
     background-color: #525252;
     height: 100vh;
 }
 
-.client_principal{
+.client_principal {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 .div_principal_client {
-    background-color: #ffffff;
-    border: 3px solid rgb(230, 157, 2);
-    margin-left: 30%;
-    margin-right: 30%;
-    border-radius: 0px;
-    padding: 100px;
+    background-color: white;
+    border: 3px solid #f44734;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    border-radius: 30px;
+    
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+
+    height: 50vh;
 
 
 }
 
+/* -------------------- TEXTO --------------------*/
+
 .client_mensagem {
-    margin-bottom: 2h;
     text-align: center;
     color: white;
     margin-bottom: 2vh;
-    
+
+
+}
+
+.restaurante_nome {
+    font-size: 3rem;
+
+    font-family: 'Lobster';
+
+}
+
+.restaurante_descricao {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    font-size: 1.5rem;
+    font-family: 'Bebas Neue';
+
+
+}
+
+.restaurante_descricao_destaque {
+    font-size: 1.5rem;
+    background-color: #f44734;
+    font-family: 'Bebas Neue';
+    padding-left: 5px;
+    padding-right: 5px;
+
+    margin-left: 5px;
+    height: 30px;
+}
+
+.txt-escolhaMesa {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Bebas Neue';
 }
 
 
+/* ------------ Botoes ------------*/
 .btn_logo_client {
     border: 0;
     background-color: transparent;
@@ -54,6 +100,7 @@
     border: none;
     color: white;
     font-size: 60px;
+
 }
 
 .btn_home_client i {
@@ -63,66 +110,45 @@
 }
 
 
-
-.mesas {
-    font-weight: bold;
-
-}
-
-.tamanho-img {
-    height: 130px;
-    width: 120px;
-}
-
-.Formato-mesa {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-.Formato-mesa p {
-    display: flex;
-    justify-content: center;
-}
-
-
-.formTemporario {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 30px;
-    font-weight: 900;
-    color: #d3a741;
-}
-
-
-.mesas:hover {
-    font-weight: bold;
-    font-size: 29px;
-    cursor: pointer;
-    transition: all 0.3s; 
-    text-align: center; 
-    margin: 10px 0;
-    cursor: pointer;
-}
-
-.mesas:hover{
-    transform: scale(1.1);
-    border-bottom: 2px solid orange;
-    .icone-customizado{
-        color: orange;
-        transform: scale(1.1);
-    }
-}
+/* ------------ Mesa Container ------------*/
 
 .mesas-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 2fr));
-    gap: 10px;
-    justify-items: center;
-    font-size: 27px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 2fr));
+
+    margin-top: 20px;
+    gap: 4%;
+  /*   background-color: rgb(53, 10, 225); */
+}
+
+.mesas {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    font-weight: bold;
+    background-color: aliceblue;
+    border-radius: 40px;
+    font-size: 2rem;
+    text-align: center;
+
+
+}
+
+.mesas:hover {
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    cursor: pointer;
+    transform: scale(1.1);
+    border-bottom: 5px solid #f44734;
+}
+
+.icone-customizado {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    color: red;
+    transform: scale(1.1);
 }

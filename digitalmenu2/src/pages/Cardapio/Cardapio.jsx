@@ -169,7 +169,7 @@ function Cardapio(props) {
                         {produtosFiltrados.map((produto) => (
                             <div key={produto.id} className="cardapio-celula">
                                 <div className="informacoes_produto">
-                                    <p>{produto.idproduto}</p>
+                                    <p className="id_produtoCardapio">{produto.idproduto}</p>
                                     <p className="nome-produtoCardapio">{produto.nome}</p>
                                     <p className="preco-produtoCardapio">R$ {produto.preco}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>
