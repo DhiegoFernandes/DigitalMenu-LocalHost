@@ -220,6 +220,14 @@ function MainProvider({ children }) {
         }
     }
 
+    async function encerrarPedido(id_pedido){
+        try {
+            const { data } = await api.put(`/pedidos/encerra-pedido/${id_pedido}`);
+        } catch (e) {
+            console.log("Erro ao cancelar pedido", e)
+        }
+    }
+
     // ==================== Produtos ==================== //
 
     async function listarProdutos(){
@@ -492,6 +500,7 @@ function MainProvider({ children }) {
             listarItens,
             editarQuantidade,
             cancelarItem,
+            encerrarPedido,
         }}
         >
         {children}

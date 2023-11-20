@@ -9,13 +9,14 @@ import './pedidos.css'
 
 function Pedidos(){
 
-        const {listarPedidos, listarItens, editarQuantidade, cancelarItem} = useContext(MainContext);
+        const {listarPedidos, listarItens, editarQuantidade, cancelarItem, encerrarPedido} = useContext(MainContext);
     
         const [pedidos, setPedidos] = useState([]);
         const [itens, setItens] = useState([]);
         const [updatePedidos, setUpdatePedidos] = useState(true);
         const [quantidade, setQuantidade] = useState("");
         const [idItem, setIdItem] = useState("");
+        const [idpedido, setIdpedido] = useState("");
       
         useEffect(() => {
             if(updatePedidos){
@@ -85,6 +86,7 @@ function Pedidos(){
                                 OpenItem();
                             }}
                         >contract_edit</i></button>
+                        <button><i className='material-symbols-outlined' onClick={() => {setIdpedido(params.row.idpedido); OpenEncerra()}}>price_check</i></button>
                     </div>
                 ) 
             }
@@ -188,6 +190,10 @@ function Pedidos(){
         const [openStatus, setOpenStatus] = useState(false);
         const OpenStatus = () => setOpenStatus(true);
         const CloseStatus = () => setOpenStatus(false);
+        
+        const [openEncerra, setOpenEncerra] = useState(false);
+        const OpenEncerra = () => setOpenEncerra(true);
+        const CloseEncerra = () => setOpenEncerra(false);
 
     return(
         <>
@@ -259,6 +265,27 @@ function Pedidos(){
                                     </div>
                                     <button className='btn-cancelar marg-media' onClick={() => { CloseQntd() }}>Cancelar</button>
                                     <button className='btn-salvar marg-pequena' onClick={(e) => { editarQuantidade(e, idItem, quantidade); setUpdatePedidos(true); CloseQntd(); CloseItem();}}>Salvar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Modal>
+
+                    {/* ENCERRA PEDIDO */}
+                    <Modal
+                        open={openEncerra}
+                        onClose={CloseEncerra}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal'>
+                            <div className='btn-modal'>
+                                <div className='modal-desativar'>
+                                    <p>Tem certeza que deseja encerrar o pedido {idpedido}?</p>
+                                    <div className='botoes-sim-nao marg-grande'>
+                                        <button className='btn-cancelar' onClick={() => { CloseEncerra() }}>Não</button>
+                                        <button className='btn-salvar' onClick={() => { encerrarPedido(idpedido); setUpdatePedidos(true); CloseEncerra(); }}>Sim</button>
+                                    </div>
                                 </div>
 
                             </div>
