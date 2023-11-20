@@ -65,48 +65,29 @@ function MainProvider({ children }) {
 
     // ==================== Relatórios ==================== //
 
-    async function produtosVendidos(){
+    async function produtosMaisFaturados(e, mes, ano) {
+        e.preventDefault();
+        mes = mes.trim();
+        ano = ano.trim();
+
         try{
-            const { data } = await api.get("/relatorio/itens/mais/vendidos")
-            return data
+            const {data} = await api.get('/relatorios/produto/mais/faturado', {mes, ano});
+            return data;
         }catch(e){
-            console.log(e)
+            console.log("Erro ao listar produtos mais faturados", e);
         }
     }
 
-    // async function produtosFaturados(){
-    //     try{
-    //         const { data } = await api.get("/pedidos/all")
-    //         return data
-    //     }catch(e){
-    //         console.log(e)
-    //     }
-    // }
+    async function produtosMaisVendidos(e, mes, ano){
+        e.preventDefault();
+        mes = mes.trim();
+        ano = ano.trim();
 
-    async function totalProdutosUni(){
         try{
-            const { data } = await api.get("/relatorio/qtde/vendido")
-            return data
+            const {data} = await api.get('/relatorios/produto/mais/vendidos', {mes, ano});
+            return data;
         }catch(e){
-            console.log(e)
-        }
-    }
-
-    async function totalPedidos(){
-        try{
-            const { data } = await api.get("/relatorio/total")
-            return data
-        }catch(e){
-            console.log(e)
-        }
-    }
-
-    async function gorjetas(){
-        try{
-            const { data } = await api.get("/relatorio/calcular/gorjeta")
-            return data
-        }catch(e){
-            console.log(e)
+            console.log("Erro ao listar produtos mais vendidos", e);
         }
     }
 
@@ -482,11 +463,7 @@ function MainProvider({ children }) {
             encerraPedido,
             listarProdutos,
             listarProdutosComImagens,
-            gorjetas,
-            totalPedidos,
             listarTotal,
-            totalProdutosUni,
-            produtosVendidos,
             autenticacaoMesa,
             desativarMesa,
             ativarMesa,
@@ -501,6 +478,8 @@ function MainProvider({ children }) {
             editarQuantidade,
             cancelarItem,
             encerrarPedido,
+            produtosMaisFaturados,
+            produtosMaisVendidos
         }}
         >
         {children}
