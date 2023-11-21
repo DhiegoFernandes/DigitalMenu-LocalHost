@@ -1,21 +1,22 @@
 import './relatorios.css'
 import '../Modal/modal_componentes.css';
 import { Modal } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { MainContext } from '../../context/context';
 
 function Relatorios(){
 
-    const { produtosMaisFaturados, produtosMaisVendidos } = useContext(MainContext);
-
+    const { produtosMaisFaturados, produtosMaisVendidos, totalEmPedidos } = useContext(MainContext);
 
     // Variáveis
     const [mes, setMes] = useState("");
     const [ano, setAno] = useState("");
     const [faturamento, setFaturamento] = useState(false);
     const [produto, setProduto] = useState(false);
+    const [total, setTotal] = useState(false);
     const [dadosPesquisa, setDadosPesquisa] = useState([]);
-    
+    const [pesquisa, setPesquisa] = useState([]);
+
     // Variáveis do Modal
     const [openMes, setOpenMes] = useState(false);
     const OpenMes = () => setOpenMes(true);
@@ -24,14 +25,20 @@ function Relatorios(){
     const [openPesquisa, setOpenPesquisa] = useState(false);
     const OpenPesquisa = () => setOpenPesquisa(true);
     const ClosePesquisa = () => setOpenPesquisa(false);
-    
+
+    useEffect(() => {
+        setFaturamento(false);
+        setProduto(false);
+        setTotal(false);
+    }, []);
+      
     return(
         <>
             <div className="container-relatorio">
                 <div className='btn-relatorios'>
                     <button className='btn' onClick={() => {OpenMes(); setProduto(true);}}>Produtos + vendidos</button>
                     <button className='btn' onClick={() => {OpenMes(); setProduto(true); setFaturamento(true)}}>Produtos + faturados</button>
-                    <button className='btn' onClick={() => {OpenMes();}}>Total (R$) por Pedido</button>
+                    <button className='btn' onClick={() => {OpenMes(); setTotal(true)}}>Total (R$) por Pedido</button>
 
                     <div>
                     {/* MODAL PEDINDO O MÊS */}
@@ -84,8 +91,11 @@ function Relatorios(){
                                 }}>Pesquisar</button>
                                 )
                             ) : (
-                                <button onClick={() => {
-                                    OpenPesquisa();
+                                <button onClick={(e) => {
+                                    totalEmPedidos(e, ano, mes).then((resp) => {
+                                        setPesquisa(resp);
+                                        OpenPesquisa();
+                                    })
                                 }}>Pesquisar</button>
                             )}
                             <p>DATA: {mes}/{ano}</p>
@@ -101,7 +111,60 @@ function Relatorios(){
                     >
                         <div className='modal-pesquisa'>
                             <button onClick={() => ClosePesquisa()}><i className='material-symbols-outlined'>close</i></button>
-                            <p>{dadosPesquisa}</p>
+                            
+                            {console.log(pesquisa)}
+                            {pesquisa && pesquisa.length > 0 ? 
+                                total ? 
+                                    <div>
+                                        {pesquisa[0] && <p>Total arrecadado de pedidos: {pesquisa[0].total}</p>}
+                                    </div>
+                                    :
+                                    pesquisa.map((dados, index) => (
+                                        <div key={index}>
+                                            <p>NOME: {dados.NomeDoProduto}</p>
+                                            <p>{faturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                                        </div>
+                                    ))
+                                :
+                                <p>Sem dados para exibir</p>
+                            }
+                            
+                            
+                            {/* {total ? 
+                                <div>
+                                    <p>Total arrecadado de pedidos: {pesquisa[0].total}</p>
+                                </div>
+                                :
+                                dadosPesquisa.map((dados) => (
+                                    <div key={dados}>
+                                        <p>NOME: {dados.NomeDoProduto}</p>
+                                        <p>{faturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                                    </div>
+                                ))
+                            } */}
+                        </div>
+                    </Modal>
+
+                    <Modal
+                        open={openPesquisa}
+                        onClose={ClosePesquisa}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <div className='modal-pesquisa'>
+                            <button onClick={() => ClosePesquisa()}><i className='material-symbols-outlined'>close</i></button>
+                            {total ? 
+                                <div>
+                                    <p>Total arrecadado de pedidos: {dadosPesquisa.total}</p>
+                                </div>
+                                :
+                                dadosPesquisa.map((dados) => (
+                                    <div key={dados}>
+                                        <p>NOME: {dados.NomeDoProduto}</p>
+                                        <p>{faturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </Modal>
 

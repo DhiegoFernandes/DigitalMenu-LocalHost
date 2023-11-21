@@ -71,23 +71,36 @@ function MainProvider({ children }) {
         ano = ano.trim();
 
         try{
-            const {data} = await api.get('/relatorios/produto/mais/faturado', {mes, ano});
+            const { data } = await api.get(`/relatorios/produto/mais/faturado/${mes}/${ano}`);
             return data;
         }catch(e){
             console.log("Erro ao listar produtos mais faturados", e);
         }
     }
-
+ 
     async function produtosMaisVendidos(e, mes, ano){
         e.preventDefault();
         mes = mes.trim();
         ano = ano.trim();
 
         try{
-            const {data} = await api.get('/relatorios/produto/mais/vendidos', {mes, ano});
+            const { data } = await api.get(`/relatorios/produto/mais/vendidos/${mes}/${ano}`);
             return data;
         }catch(e){
             console.log("Erro ao listar produtos mais vendidos", e);
+        }
+    }
+
+    async function totalEmPedidos(e, ano, mes){
+        e.preventDefault();
+        mes = mes.trim();
+        ano = ano.trim();
+
+        try{
+            const { data } = await api.get(`/relatorios/produto/arrecadado/${ano}/${mes}`);
+            return data;
+        }catch(e){
+            console.log("Erro ao exibir arrecadção do mês", e);
         }
     }
 
@@ -479,7 +492,8 @@ function MainProvider({ children }) {
             cancelarItem,
             encerrarPedido,
             produtosMaisFaturados,
-            produtosMaisVendidos
+            produtosMaisVendidos,
+            totalEmPedidos
         }}
         >
         {children}
