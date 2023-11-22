@@ -107,9 +107,9 @@ function Carrinho(props) {
   return (
     <div className="carrinho-modal">
 
-      <button className="btn-sairCardapio">
+      {/* <button className="btn-sairCardapio">
         <img className="img-sairCardapio" src={botaoFechar} />
-      </button>
+      </button> */}
 
       <div className="carrinho-conteudo-superior">
         <p className="texto-carrinho">Carrinho</p>

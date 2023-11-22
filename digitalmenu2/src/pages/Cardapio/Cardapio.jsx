@@ -123,16 +123,12 @@ function Cardapio(props) {
             <div className='home_cabecalho'>
                 <img className='home_dmLogo' src={logoDM} alt="" />
                 <div className="header__informacoes"> 
-                    <button className="btn-carrinhoEncerrarPedido" onClick={async () => {
-                        // const { data } = await listarItens(); 
-                        // setItensPedido(data); 
-                        OpenEncerrarPedido(); 
-                    }}>Encerrar pedido</button>
+                    
                     <div className="header__informacoes__valores">
                         <button className="btn-Carrinho" onClick={toggleCarrinho}>
                             <i className="material-symbols-outlined" id="icone-canto-tela">shopping_cart</i>
-                            <p>{produtosNoCarrinho.length} item{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p>
-                            <p>Total R$ {totalPedido}</p>
+                            {/* <p>{produtosNoCarrinho.length} item{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p> */}
+                            <p>Total (conta) R$ {totalPedido}</p>
 
                         </button>
                         {mostrarCarrinho && (
@@ -146,9 +142,18 @@ function Cardapio(props) {
                         )}
 
                     </div>
+
+
+                    <button className="btn-carrinhoEncerrarPedido" onClick={async () => {
+                        // const { data } = await listarItens(); 
+                        // setItensPedido(data); 
+                        OpenEncerrarPedido(); 
+                    }}>Encerrar pedido</button>
+
+
                     <div className="header__informacoes__informacoesPedido">
                         <p>Mesa N°: {numeroMesa}</p>
-                        <p>Pedido N°: {numeroPedido.idpedido}</p>
+                        {/* <p>Pedido N°: {numeroPedido.idpedido}</p> */}
                     </div>
                 </div>
             </div> 
