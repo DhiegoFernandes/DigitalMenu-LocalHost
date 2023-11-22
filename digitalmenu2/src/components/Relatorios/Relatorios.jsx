@@ -111,25 +111,19 @@ function Relatorios(){
                     >
                         <div className='modal-pesquisa'>
                             <button onClick={() => ClosePesquisa()}><i className='material-symbols-outlined'>close</i></button>
-                            
-                            {console.log(pesquisa)}
-                            {pesquisa && pesquisa.length > 0 ? 
-                                total ? 
+                                {total ? 
                                     <div>
-                                        {pesquisa[0] && <p>Total arrecadado de pedidos: {pesquisa[0].total}</p>}
+                                        {pesquisa[0] && <p>Total arrecadado de pedidos no mês: R${pesquisa[0].total}</p>}
                                     </div>
                                     :
-                                    pesquisa.map((dados, index) => (
+                                    dadosPesquisa.map((dados, index) => (
                                         <div key={index}>
                                             <p>NOME: {dados.NomeDoProduto}</p>
                                             <p>{faturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
                                         </div>
                                     ))
-                                :
-                                <p>Sem dados para exibir</p>
-                            }
-                            
-                            
+                                }
+
                             {/* {total ? 
                                 <div>
                                     <p>Total arrecadado de pedidos: {pesquisa[0].total}</p>
@@ -142,29 +136,6 @@ function Relatorios(){
                                     </div>
                                 ))
                             } */}
-                        </div>
-                    </Modal>
-
-                    <Modal
-                        open={openPesquisa}
-                        onClose={ClosePesquisa}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <div className='modal-pesquisa'>
-                            <button onClick={() => ClosePesquisa()}><i className='material-symbols-outlined'>close</i></button>
-                            {total ? 
-                                <div>
-                                    <p>Total arrecadado de pedidos: {dadosPesquisa.total}</p>
-                                </div>
-                                :
-                                dadosPesquisa.map((dados) => (
-                                    <div key={dados}>
-                                        <p>NOME: {dados.NomeDoProduto}</p>
-                                        <p>{faturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
-                                    </div>
-                                ))
-                            }
                         </div>
                     </Modal>
 
