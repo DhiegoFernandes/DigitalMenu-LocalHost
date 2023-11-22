@@ -2,6 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import "./Carrinho.css";
 import { MainContext } from "../../context/context";
 import botaoFechar from '../../assets/image/close.png';
+import '../Modal/modal_componentes.css';
+import { Modal } from '@mui/material';
+
 
 function Carrinho(props) {
   const [numeroPedido, setNumeroPedido] = useState("");
@@ -96,6 +99,11 @@ function Carrinho(props) {
       />
     );
   }
+
+  const [openEnviarPedido, setOpenEnviarPedido] = useState(false);
+  const OpenEnviarPedido = () => setOpenEnviarPedido(true);
+  const CloseEnviarPedido = () => setOpenEnviarPedido(false);
+
   return (
     <div className="carrinho-modal">
 
@@ -131,11 +139,34 @@ function Carrinho(props) {
       </div>
       <div className="carrinho-conteudo-inferior">
         <p className="p-totalCarrinho">Total: R$ {calcularTotal()}</p>
-        <button className="btn-carrinhoEnviarPedido" onClick={enviarPedido}>Enviar pedido</button>
-        <button className="btn-carrinhoEncerrarPedido" onClick={() => encerraPedido(numeroPedido.idpedido)}>Encerrar pedido</button>
+        <button className="btn-carrinhoEnviarPedido" onClick={OpenEnviarPedido}>Enviar pedido</button>
+        {/* <button className="btn-carrinhoEncerrarPedido" onClick={() => encerraPedido(numeroPedido.idpedido)}>Encerrar pedido</button> */}
       </div>
 
+      <Modal
+        open={openEnviarPedido}
+        onClose={CloseEnviarPedido}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className='modal'>
+            <div className='btn-modal'>
+                <div className='modal-ativar'>
+                    <p>Seu pedido será encaminhado para a cozinha. Está correto?</p>
+                    <p className="atencao">*Se possível confira o carrinho para evitar erros!</p>
+                    <div className='botoes-sim-nao marg-grande'>
+                        <button className='btn-cancelar' onClick={() => CloseEnviarPedido()}>Não</button>
+                        <button className='btn-salvar' onClick={() => {enviarPedido(); CloseEnviarPedido();}}>Sim</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </Modal>
+
     </div>
+
+    
   );
 }
 
