@@ -93,7 +93,7 @@ function Cardapio(props) {
 
         listarProdutosComImagens().then((data) => {
             setProdutos(data);
-        });    
+        });
     }, [listarProdutosComImagens]);
 
     useEffect(() => {
@@ -104,7 +104,7 @@ function Cardapio(props) {
         });
         console.log("Chamou", listarTotal)
     }, [mostrarCarrinho, numeroPedido.idpedido]);
-    
+
 
     useEffect(() => {
         const novoTotal = produtosNoCarrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
@@ -114,49 +114,62 @@ function Cardapio(props) {
     }, [produtosNoCarrinho]);
 
 
+    const fecharCarrinho = () => {
+        setMostrarCarrinho(false);
+    };
+
     const [openEncerrarPedido, setOpenEncerrarPedido] = useState(false);
     const OpenEncerrarPedido = () => setOpenEncerrarPedido(true);
     const CloseEncerrarPedido = () => setOpenEncerrarPedido(false);
 
     return (
         <>
-            <div className='home_cabecalho'>
-                <img className='home_dmLogo' src={logoDM} alt="" />
-                <div className="header__informacoes"> 
-                    
-                    <div className="header__informacoes__valores">
-                        <button className="btn-Carrinho" onClick={toggleCarrinho}>
-                            <i className="material-symbols-outlined" id="icone-canto-tela">shopping_cart</i>
-                            {/* <p>{produtosNoCarrinho.length} item{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p> */}
-                            <p>Total (conta) R$ {totalPedido}</p>
+            <div className='header_cardapio'>
+                <img className='tamanho_logoDM_Cardapio' src={logoDM} alt="" />
+                <div className="header__informacoes">
 
-                        </button>
-                        {mostrarCarrinho && (
-                            <Carrinho
-                                produtosNoCarrinho={produtosNoCarrinho}
-                                total={total}
-                                onRemoverProdutoDoCarrinho={onRemoverProdutoDoCarrinho}
-                                setProdutosNoCarrinho={setProdutosNoCarrinho}
-                                listarTotal={listarTotal}
-                            />
-                        )}
 
+                    <div className="header__informacoesPedido">
+                        <p>Mesa   N°: {numeroMesa}</p>
+                        <p>Pedido N°: {numeroPedido.idpedido}</p>
                     </div>
 
-
-                    <button className="btn-carrinhoEncerrarPedido" onClick={async () => {
+                    <button className="btn-EncerrarPedido" onClick={async () => {
                         // const { data } = await listarItens(); 
                         // setItensPedido(data); 
-                        OpenEncerrarPedido(); 
-                    }}>Encerrar pedido</button>
+                        OpenEncerrarPedido();
+                    }}>
+                        <i className="material-symbols-outlined size_IconCarrinho">point_of_sale</i>
+                        <div>
+                            <p>Encerrar pedido</p>
+                        </div>
+                    </button>
+
+                    <button className="btn-Carrinho" onClick={toggleCarrinho}>
+                        <i className="material-symbols-outlined size_IconCarrinho" id="icone-canto-tela">shopping_cart</i>
+                        <div>
+                            <p>Total R$ {totalPedido}</p>
+                            <p>{produtosNoCarrinho.length} produto{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p>
+                        </div>
+
+                    </button>
+
+                    {mostrarCarrinho && (
+                        <Carrinho
+                            produtosNoCarrinho={produtosNoCarrinho}
+                            total={total}
+                            onRemoverProdutoDoCarrinho={onRemoverProdutoDoCarrinho}
+                            setProdutosNoCarrinho={setProdutosNoCarrinho}
+                            listarTotal={listarTotal}
+                            fecharCarrinho={fecharCarrinho}
+                        />
+                    )}
 
 
-                    <div className="header__informacoes__informacoesPedido">
-                        <p>Mesa N°: {numeroMesa}</p>
-                        {/* <p>Pedido N°: {numeroPedido.idpedido}</p> */}
-                    </div>
+
+
                 </div>
-            </div> 
+            </div>
 
             <div className='cardapio-global'>
                 <div className="categorias-cardapio">
@@ -181,7 +194,7 @@ function Cardapio(props) {
                         {produtosFiltrados.map((produto) => (
                             <div key={produto.id} className="cardapio-celula">
                                 <div className="informacoes_produto">
-                                    <p className="id_produtoCardapio">{produto.idproduto}</p>
+                                 {/*    <p className="id_produtoCardapio">{produto.idproduto}</p> */}
                                     <p className="nome-produtoCardapio">{produto.nome}</p>
                                     <p className="preco-produtoCardapio">R$ {produto.preco}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>
@@ -220,13 +233,13 @@ function Cardapio(props) {
                             </div>
                             <div className='botoes-sim-nao marg-grande'>
                                 <button className='btn-cancelar' onClick={() => CloseEncerrarPedido()}>Não</button>
-                                <button className='btn-salvar' onClick={() => {CloseEncerrarPedido(); encerraPedido(numeroPedido.idpedido);}}>Sim</button>
+                                <button className='btn-salvar' onClick={() => { CloseEncerrarPedido(); encerraPedido(numeroPedido.idpedido); }}>Sim</button>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </Modal>                 
+            </Modal>
         </>
     );
 }

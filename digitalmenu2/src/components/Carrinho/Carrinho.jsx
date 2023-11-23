@@ -107,9 +107,9 @@ function Carrinho(props) {
   return (
     <div className="carrinho-modal">
 
-      {/* <button className="btn-sairCardapio">
+      <button className="btn-sairCardapio" onClick={props.fecharCarrinho}>
         <img className="img-sairCardapio" src={botaoFechar} />
-      </button> */}
+      </button>
 
       <div className="carrinho-conteudo-superior">
         <p className="texto-carrinho">Carrinho</p>
@@ -120,16 +120,28 @@ function Carrinho(props) {
             props.produtosNoCarrinho.map((produto) => (
               <li key={produto.id}>
                 <div className="info-produtosCarrinho">
-                  <p className="txt-tituloProdutoCarrinho">{produto.nome}</p>
-                  <p className="txt-produtoCarrinho">Preço: R${produto.preco}</p>
-                  <p className="txt-quantidadeCarrinho"> Quantidade</p>
-                  <div className="btn-adicionarCarrinho">
-                    <button className="btn-red" onClick={() => diminuirQuantidade(produto)}><i className="material-symbols-outlined">remove</i></button>
-                    <p className="txt-produtoCarrinho">{produto.quantidade}</p>
-                    <button className="btn-green" onClick={() => aumentarQuantidade(produto)}><i className="material-symbols-outlined">add </i></button>
+                  <div className="info-ladoEsquerdoCarrinho">
+                    <p className="txt-tituloProdutoCarrinho">{produto.quantidade}x{produto.nome}</p>
+                    <p className="txt-precoCarrinho">R${produto.preco}</p>
+                    <p className="txt-quantidadeCarrinho"> Quantidade</p>
+
+                    <div className="btn-adicionarCarrinho">
+                      <button className="btn-red" onClick={() => diminuirQuantidade(produto)}><i className="material-symbols-outlined">remove</i></button>
+                      <p className="txt-qntdeCarrinho">{produto.quantidade}</p>
+                      <button className="btn-green" onClick={() => aumentarQuantidade(produto)}><i className="material-symbols-outlined">add </i></button>
+                    </div>
+
+                    <div className="btnRemoverObservacoes">
+                      <button className="btn-removerCarrinho" onClick={() => removerDoCarrinho(produto.nome)}>Remover</button>
+                      <p className="txt-observacaoCarrinho">{renderizarObservacao(produto)}</p>
+                    </div>
                   </div>
-                  <p className="txt-observacaoCarrinho">{renderizarObservacao(produto)}</p>
-                  <button className="btn-removerCarrinho" onClick={() => removerDoCarrinho(produto.nome)}>Remover</button>
+
+             {/*      FOTO DO LADO DIREITO
+                  <div className="info-ladoDireitoCarrinho">
+                    {<p >{produto.imagem ? <img className="imagemProduto-carrinho" src={`http://localhost:3333/uploads/${produto.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'XXXX'}</p>}
+                  </div>  */}
+
                 </div>
               </li>
             ))
@@ -150,23 +162,23 @@ function Carrinho(props) {
         aria-describedby="modal-modal-description"
       >
         <div className='modal'>
-            <div className='btn-modal'>
-                <div className='modal-ativar'>
-                    <p>Seu pedido será encaminhado para a cozinha. Está correto?</p>
-                    <p className="atencao">*Se possível confira o carrinho para evitar erros!</p>
-                    <div className='botoes-sim-nao marg-grande'>
-                        <button className='btn-cancelar' onClick={() => CloseEnviarPedido()}>Não</button>
-                        <button className='btn-salvar' onClick={() => {enviarPedido(); CloseEnviarPedido();}}>Sim</button>
-                    </div>
-                </div>
-
+          <div className='btn-modal'>
+            <div className='modal-ativar'>
+              <p>Seu pedido será encaminhado para a cozinha. Está correto?</p>
+              <p className="atencao">*Se possível confira o carrinho para evitar erros!</p>
+              <div className='botoes-sim-nao marg-grande'>
+                <button className='btn-cancelar' onClick={() => CloseEnviarPedido()}>Não</button>
+                <button className='btn-salvar' onClick={() => { enviarPedido(); CloseEnviarPedido(); }}>Sim</button>
+              </div>
             </div>
+
+          </div>
         </div>
       </Modal>
 
     </div>
 
-    
+
   );
 }
 

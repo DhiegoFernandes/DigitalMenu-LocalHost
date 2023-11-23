@@ -42,9 +42,9 @@ function Client() {
                         <p className='restaurante_descricao'>Bem-vindo ao<span className='restaurante_descricao_destaque'>Restaurante</span></p>
                         <p></p>
                     </div>
-                  
+
                     <div className="div_principal_client">
-                    <h2 className='txt-escolhaMesa'>Escolha sua mesa</h2>
+                        <h2 className='txt-escolhaMesa'>Escolha sua mesa</h2>
                         <div className="mesas-container">
                             {mesas.map((mesa) => (
                                 <div
@@ -56,7 +56,7 @@ function Client() {
                                         autenticacaoMesa(e, idMesa);
                                     }}
                                 >
-                                    <div className='mesas'>
+                                    <div className=''>
                                         <p><i className="material-symbols-outlined icone-customizado">table_restaurant</i> {mesa.idmesa}</p>
                                     </div>
                                 </div>
