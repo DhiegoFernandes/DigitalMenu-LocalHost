@@ -26,15 +26,25 @@ function Relatorios() {
 
   const handlePesquisar = () => {
     // Chamar a função de pesquisa apropriada com base nos valores selecionados
+    
+    try{
+
+    if(!periodo.ano || !periodo.mes){
+      alert('Por favor preencha todos os campos antes de pesquisar');
+        return;
+    }
+
     if (filtro.tipo === 'produtoFaturado') {
       produtosMaisFaturados(periodo.mes, periodo.ano).then((resp) => {
         setDadosPesquisa(resp);
         setOpenModal(true);
+        setTotal(false);
       });
     } else if (filtro.tipo === 'produtoVendido') {
       produtosMaisVendidos(periodo.mes, periodo.ano).then((resp) => {
         setDadosPesquisa(resp);
         setOpenModal(true);
+        setTotal(false);
       });
     } else if (filtro.tipo === 'totalPedido') {
       totalEmPedidos(periodo.ano, periodo.mes).then((resp) => {
@@ -43,6 +53,10 @@ function Relatorios() {
         setTotal(true)
       });
     }
+  }catch(error){
+    console.error('Erro na chamada ', error)
+  }
+
   };
 
   const handleCloseModal = () => {
@@ -82,25 +96,18 @@ function Relatorios() {
 
 
           <div className='relatorio-pesquisa'>
-            {/* Renderizar os resultados aqui */}
-            {/* {dadosPesquisa.map((dados, index) => (
-                <div key={index}>
-                  <p>NOME: {dados.NomeDoProduto}</p>
-                  <p>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
-                </div>
-              ))} */}
-            {total ?
+            {total ?(
               <div>
                 {dadosPesquisa[0] && <p>Total arrecadado de pedidos no mês: R${dadosPesquisa[0].total}</p>}
               </div>
-              :
+            ):(
               dadosPesquisa.map((dados, index) => (
                 <div key={index}>
                   <p>NOME: {dados.NomeDoProduto}</p>
                   <p>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
                 </div>
               ))
-            }
+            )}
           </div>
         </div>
 
