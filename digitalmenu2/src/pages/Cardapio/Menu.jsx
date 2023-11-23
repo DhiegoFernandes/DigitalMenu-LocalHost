@@ -33,7 +33,7 @@ function Menu() {
 
     return (
         <>
-            <div className='home_cabecalho'>
+            <div className='header_cardapio'>
                 <img className='home_dmLogo' src={logoDM} alt="Logo" />
                 <div className="header__informacoes">
                     <button className="btn_home_client" onClick={() => navigate('/TelaEspera')}>
