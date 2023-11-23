@@ -108,7 +108,7 @@ function Carrinho(props) {
     <div className="carrinho-modal">
 
       <button className="btn-sairCardapio" onClick={props.fecharCarrinho}>
-        <img className="img-sairCardapio" src={botaoFechar} />
+        <img className="img-sairCardapio" src={botaoFechar} alt="Fechar Carrinho"/>
       </button>
 
       <div className="carrinho-conteudo-superior">
