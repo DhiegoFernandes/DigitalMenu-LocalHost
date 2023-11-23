@@ -65,44 +65,41 @@ function MainProvider({ children }) {
 
     // ==================== Relatórios ==================== //
 
-    async function produtosMaisFaturados(e, mes, ano) {
-        e.preventDefault();
+    async function produtosMaisFaturados(mes, ano) {
         mes = mes.trim();
         ano = ano.trim();
-
-        try{
-            const { data } = await api.get(`/relatorios/produto/mais/faturado/${mes}/${ano}`);
-            return data;
-        }catch(e){
-            console.log("Erro ao listar produtos mais faturados", e);
+      
+        try {
+          const { data } = await api.get(`/relatorios/produto/mais/faturado/${mes}/${ano}`);
+          return data;
+        } catch (e) {
+          console.log("Erro ao listar produtos mais faturados", e);
         }
-    }
- 
-    async function produtosMaisVendidos(e, mes, ano){
-        e.preventDefault();
+      }
+      
+      async function produtosMaisVendidos(mes, ano) {
         mes = mes.trim();
         ano = ano.trim();
-
-        try{
-            const { data } = await api.get(`/relatorios/produto/mais/vendidos/${mes}/${ano}`);
-            return data;
-        }catch(e){
-            console.log("Erro ao listar produtos mais vendidos", e);
+      
+        try {
+          const { data } = await api.get(`/relatorios/produto/mais/vendidos/${mes}/${ano}`);
+          return data;
+        } catch (e) {
+          console.log("Erro ao listar produtos mais vendidos", e);
         }
-    }
-
-    async function totalEmPedidos(e, ano, mes){
-        e.preventDefault();
+      }
+      
+      async function totalEmPedidos(ano, mes) {
         mes = mes.trim();
         ano = ano.trim();
-
-        try{
-            const { data } = await api.get(`/relatorios/produto/arrecadado/${ano}/${mes}`);
-            return data;
-        }catch(e){
-            console.log("Erro ao exibir arrecadção do mês", e);
+      
+        try {
+          const { data } = await api.get(`/relatorios/produto/arrecadado/${ano}/${mes}`);
+          return data;
+        } catch (e) {
+          console.log("Erro ao exibir arrecadação do mês", e);
         }
-    }
+      }
 
     // ==================== Pedidos ==================== //
 
