@@ -113,6 +113,9 @@ function Cardapio(props) {
         setTotal(novoTotal);
     }, [produtosNoCarrinho]);
 
+    const fecharCarrinho = () => {
+        setMostrarCarrinho(false);
+      };
 
     const [openEncerrarPedido, setOpenEncerrarPedido] = useState(false);
     const OpenEncerrarPedido = () => setOpenEncerrarPedido(true);
@@ -138,6 +141,7 @@ function Cardapio(props) {
                                 onRemoverProdutoDoCarrinho={onRemoverProdutoDoCarrinho}
                                 setProdutosNoCarrinho={setProdutosNoCarrinho}
                                 listarTotal={listarTotal}
+                                fecharCarrinho={fecharCarrinho}
                             />
                         )}
 
