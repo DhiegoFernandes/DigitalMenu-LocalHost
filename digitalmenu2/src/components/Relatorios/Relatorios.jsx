@@ -51,63 +51,59 @@ function Relatorios() {
 
   return (
     <>
-      <div className="container-relatorio">
-        <div className='btn-relatorios'>
-          <Select value={filtro.tipo} onChange={handleChangeTipo}>
-            <MenuItem value="produtoFaturado">Produtos + Faturados</MenuItem>
-            <MenuItem value="produtoVendido">Produtos + Vendidos</MenuItem>
-            <MenuItem value="totalPedido">Total (R$) por Pedido</MenuItem>
-          </Select>
+      <div className="main-relatorio">
 
-          <TextField
-            type="text"
-            name="mes"
-            label="Mês"
-            value={periodo.mes}
-            onChange={handleChangePeriodo}
-          />
+        <div className='container-relatorios'>
+          <div className='btn-relatorios'>
+            <Select value={filtro.tipo} onChange={handleChangeTipo} >
+              <MenuItem value="produtoFaturado">Produtos + Faturados</MenuItem>
+              <MenuItem value="produtoVendido">Produtos + Vendidos</MenuItem>
+              <MenuItem value="totalPedido">Total (R$) por Pedido</MenuItem>
+            </Select>
 
-          <TextField
-            type="text"
-            name="ano"
-            label="Ano"
-            value={periodo.ano}
-            onChange={handleChangePeriodo}
-          />
+            <TextField
+              type="text"
+              name="mes"
+              label="Mês"
+              value={periodo.mes}
+              onChange={handleChangePeriodo}
+            />
 
-          <Button variant="contained" onClick={handlePesquisar}>Pesquisar</Button>
+            <TextField
+              type="text"
+              name="ano"
+              label="Ano"
+              value={periodo.ano}
+              onChange={handleChangePeriodo}
+            />
 
-          {/* MODAL DE RESULTADOS */}
-          <Modal
-            open={openModal}
-            onClose={handleCloseModal}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <div className='modal-pesquisa'>
-              <button onClick={handleCloseModal}><i className='material-symbols-outlined'>close</i></button>
-              {/* Renderizar os resultados aqui */}
-              {/* {dadosPesquisa.map((dados, index) => (
+            <Button variant="contained" onClick={handlePesquisar}>Pesquisar</Button>
+          </div>
+
+
+          <div className='relatorio-pesquisa'>
+            {/* Renderizar os resultados aqui */}
+            {/* {dadosPesquisa.map((dados, index) => (
                 <div key={index}>
                   <p>NOME: {dados.NomeDoProduto}</p>
                   <p>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
                 </div>
               ))} */}
-            {total ? 
-                    <div>
-                        {dadosPesquisa[0] && <p>Total arrecadado de pedidos no mês: R${dadosPesquisa[0].total}</p>}
-                            </div>
-                                :
-                                dadosPesquisa.map((dados, index) => (
-                                    <div key={index}>
-                                        <p>NOME: {dados.NomeDoProduto}</p>
-                                        <p>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
-                                    </div>
-                                ))
+            {total ?
+              <div>
+                {dadosPesquisa[0] && <p>Total arrecadado de pedidos no mês: R${dadosPesquisa[0].total}</p>}
+              </div>
+              :
+              dadosPesquisa.map((dados, index) => (
+                <div key={index}>
+                  <p>NOME: {dados.NomeDoProduto}</p>
+                  <p>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                </div>
+              ))
             }
-            </div>
-          </Modal>
+          </div>
         </div>
+
       </div>
     </>
   );
