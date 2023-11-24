@@ -26,36 +26,36 @@ function Relatorios() {
 
   const handlePesquisar = () => {
     // Chamar a função de pesquisa apropriada com base nos valores selecionados
-    
-    try{
 
-    if(!periodo.ano || !periodo.mes){
-      alert('Por favor preencha todos os campos antes de pesquisar');
+    try {
+
+      if (!periodo.ano || !periodo.mes) {
+        alert('Por favor preencha todos os campos antes de pesquisar');
         return;
-    }
+      }
 
-    if (filtro.tipo === 'produtoFaturado') {
-      produtosMaisFaturados(periodo.mes, periodo.ano).then((resp) => {
-        setDadosPesquisa(resp);
-        setOpenModal(true);
-        setTotal(false);
-      });
-    } else if (filtro.tipo === 'produtoVendido') {
-      produtosMaisVendidos(periodo.mes, periodo.ano).then((resp) => {
-        setDadosPesquisa(resp);
-        setOpenModal(true);
-        setTotal(false);
-      });
-    } else if (filtro.tipo === 'totalPedido') {
-      totalEmPedidos(periodo.ano, periodo.mes).then((resp) => {
-        setDadosPesquisa(resp);
-        setOpenModal(true);
-        setTotal(true)
-      });
+      if (filtro.tipo === 'produtoFaturado') {
+        produtosMaisFaturados(periodo.mes, periodo.ano).then((resp) => {
+          setDadosPesquisa(resp);
+          setOpenModal(true);
+          setTotal(false);
+        });
+      } else if (filtro.tipo === 'produtoVendido') {
+        produtosMaisVendidos(periodo.mes, periodo.ano).then((resp) => {
+          setDadosPesquisa(resp);
+          setOpenModal(true);
+          setTotal(false);
+        });
+      } else if (filtro.tipo === 'totalPedido') {
+        totalEmPedidos(periodo.ano, periodo.mes).then((resp) => {
+          setDadosPesquisa(resp);
+          setOpenModal(true);
+          setTotal(true)
+        });
+      }
+    } catch (error) {
+      console.error('Erro na chamada ', error)
     }
-  }catch(error){
-    console.error('Erro na chamada ', error)
-  }
 
   };
 
@@ -96,15 +96,21 @@ function Relatorios() {
 
 
           <div className='relatorio-pesquisa'>
-            {total ?(
+            {total ? (
               <div>
                 {dadosPesquisa[0] && <p>Total arrecadado de pedidos no mês: R${dadosPesquisa[0].total}</p>}
               </div>
-            ):(
+            ) : (
               dadosPesquisa.map((dados, index) => (
-                <div key={index}>
-                  <p>NOME: {dados.NomeDoProduto}</p>
-                  <p>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                <div className="dados-relatorio" key={index}>
+                  <div>
+                    <p className='txt_relProduto'>Nome: {dados.NomeDoProduto}</p>
+                    <p className='txt_relTopProduto'>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                  </div>
+                  <div>
+                    <p className='relAreaImagem'>{dados.imagem ? <img className="relatorio_imagemProduto" src={`http://localhost:3333/uploads/${dados.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Imagem não disponível'}</p>
+                  </div>
+
                 </div>
               ))
             )}

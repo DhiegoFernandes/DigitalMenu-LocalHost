@@ -126,25 +126,7 @@ function Cardapio(props) {
             <div className='header_cardapio'>
                 <img className='tamanho_logoDM_Cardapio' src={logoDM} alt="" />
                 <div className="header__informacoes">
-                  <div className="header__informacoes__valores">
-                        <button className="btn-Carrinho" onClick={toggleCarrinho}>
-                            <i className="material-symbols-outlined" id="icone-canto-tela">shopping_cart</i>
-                            <p>Total (conta) R$ {totalPedido}</p>
-
-                        </button>
-                        {mostrarCarrinho && (
-                            <Carrinho
-                                produtosNoCarrinho={produtosNoCarrinho}
-                                total={total}
-                                onRemoverProdutoDoCarrinho={onRemoverProdutoDoCarrinho}
-                                setProdutosNoCarrinho={setProdutosNoCarrinho}
-                                listarTotal={listarTotal}
-                                fecharCarrinho={fecharCarrinho}
-                            />
-                        )}
-                        
-                    </div>
-
+                    
                     <div className="header__informacoesPedido">
                         <p>Mesa   N°: {numeroMesa}</p>
                         <p>Pedido N°: {numeroPedido.idpedido}</p>
