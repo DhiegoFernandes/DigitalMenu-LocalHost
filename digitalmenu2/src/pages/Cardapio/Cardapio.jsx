@@ -16,7 +16,8 @@ function Cardapio(props) {
     const [produtosNoCarrinho, setProdutosNoCarrinho] = useState(props.produtosNoCarrinho || []);
     const [totalPedido, setTotalPedido] = useState(0);
     const [total, setTotal] = useState(0);
-    const [itensPedido, setItensPedido] = useState([]);
+    const [atualizarPrecoPedido, setAtualizarPrecoPedido] = useState(false);
+    const [enviarPedidoClicado, setEnviarPedidoClicado] = useState(false);
 
     const adicionarProdutoAoCarrinho = (produto) => {
 
@@ -100,10 +101,18 @@ function Cardapio(props) {
         listarTotal(numeroPedido.idpedido).then((data) => {
             console.log("Data de listarTotal:", data);
             setTotalPedido(data[0]?.TOTAL || 0);
+            if (atualizarPrecoPedido) {
+                // Lógica para atualizar o preço quando atualizarPrecoPedido for true
+                // Pode ser uma chamada para listarTotal ou qualquer lógica específica que você precise
+                // ...
+    
+                // Após a atualização, marque como falso para evitar atualizações desnecessárias
+                setAtualizarPrecoPedido(false);
+            }    
 
         });
         console.log("Chamou", listarTotal)
-    }, [mostrarCarrinho, numeroPedido.idpedido]);
+    }, [mostrarCarrinho, numeroPedido.idpedido, atualizarPrecoPedido]);
 
 
     useEffect(() => {
@@ -111,7 +120,7 @@ function Cardapio(props) {
         const numeroItens = produtosNoCarrinho.length;
 
         setTotal(novoTotal);
-    }, [produtosNoCarrinho]);
+    }, [produtosNoCarrinho, enviarPedidoClicado]);
 
     const fecharCarrinho = () => {
         setMostrarCarrinho(false);
@@ -160,6 +169,7 @@ function Cardapio(props) {
                             setProdutosNoCarrinho={setProdutosNoCarrinho}
                             listarTotal={listarTotal}
                             fecharCarrinho={fecharCarrinho}
+                            setAtualizarPrecoPedido={setAtualizarPrecoPedido}
                         />
                     )}
 

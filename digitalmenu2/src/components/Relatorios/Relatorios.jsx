@@ -25,7 +25,6 @@ function Relatorios() {
   };
 
   const handlePesquisar = () => {
-    // Chamar a função de pesquisa apropriada com base nos valores selecionados
 
     try {
 
@@ -39,18 +38,21 @@ function Relatorios() {
           setDadosPesquisa(resp);
           setOpenModal(true);
           setTotal(false);
+          setFiltro({...filtro, isFaturamento : true });
         });
       } else if (filtro.tipo === 'produtoVendido') {
         produtosMaisVendidos(periodo.mes, periodo.ano).then((resp) => {
           setDadosPesquisa(resp);
           setOpenModal(true);
           setTotal(false);
+          setFiltro({ ...filtro, isFaturamento: false });
         });
       } else if (filtro.tipo === 'totalPedido') {
         totalEmPedidos(periodo.ano, periodo.mes).then((resp) => {
           setDadosPesquisa(resp);
           setOpenModal(true);
-          setTotal(true)
+          setTotal(true);
+          setFiltro({ ...filtro, isFaturamento: false });
         });
       }
     } catch (error) {
@@ -105,7 +107,7 @@ function Relatorios() {
                 <div className="dados-relatorio" key={index}>
                   <div>
                     <p className='txt_relProduto'>Nome: {dados.NomeDoProduto}</p>
-                    <p className='txt_relTopProduto'>{filtro.isFaturamento ? 'VALOR: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
+                    <p className='txt_relTopProduto'>{filtro.isFaturamento ? 'Valor faturado: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
                   </div>
                   <div>
                     <p className='relAreaImagem'>{dados.imagem ? <img className="relatorio_imagemProduto" src={`http://localhost:3333/uploads/${dados.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Imagem não disponível'}</p>
