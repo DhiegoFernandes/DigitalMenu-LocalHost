@@ -102,7 +102,10 @@ function Carrinho(props) {
 
   const [openEnviarPedido, setOpenEnviarPedido] = useState(false);
   const OpenEnviarPedido = () => setOpenEnviarPedido(true);
-  const CloseEnviarPedido = () => setOpenEnviarPedido(false);
+  const CloseEnviarPedido = () => {
+    setOpenEnviarPedido(false);
+    props.setAtualizarPrecoPedido(true);
+  }
 
   return (
     <div className="carrinho-modal">
