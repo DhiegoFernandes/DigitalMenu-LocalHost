@@ -104,7 +104,9 @@ function Carrinho(props) {
   const OpenEnviarPedido = () => setOpenEnviarPedido(true);
   const CloseEnviarPedido = () => {
     setOpenEnviarPedido(false);
-    props.setAtualizarPrecoPedido(true);
+    setTimeout(() => {
+      props.setAtualizarPrecoPedido(true);
+    }, 1000);
   }
 
   return (
