@@ -7,21 +7,21 @@ import localePTBR from '../../util/locale';
 import './mesas.css'
 import '../Modal/modal_componentes.css';
 
-function Mesas(){
+function Mesas() {
 
     const { listarMesas, ativarMesa, desativarMesa, cadastrarMesa } = useContext(MainContext);
 
     const [mesas, setMesas] = useState([]);
 
     const [updateMesas, setUpdateMesas] = useState(true);
-  
+
     useEffect(() => {
-      if(updateMesas){
-        listarMesas().then((resp) => {
-        setMesas(resp);
-        setUpdateMesas(false);
-    });
-      }
+        if (updateMesas) {
+            listarMesas().then((resp) => {
+                setMesas(resp);
+                setUpdateMesas(false);
+            });
+        }
     }, [updateMesas]);
 
     const colunmMesas = [
@@ -89,7 +89,10 @@ function Mesas(){
                     />
                 </div>
                 <div className='btn-cadastro-mesa'>
-                    <button onClick={() => { OpenMesa() }}>Cadastrar Mesa</button>
+                    <button type="btn-cadastrarSistema" className="btn-cadastrarSistema" onClick={() => { OpenMesa() }}>
+                        <span className="btn-cadastrarSistema__text">Cadastrar Mesa</span>
+                        <span className="btn-cadastrarSistema__icon"><svg xmlns="http://www.w3.org/2000/svg" width="44" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height="44" fill="none" className="svg"><line y2="22" y1="2" x2="12" x1="12"></line><line y2="12" y1="12" x2="22" x1="2"></line></svg></span>
+                    </button>
                     {/* CADASTRO */}
                     <Modal
                         open={openMesa}

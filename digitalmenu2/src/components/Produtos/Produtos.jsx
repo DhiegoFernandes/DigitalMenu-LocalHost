@@ -142,15 +142,25 @@ function Produtos() {
                         localeText={localePTBR}
                     />
                 </div>
+
+
+
+
+
                 <div className='btn-cadastro-produto'>
-                    <button onClick={() => {
+
+                    <button type="btn-cadastrarSistema" className="btn-cadastrarSistema" onClick={() => {
                         setIdproduto("");
                         setNome("");
                         setPreco("");
                         setDescricao("")
                         setStatus("");
                         Open();
-                    }}>Cadastrar Produto</button>
+                    }}>
+                        <span className="btn-cadastrarSistema__text">Cadastrar Produtos</span>
+                        <span className="btn-cadastrarSistema__icon"><svg xmlns="http://www.w3.org/2000/svg" width="44" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height="44" fill="none" className="svg"><line y2="22" y1="2" x2="12" x1="12"></line><line y2="12" y1="12" x2="22" x1="2"></line></svg></span>
+                    </button>
+
 
                     {/* CADASTRAR */}
                     <Modal

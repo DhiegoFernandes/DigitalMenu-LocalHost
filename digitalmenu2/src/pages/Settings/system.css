@@ -14,6 +14,77 @@
     width: 100%;
 }
 
+
+
+/* ------ BOTAO CADASTRO DOS COMPONENTES -------*/
+.btn-cadastrarSistema {
+    position: relative;
+    width: 370px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid  rgb(0, 0, 0);
+    background-color:  rgb(255, 166, 0);
+
+    margin-top: 5vh;
+
+    border-radius: 10px;
+  }
+  
+  .btn-cadastrarSistema, .btn-cadastrarSistema__icon, .btn-cadastrarSistema__text {
+    transition: all 0.3s;
+  }
+  
+  .btn-cadastrarSistema .btn-cadastrarSistema__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  
+  .btn-cadastrarSistema .btn-cadastrarSistema__icon {
+    position: absolute;
+    transform: translateX(289px);
+    height: 100%;
+    width: 79px;
+    background-color:  rgb(245, 159, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  
+  .btn-cadastrarSistema .svg {
+    width: 45px;
+    stroke: #ffffff;
+  }
+  
+  .btn-cadastrarSistema:hover {
+    background:  rgb(255, 166, 0);
+    
+  }
+  
+  .btn-cadastrarSistema:hover .btn-cadastrarSistema__text {
+    color: transparent;
+  }
+  
+  .btn-cadastrarSistema:hover .btn-cadastrarSistema__icon {
+    width: 368px;
+    transform: translateX(0);
+
+  }
+  
+  .btn-cadastrarSistema:active .btn-cadastrarSistema__icon {
+    background-color:  rgb(255, 166, 0);
+  }
+  
+  .btn-cadastrarSistema:active {
+    border: 1px solid  rgb(255, 166, 0);
+    
+  }
+
+
 /* Estilizção do menu lateral */
 
 .menu-lateral{
@@ -87,21 +158,19 @@
 
 .div-logo{
     width: 100%;
-    padding: 30px;
+    padding: 20px;
     transition: all 0.3s;
 }
 
 .btn-logo{
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 0 ;
     background-color: transparent;
     cursor: pointer;
 }
 
 .btn-logo:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: 0.4s;
 }
 
@@ -123,6 +192,7 @@
     visibility: hidden;
     opacity: 0;
     transition: all 0.3s;
+    background-color: red;
 }
 
 .div-logo2:hover{

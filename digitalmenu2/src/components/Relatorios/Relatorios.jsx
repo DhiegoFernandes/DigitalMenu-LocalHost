@@ -64,7 +64,6 @@ function Relatorios() {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-
   return (
     <>
       <div className="main-relatorio">
@@ -72,8 +71,8 @@ function Relatorios() {
           <div className='btn-relatorios'>
 
             <FormControl className="form-TipoRelatorio">
-              <InputLabel>Tipo de Relatório</InputLabel>
-              <Select className="select-TipoRelatorio" id="TipoRelatorio" value={filtro.tipo} onChange={handleChangeTipo} >
+              <InputLabel  sx={{ fontSize: 20}}>Tipo de Relatório</InputLabel>
+              <Select label="teste"className="select-TipoRelatorio" id="TipoRelatorio" value={filtro.tipo} onChange={handleChangeTipo} >
                 <MenuItem value="produtoFaturado">Produtos + Faturados</MenuItem>
                 <MenuItem value="produtoVendido">Produtos + Vendidos</MenuItem>
                 <MenuItem value="totalPedido">Total (R$) por Pedido</MenuItem>
@@ -82,7 +81,7 @@ function Relatorios() {
 
 
             <FormControl className="form-TipoRelatorio">
-              <InputLabel>Mês</InputLabel>
+              <InputLabel sx={{ fontSize: 20}}>Mês</InputLabel>
               <Select className="select-TipoRelatorio" type="text"
                 name="mes"
                 label="Mês"
@@ -105,7 +104,7 @@ function Relatorios() {
 
 
             <FormControl className="form-TipoRelatorio">
-              <InputLabel>Ano</InputLabel>
+              <InputLabel sx={{ fontSize: 20}}>Ano</InputLabel>
               <Select className="select-TipoRelatorio" type="text"
                 name="ano"
                 label="Ano"

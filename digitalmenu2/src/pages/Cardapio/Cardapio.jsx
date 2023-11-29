@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import './cardapio.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
+import order from '../../assets/image/order.png';
 import { MainContext } from "../../context/context";
 import { Modal } from '@mui/material';
 import Carrinho from "../../components/Carrinho/Carrinho";
@@ -105,10 +106,10 @@ function Cardapio(props) {
                 // Lógica para atualizar o preço quando atualizarPrecoPedido for true
                 // Pode ser uma chamada para listarTotal ou qualquer lógica específica que você precise
                 // ...
-    
+
                 // Após a atualização, marque como falso para evitar atualizações desnecessárias
                 setAtualizarPrecoPedido(false);
-            }    
+            }
 
         });
         console.log("Chamou", listarTotal)
@@ -124,7 +125,7 @@ function Cardapio(props) {
 
     const fecharCarrinho = () => {
         setMostrarCarrinho(false);
-      };
+    };
 
     const [openEncerrarPedido, setOpenEncerrarPedido] = useState(false);
     const OpenEncerrarPedido = () => setOpenEncerrarPedido(true);
@@ -134,11 +135,15 @@ function Cardapio(props) {
         <>
             <div className='header_cardapio'>
                 <img className='tamanho_logoDM_Cardapio' src={logoDM} alt="" />
+
                 <div className="header__informacoes">
-                    
+                    <img className='tamanho_imgPedido' src={order} alt="" />
                     <div className="header__informacoesPedido">
-                        <p>Mesa   N°: {numeroMesa}</p>
-                        <p>Pedido N°: {numeroPedido.idpedido}</p>
+                        <div>
+                            <p>Mesa   N°: {numeroMesa}</p>
+                            <p>Pedido N°: {numeroPedido.idpedido}</p>
+                        </div>
+
                     </div>
 
                     <button className="btn-EncerrarPedido" onClick={async () => {
@@ -202,7 +207,7 @@ function Cardapio(props) {
                         {produtosFiltrados.map((produto) => (
                             <div key={produto.id} className="cardapio-celula">
                                 <div className="informacoes_produto">
-                                 {/*    <p className="id_produtoCardapio">{produto.idproduto}</p> */}
+                                    {/*    <p className="id_produtoCardapio">{produto.idproduto}</p> */}
                                     <p className="nome-produtoCardapio">{produto.nome}</p>
                                     <p className="preco-produtoCardapio">R$ {produto.preco}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>

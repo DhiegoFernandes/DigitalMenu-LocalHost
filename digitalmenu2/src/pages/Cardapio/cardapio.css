@@ -30,17 +30,22 @@
 .header__informacoesPedido {
     display: inline-block;
     width: 100px;
-    text-align: center;
-    border-radius: 4px;
+    border-radius: 5px;
     width: 10vw;
 
     margin-right: 18vw;
+    background-color: #f44734;
+
 
     color: white;
     font-size: 15px;
-/*     background-color: palegoldenrod; */
+    text-align: center;
+    padding: 2px;
+}
 
-
+.tamanho_imgPedido{
+    width: 40px;
+    margin-right: 2px;
 }
 
 .header__informacoes__valores {
