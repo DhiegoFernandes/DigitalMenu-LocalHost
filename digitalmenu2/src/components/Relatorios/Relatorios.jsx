@@ -68,9 +68,6 @@ function Relatorios() {
   return (
     <>
       <div className="main-relatorio">
-        <h1>o css ainda nao ta pronto aqui
-          .dhiego
-        </h1>
         <div className='container-relatorios'>
           <div className='btn-relatorios'>
 
@@ -130,23 +127,47 @@ function Relatorios() {
             <Button className="" variant="contained" onClick={handlePesquisar}>Gerar Relatório</Button>
           </div>
 
+          <div className='indice-tabela-rel'>
+
+            <table className='dados-indice-tabela-rel'>
+              <tr >
+                <td> <div className='rel-Indice1'><p>Nome</p></div></td>
+                <td><div className='rel-Indice2'><p>Valor Faturado/Quantidade</p></div></td>
+                <td> <div className='rel-Indice3'><p>Imagem Produto</p></div></td>
+              </tr>
+            </table>
+
+          </div>
 
           <div className='tabela-relatorio-pesquisa'>
             {total ? (
-              <div className='dados-relatorio'>
+              <div className='dados-relatorio-mes'>
                 {dadosPesquisa[0] && <p className='txt-TotalMes'>Total arrecadado de pedidos no mês:</p>}
                 <p className='txt-valorTotalMes'>R${dadosPesquisa[0].total}</p>
               </div>
             ) : (
-
               dadosPesquisa.map((dados, index) => (
-
                 <div className="dados-relatorio" key={index}>
-                  <p className='txt_relProduto'>Nome: {dados.NomeDoProduto}</p>
-                  <p className='txt_relTopProduto'>{filtro.isFaturamento ? 'Valor faturado: R$' : 'QNTD: '} {dados.QuantidadeVendida}</p>
-                  <div className='relAreaImagem'>
-                    <p >{dados.imagem ? <img className="relatorio_imagemProduto" src={`http://localhost:3333/uploads/${dados.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Imagem não disponível'}</p>
-                  </div>
+
+
+
+                  <table className='dadostabela-rel'>
+                    <tr >
+                      <td> <div className='rel-Dados1'> <p className='txt_relProduto'>{/* 'Nome: ' */}{dados.NomeDoProduto}</p></div></td>
+                      <td><div className='rel-Dados2'><p className='txt_relTopProduto'>{/* {filtro.isFaturamento ? 'Valor faturado: R$' : 'QNTD: '}  */}{dados.QuantidadeVendida}</p></div></td>
+                      <td>
+                        <div className='rel-Dados3'>
+                          <div className='relAreaImagem'><p >{dados.imagem ? <img className="relatorio_imagemProduto" src={`http://localhost:3333/uploads/${dados.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Imagem não disponível'}</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+
+
+
+
+
                 </div>
               ))
             )}

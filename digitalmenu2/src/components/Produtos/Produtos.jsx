@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
-import { Modal } from '@mui/material';
+import { Modal, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import localePTBR from '../../util/locale';
-
 
 import './produtos.css'
 import '../Modal/modal_componentes.css';
-import camera from '../../assets/image/camera.png' 
+import camera from '../../assets/image/camera.png'
 
 
 function Produtos() {
@@ -202,17 +201,20 @@ function Produtos() {
                                             </div>
                                             <div className='dropDown_categorias_div marg-media'>
                                                 <p className='label_cadastro_produto '>Categoria</p>
-                                                <select className="dropDown_categorias " value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                                                    {categorias.map((categoria) => (
-                                                        <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
-                                                    ))}
-                                                </select>
+                                                <FormControl >
+                                                    {/*     <InputLabel>categoria</InputLabel> */}
+                                                    <Select className="dropDown_categorias" onChange={(e) => setCategoria(e.target.value)}>
+                                                        {categorias.map((categoria) => (
+                                                            <MenuItem key={categoria.nome} value={categoria.nome}>{categoria.nome}</MenuItem>
+                                                        ))}
+                                                    </Select>
+                                                </FormControl>
                                             </div>
 
                                             <div className='foto_cadastro_produto'>
                                                 <p className='label_cadastro_produto marg-pequena'>Imagem</p>
                                                 <label className="imagem_cadastro_produto" htmlFor="inputTag">
-                                                    <img className="icone_Camera_produtos"src={camera} alt="" />
+                                                    <img className="icone_Camera_produtos" src={camera} alt="" />
                                                     <p>Imagem Produto</p>
                                                     <input className='input_foto_produto marg-pequena'
                                                         id='inputTag'

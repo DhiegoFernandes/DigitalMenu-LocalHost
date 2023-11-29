@@ -72,9 +72,10 @@
     border: 1px solid black;
     border-radius: 4px;
     height: 30px;
-    width: 100%;
+    width: 350px;
     margin-top: 1%;
 }
+
 
 .label_cadastro_produto {
     font-size: 17px;

@@ -62,11 +62,110 @@
     /*     background-color: antiquewhite; */
 }
 
+/* ------------- Indice Tabela -------------*/
+.indice-tabela-rel {
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid black;
+
+}
+
+.indice-tabela-rel p {
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.dados-indice-tabela-rel {
+    width: 100%;
+   /*  background-color: yellow; */
+    justify-content: space-between;
+    margin-right: 2vh;
+
+}
+
+
+.rel-Indice1 {
+   /*  background-color: purple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+}
+
+.rel-Indice2 {
+   /*  background-color: rgb(221, 13, 221); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+
+}
+
+.rel-Indice3 {
+    /* background-color: rgb(0, 128, 77); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    text-align: center;
+
+}
+
+/* --------- Dados dentro da tabela ---------*/
+.dadostabela-rel {
+    width: 100%;
+ /*    background-color: rgb(0, 251, 255); */
+    justify-content: space-between;
+}
+
+.rel-Dados1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+/*     background-color: purple; */
+}
+
+.rel-Dados2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+ /*    background-color: rgb(221, 13, 221); */
+}
+
+.rel-Dados3 {
+/*     background-color: rgb(0, 128, 77); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    text-align: center;
+
+}
+
+
 .dados-relatorio {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #c4c1c1;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dados-relatorio-mes {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #c4c1c1;
-    background-color: rgb(253, 0, 0);
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
@@ -94,19 +193,13 @@
     display: flex;
     align-items: center;
     font-size: 2rem;
-    width: 40%;
-    margin-right: 10%;
-    /*     background-color: purple; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 .txt_relTopProduto {
     display: flex;
     align-items: center;
     font-size: 2rem;
-    width: 25%;
-    font-size: 2rem;
-    margin-right: 17%;
-    /*     background-color: bisque; */
 }
 
 .txt-TotalMes {
