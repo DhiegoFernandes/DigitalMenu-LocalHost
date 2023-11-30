@@ -3,6 +3,7 @@ import '../Modal/modal_componentes.css';
 import { Modal, Select, MenuItem, Button, TextField, FormControl, InputLabel } from '@mui/material';
 import { useState, useContext } from 'react';
 import { MainContext } from '../../context/context';
+import graph from '../../assets/image/graph.png';
 
 function Relatorios() {
   const { produtosMaisFaturados, produtosMaisVendidos, totalEmPedidos } = useContext(MainContext);
@@ -76,16 +77,16 @@ function Relatorios() {
           <div className='btn-relatorios'>
 
             <FormControl className="form-TipoRelatorio">
-              <InputLabel  sx={{ fontSize: 20}}>Tipo de Relatório</InputLabel>
-              <Select label="teste"className="select-TipoRelatorio" id="TipoRelatorio" value={filtro.tipo} onChange={handleChangeTipo}>
+              <InputLabel sx={{ fontSize: 20 }}>Tipo de Relatório</InputLabel>
+              <Select label="teste" className="select-TipoRelatorio" id="TipoRelatorio" value={filtro.tipo} onChange={handleChangeTipo}>
                 <MenuItem value="produtoFaturado">Produtos + Faturados</MenuItem>
                 <MenuItem value="produtoVendido">Produtos + Vendidos</MenuItem>
-                <MenuItem value="totalPedido">Total (R$) por Pedido</MenuItem>
+                <MenuItem value="totalPedido">Total (R$) por Pedidos</MenuItem>
               </Select>
             </FormControl>
 
             <FormControl className="form-TipoRelatorio">
-              <InputLabel sx={{ fontSize: 20}}>Mês</InputLabel>
+              <InputLabel sx={{ fontSize: 20 }}>Mês</InputLabel>
               <Select className="select-TipoRelatorio" type="text"
                 name="mes"
                 label="Mês"
@@ -108,7 +109,7 @@ function Relatorios() {
 
 
             <FormControl className="form-TipoRelatorio">
-              <InputLabel sx={{ fontSize: 20}}>Ano</InputLabel>
+              <InputLabel sx={{ fontSize: 20 }}>Ano</InputLabel>
               <Select className="select-TipoRelatorio" type="text"
                 name="ano"
                 label="Ano"
@@ -136,24 +137,36 @@ function Relatorios() {
 
             <table className='dados-indice-tabela-rel'>
               <tr >
-                <td> <div className='rel-Indice1'><p>Nome</p></div></td>
-                <td><div className='rel-Indice2'><p>Valor</p></div></td>
-                <td> <div className='rel-Indice3'><p>Imagem</p></div></td>
+                <td> <div className='rel-Indice1'><p className='txt-rel-indice'>Nome</p></div></td>
+                <td><div className='rel-Indice2'><p className='txt-rel-indice'>Valor</p></div></td>
+                <td> <div className='rel-Indice3'><p className='txt-rel-indice'>Imagem</p></div></td>
               </tr>
             </table>
 
-          </div> 
+          </div>
 
           <div className='tabela-relatorio-pesquisa'>
             {total ? (
               <div className='dados-relatorio-mes'>
+
                 {dadosPesquisa && <p className='txt-TotalMes'>Total arrecadado de pedidos no mês:</p>}
-                <p className='txt-valorTotalMes'>R${dadosPesquisa[0].total}</p>
-                <p className='txt-valorTotalMes'>{dadosPesquisa[0].quantidade}</p>
+                <div className='relatorio-ganhos'>
+                  <img className="img-grafico" src={graph} />
+                  <p className='txt-valorTotalMes'>R${dadosPesquisa[0].total}</p>
+
+
+                </div>
+                <div className='relatorio-totalPedidos'>
+                  <p className='txt-qtdeMes'>de um total de:</p>
+                  <p className='txt-qtdeTotalMes'>{dadosPesquisa[0].quantidade}</p>
+                  <p className='txt-qtdeMes'> Pedidos</p>
+                </div>
+
+
               </div>
             ) : (
-              
-              
+
+
               dadosPesquisa.map((dados, index) => (
                 <div className="dados-relatorio" key={index}>
 

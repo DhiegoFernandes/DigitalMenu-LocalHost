@@ -192,7 +192,7 @@
     visibility: hidden;
     opacity: 0;
     transition: all 0.3s;
-    background-color: red;
+    background-color: rgb(230, 157, 2);
 }
 
 .div-logo2:hover{
