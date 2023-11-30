@@ -13,6 +13,8 @@ function Relatorios() {
   const [dadosPesquisa, setDadosPesquisa] = useState([]);
   const [total, setTotal] = useState(false)
 
+  const [esconder, setEsconder] = useState("indice-tabela-rel-escondido");
+
   // Variáveis do Modal
   const [openModal, setOpenModal] = useState(false);
 
@@ -39,6 +41,7 @@ function Relatorios() {
           setOpenModal(true);
           setTotal(false);
           setFiltro({ ...filtro, isFaturamento: true });
+          setEsconder("indice-tabela-rel");
         });
       } else if (filtro.tipo === 'produtoVendido') {
         produtosMaisVendidos(periodo.mes, periodo.ano).then((resp) => {
@@ -46,6 +49,7 @@ function Relatorios() {
           setOpenModal(true);
           setTotal(false);
           setFiltro({ ...filtro, isFaturamento: false });
+          setEsconder("indice-tabela-rel");
         });
       } else if (filtro.tipo === 'totalPedido') {
         totalEmPedidos(periodo.ano, periodo.mes).then((resp) => {
@@ -53,6 +57,7 @@ function Relatorios() {
           setOpenModal(true);
           setTotal(true);
           setFiltro({ ...filtro, isFaturamento: false });
+          setEsconder("indice-tabela-rel-escondido");
         });
       }
     } catch (error) {
@@ -72,13 +77,12 @@ function Relatorios() {
 
             <FormControl className="form-TipoRelatorio">
               <InputLabel  sx={{ fontSize: 20}}>Tipo de Relatório</InputLabel>
-              <Select label="teste"className="select-TipoRelatorio" id="TipoRelatorio" value={filtro.tipo} onChange={handleChangeTipo} >
+              <Select label="teste"className="select-TipoRelatorio" id="TipoRelatorio" value={filtro.tipo} onChange={handleChangeTipo}>
                 <MenuItem value="produtoFaturado">Produtos + Faturados</MenuItem>
                 <MenuItem value="produtoVendido">Produtos + Vendidos</MenuItem>
                 <MenuItem value="totalPedido">Total (R$) por Pedido</MenuItem>
               </Select>
             </FormControl>
-
 
             <FormControl className="form-TipoRelatorio">
               <InputLabel sx={{ fontSize: 20}}>Mês</InputLabel>
@@ -124,27 +128,32 @@ function Relatorios() {
             /> */}
 
             <Button className="" variant="contained" onClick={handlePesquisar}>Gerar Relatório</Button>
+
+            {console.log(dadosPesquisa)}
           </div>
 
-          <div className='indice-tabela-rel'>
+          <div className={esconder}>
 
             <table className='dados-indice-tabela-rel'>
               <tr >
                 <td> <div className='rel-Indice1'><p>Nome</p></div></td>
-                <td><div className='rel-Indice2'><p>Valor Faturado/Quantidade</p></div></td>
-                <td> <div className='rel-Indice3'><p>Imagem Produto</p></div></td>
+                <td><div className='rel-Indice2'><p>Valor</p></div></td>
+                <td> <div className='rel-Indice3'><p>Imagem</p></div></td>
               </tr>
             </table>
 
-          </div>
+          </div> 
 
           <div className='tabela-relatorio-pesquisa'>
             {total ? (
               <div className='dados-relatorio-mes'>
-                {dadosPesquisa[0] && <p className='txt-TotalMes'>Total arrecadado de pedidos no mês:</p>}
+                {dadosPesquisa && <p className='txt-TotalMes'>Total arrecadado de pedidos no mês:</p>}
                 <p className='txt-valorTotalMes'>R${dadosPesquisa[0].total}</p>
+                <p className='txt-valorTotalMes'>{dadosPesquisa[0].quantidade}</p>
               </div>
             ) : (
+              
+              
               dadosPesquisa.map((dados, index) => (
                 <div className="dados-relatorio" key={index}>
 
@@ -153,7 +162,7 @@ function Relatorios() {
                   <table className='dadostabela-rel'>
                     <tr >
                       <td> <div className='rel-Dados1'> <p className='txt_relProduto'>{/* 'Nome: ' */}{dados.NomeDoProduto}</p></div></td>
-                      <td><div className='rel-Dados2'><p className='txt_relTopProduto'>{/* {filtro.isFaturamento ? 'Valor faturado: R$' : 'QNTD: '}  */}{dados.QuantidadeVendida}</p></div></td>
+                      <td><div className='rel-Dados2'><p className='txt_relTopProduto'>{filtro.isFaturamento ? 'R$' : ''} {dados.QuantidadeVendida}</p></div></td>
                       <td>
                         <div className='rel-Dados3'>
                           <div className='relAreaImagem'><p >{dados.imagem ? <img className="relatorio_imagemProduto" src={`http://localhost:3333/uploads/${dados.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Imagem não disponível'}</p>
@@ -162,10 +171,6 @@ function Relatorios() {
                       </td>
                     </tr>
                   </table>
-
-
-
-
 
                 </div>
               ))

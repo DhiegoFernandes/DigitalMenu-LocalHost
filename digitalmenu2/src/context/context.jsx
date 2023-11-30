@@ -132,7 +132,6 @@ function MainProvider({ children }) {
     }
 
     async function listarItens(idPedido){
-        // e.preventDefault();
         
         try {
             const { data } = await api.get(`/itens/pedidos/${idPedido}`);

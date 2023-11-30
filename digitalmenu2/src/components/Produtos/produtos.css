@@ -22,12 +22,6 @@
     width: 100%;
 }
 
-
-.btn-cadastro-produto button:hover {
-    opacity: 0.8;
-    transform: scale(1.1)
-}
-
 .btn-actions {
     display: flex;
     justify-content: space-between;

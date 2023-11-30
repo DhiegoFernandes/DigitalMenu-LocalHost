@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import './cardapio.css';
+import './comanda.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
 import order from '../../assets/image/order.png';
 import { MainContext } from "../../context/context";
@@ -19,6 +20,8 @@ function Cardapio(props) {
     const [total, setTotal] = useState(0);
     const [atualizarPrecoPedido, setAtualizarPrecoPedido] = useState(false);
     const [enviarPedidoClicado, setEnviarPedidoClicado] = useState(false);
+
+    const [itensPedido, setItensPedido] = useState([]);
 
     const adicionarProdutoAoCarrinho = (produto) => {
 
@@ -146,9 +149,10 @@ function Cardapio(props) {
 
                     </div>
 
-                    <button className="btn-EncerrarPedido" onClick={async () => {
-                        // const { data } = await listarItens(); 
-                        // setItensPedido(data); 
+                    <button className="btn-EncerrarPedido" onClick={ () => {
+                        
+                        listarItens(numeroPedido.idpedido).then(resultado => {console.log("Ta printando esse:",resultado); setItensPedido(resultado)}).catch(erro => console.log(erro));
+                        // setItensPedido(resultado); 
                         OpenEncerrarPedido();
                     }}>
                         <i className="material-symbols-outlined size_IconCarrinho">point_of_sale</i>
@@ -233,17 +237,36 @@ function Cardapio(props) {
             >
                 <div className='modal'>
                     <div className='btn-modal'>
-                        <div className='modal-ativar'>
-                            <p>Tem certeza que deseja encerrar o seu pedido?</p>
-                            <p className="atencao">*ATENÇÃO: Ao pressionar o botão "Sim" sua conta será encerrada, se deseja apenas enviar o pedido para ser preparo, abra o carrinho e envie o pedido.</p>
-                            <div className="itens-pedido">
-                                {/* {console.log("Print do array dos itens: ",itensPedido)}
-                                {itensPedido.map((itens) => (
-                                    <div key={itens}>
-                                        <p>Produto: {itens.nome} Quantidade: {itens.QNTD} Preço: {itens.preco} Subtotal: {itens.subtotal} </p>
-                                    </div>
-                                ))} */}
+                        <div className='modal-ativar-comanda'>
+                            <div className="comanda">
+                                <h2 className="text-comanda">Comanda</h2>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <p>Mesa   N°: {numeroMesa}</p>
+                                <p>Pedido N°: {numeroPedido.idpedido}</p>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <div className="comanda-cabecalho">
+                                    <p className="cabecalho-nome">Nome</p>
+                                    <p className="cabecalho-qntd">Qntd.</p>
+                                    <p className="cabecalho-preco">Preço(uni.)</p>
+                                    <p className="cabecalho-subtotal">Subtotal</p>
+                                </div>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <div className="itens-pedido">     
+                                    
+                                    {itensPedido.map((itens, index) => (
+                                        <div className="comanda-tabela" key={index}>
+                                            <p className="tabela-nome">{itens.nome}</p>
+                                            <p className="tabela-qntd">{itens.QTDE}</p>
+                                            <p className="tabela-preco">{itens.preco}</p>
+                                            <p className="tabela-subtotal">{itens.subtotal} </p>
+                                        </div>
+                                    ))}
+
+                                </div>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <div className="comanda-total">Total: R${totalPedido}</div>
                             </div>
+                            <p className="pergunta-final">Encerrar conta?</p>
                             <div className='botoes-sim-nao marg-grande'>
                                 <button className='btn-cancelar' onClick={() => CloseEncerrarPedido()}>Não</button>
                                 <button className='btn-salvar' onClick={() => { CloseEncerrarPedido(); encerraPedido(numeroPedido.idpedido); }}>Sim</button>
