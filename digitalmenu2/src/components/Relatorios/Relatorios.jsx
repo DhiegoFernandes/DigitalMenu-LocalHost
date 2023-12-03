@@ -27,6 +27,21 @@ function Relatorios() {
     setPeriodo({ ...periodo, [event.target.name]: event.target.value });
   };
 
+  const formatarNumero = (numero, isFaturamento = false) => {
+    if (typeof numero !== 'string') {
+      numero = String(numero);
+    }
+  
+    if (isFaturamento) {
+      const partes = numero.split('.');
+      const parteInteira = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      const parteDecimal = partes[1] ? `,${partes[1]}` : '';
+      return `R$ ${parteInteira}${parteDecimal}`;
+    }
+
+    return numero.replace('.', ',');
+  };
+  
   const handlePesquisar = () => {
 
     try {
@@ -152,7 +167,7 @@ function Relatorios() {
                 {dadosPesquisa && <p className='txt-TotalMes'>Total arrecadado de pedidos no mês:</p>}
                 <div className='relatorio-ganhos'>
                   <img className="img-grafico" src={graph} />
-                  <p className='txt-valorTotalMes'>R${dadosPesquisa[0].total}</p>
+                  <p className='txt-valorTotalMes'>R${formatarNumero(dadosPesquisa[0].total, true)}</p>
 
 
                 </div>
@@ -175,7 +190,7 @@ function Relatorios() {
                   <table className='dadostabela-rel'>
                     <tr >
                       <td> <div className='rel-Dados1'> <p className='txt_relProduto'>{/* 'Nome: ' */}{dados.NomeDoProduto}</p></div></td>
-                      <td><div className='rel-Dados2'><p className='txt_relTopProduto'>{filtro.isFaturamento ? 'R$' : ''} {dados.QuantidadeVendida}</p></div></td>
+                      <td><div className='rel-Dados2'><p className='txt_relTopProduto'> {formatarNumero(dados.QuantidadeVendida)}</p></div></td>
                       <td>
                         <div className='rel-Dados3'>
                           <div className='relAreaImagem'><p >{dados.imagem ? <img className="relatorio_imagemProduto" src={`http://localhost:3333/uploads/${dados.imagem}`} alt="Imagem" width="100%" height="auto" /> : 'Imagem não disponível'}</p>

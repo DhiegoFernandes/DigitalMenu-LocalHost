@@ -164,7 +164,7 @@ function Cardapio(props) {
                     <button className="btn-Carrinho" onClick={toggleCarrinho}>
                         <i className="material-symbols-outlined size_IconCarrinho" id="icone-canto-tela">shopping_cart</i>
                         <div>
-                            <p>Total R$ {totalPedido}</p>
+                            <p>Total R$ {totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
                             <p>{produtosNoCarrinho.length} produto{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p>
                         </div>
 
@@ -213,7 +213,7 @@ function Cardapio(props) {
                                 <div className="informacoes_produto">
                                     {/*    <p className="id_produtoCardapio">{produto.idproduto}</p> */}
                                     <p className="nome-produtoCardapio">{produto.nome}</p>
-                                    <p className="preco-produtoCardapio">R$ {produto.preco}</p>
+                                    <p className="preco-produtoCardapio">R$ {produto.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>
 
                                     <div className="btn-AdicionarProdutoCarrinho marg-pequena">
@@ -257,14 +257,14 @@ function Cardapio(props) {
                                         <div className="comanda-tabela" key={index}>
                                             <p className="tabela-nome">{itens.nome}</p>
                                             <p className="tabela-qntd">{itens.QTDE}</p>
-                                            <p className="tabela-preco">{itens.preco}</p>
-                                            <p className="tabela-subtotal">{itens.subtotal} </p>
+                                            <p className="tabela-preco">{itens.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
+                                            <p className="tabela-subtotal">{itens.subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')} </p>
                                         </div>
                                     ))}
 
                                 </div>
                                 <p>-----------------------------------------------------------------------------</p>
-                                <div className="comanda-total">Total: R${totalPedido}</div>
+                                <div className="comanda-total">Total: R${totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</div>
                             </div>
                             <p className="pergunta-final">Encerrar conta?</p>
                             <div className='botoes-sim-nao marg-grande'>

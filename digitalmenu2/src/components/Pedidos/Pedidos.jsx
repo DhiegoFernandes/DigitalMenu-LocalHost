@@ -47,7 +47,10 @@ function Pedidos(){
                 headerName: "Total",
                 minWidth: 100,
                 hideable: false,
-                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                )
             },
             {
                 field: "data",
@@ -130,14 +133,20 @@ function Pedidos(){
                 headerName: "Preço",
                 minWidth: 50,
                 hideable: false,
-                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                )
             },
             {
                 field: "subtotal",
                 headerName: "Subtotal",
                 minWidth: 50,
                 hideable: false,
-                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                )
             },
             {
                 field: "observacao",

@@ -65,7 +65,10 @@ function Produtos() {
             headerName: "Preço",
             minWidth: 50,
             hideable: false,
-            renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+            renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+            renderCell: (params) => (
+                <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            )
         },
         {
             field: "status",
@@ -92,7 +95,7 @@ function Produtos() {
                     <button><i className='material-symbols-outlined' onClick={() => {
                         setIdproduto(params.row.idproduto);
                         setNome(params.row.nome);
-                        setPreco(params.row.preco);
+                        setPreco(params.row.preco.toString().replace('.', ','));
                         setCategoria(params.row.categoria);
                         setDescricao(params.row.descricao)
                         setStatus(params.row.status);

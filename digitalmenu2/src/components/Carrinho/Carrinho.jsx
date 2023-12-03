@@ -127,7 +127,7 @@ function Carrinho(props) {
                 <div className="info-produtosCarrinho">
                   <div className="info-ladoEsquerdoCarrinho">
                     <p className="txt-tituloProdutoCarrinho">{produto.quantidade}x{produto.nome}</p>
-                    <p className="txt-precoCarrinho">R${produto.preco}</p>
+                    <p className="txt-precoCarrinho">R${produto.preco.toString().replace('.', ',').toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p className="txt-quantidadeCarrinho"> Quantidade</p>
 
                     <div className="btn-adicionarCarrinho">
@@ -155,7 +155,7 @@ function Carrinho(props) {
 
       </div>
       <div className="carrinho-conteudo-inferior">
-        <p className="p-totalCarrinho">Total: R$ {calcularTotal()}</p>
+      <p className="p-totalCarrinho">Total: R$ {calcularTotal().toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
         <button className="btn-carrinhoEnviarPedido" onClick={OpenEnviarPedido}>Enviar pedido</button>
         {/* <button className="btn-carrinhoEncerrarPedido" onClick={() => encerraPedido(numeroPedido.idpedido)}>Encerrar pedido</button> */}
       </div>
