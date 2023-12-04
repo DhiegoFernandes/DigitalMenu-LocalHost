@@ -29,7 +29,7 @@ function Categorias() {
             field: "idcategoria",
             headerName: "ID Categoria",
             minWidth: 150,
-            hideable: false,
+            hideable: true,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
         },
         {

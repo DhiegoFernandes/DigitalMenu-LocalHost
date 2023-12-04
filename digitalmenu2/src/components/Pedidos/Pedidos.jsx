@@ -32,14 +32,14 @@ function Pedidos(){
                 field: "idpedido",
                 headerName: "ID Pedido",
                 minWidth: 90,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
                 field: "id_mesa",
                 headerName: "ID Mesa",
                 minWidth: 90,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
@@ -104,14 +104,14 @@ function Pedidos(){
                 field: "iditem",
                 headerName: "ID Item",
                 minWidth: 50,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
                 field: "id_pedido",
                 headerName: "ID Pedido",
                 minWidth: 50,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {

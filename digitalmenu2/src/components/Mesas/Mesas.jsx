@@ -27,7 +27,7 @@ function Mesas() {
     const colunmMesas = [
         {
             field: "idmesa",
-            headerName: "ID Produto",
+            headerName: "Número da Mesa",
             minWidth: 250,
             hideable: false,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
