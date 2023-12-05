@@ -3,6 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useContext, useEffect, useState } from 'react';
 import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './categorias.css'
 import '../Modal/modal_componentes.css';
@@ -174,6 +176,7 @@ function Categorias() {
                             </div>
                         </div>
                     </Modal>
+                    <ToastContainer />
                 </div>
             </div>
         </>

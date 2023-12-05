@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../../context/context';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './login.css'
 
@@ -76,6 +78,7 @@ function Login(){
                                     }
                             >Logar</button>
                         </form>
+                        <ToastContainer />
                     </div>
                 </div>
             </div>

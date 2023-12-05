@@ -7,6 +7,8 @@ import localePTBR from '../../util/locale';
 import './produtos.css'
 import '../Modal/modal_componentes.css';
 import camera from '../../assets/image/camera.png'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Produtos() {
@@ -347,6 +349,7 @@ function Produtos() {
                             </div>
                         </div>
                     </Modal>
+                    <ToastContainer />
                 </div>
             </div>
         </>

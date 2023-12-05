@@ -7,6 +7,8 @@ import iniciarPedido from '../../assets/image/iniciarPedido.png';
 import cardapio from '../../assets/image/cardapio.png';
 import garcon from '../../assets/image/garcon.png';
 import garconete from '../../assets/image/garconete.png';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function TelaEspera() {
     const [idMesa, setIdMesa] = useState("");
     const { abrirPedido } = useContext(MainContext);
@@ -62,6 +64,7 @@ function TelaEspera() {
                         </div>
                     </div>
                 </div>
+                <ToastContainer />
             </div>
 
         </>

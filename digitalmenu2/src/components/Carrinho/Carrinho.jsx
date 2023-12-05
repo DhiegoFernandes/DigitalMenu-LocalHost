@@ -4,6 +4,8 @@ import { MainContext } from "../../context/context";
 import botaoFechar from '../../assets/image/close.png';
 import '../Modal/modal_componentes.css';
 import { Modal } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Carrinho(props) {
@@ -180,7 +182,7 @@ function Carrinho(props) {
           </div>
         </div>
       </Modal>
-
+      <ToastContainer />
     </div>
 
 

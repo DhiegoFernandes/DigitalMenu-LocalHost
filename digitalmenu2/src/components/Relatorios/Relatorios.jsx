@@ -4,6 +4,8 @@ import { Modal, Select, MenuItem, Button, TextField, FormControl, InputLabel } f
 import { useState, useContext } from 'react';
 import { MainContext } from '../../context/context';
 import graph from '../../assets/image/graph.png';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Relatorios() {
   const { produtosMaisFaturados, produtosMaisVendidos, totalEmPedidos } = useContext(MainContext);
@@ -167,7 +169,7 @@ function Relatorios() {
                 {dadosPesquisa && <p className='txt-TotalMes'>Total arrecadado de pedidos no mês:</p>}
                 <div className='relatorio-ganhos'>
                   <img className="img-grafico" src={graph} />
-                  <p className='txt-valorTotalMes'>R${formatarNumero(dadosPesquisa[0].total, true)}</p>
+                  <p className='txt-valorTotalMes'>{formatarNumero(dadosPesquisa[0].total, true)}</p>
 
 
                 </div>
@@ -203,6 +205,7 @@ function Relatorios() {
                 </div>
               ))
             )}
+            <ToastContainer />
           </div>
         </div>
 

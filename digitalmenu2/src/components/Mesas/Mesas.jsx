@@ -3,6 +3,8 @@ import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
 import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './mesas.css'
 import '../Modal/modal_componentes.css';
@@ -166,6 +168,7 @@ function Mesas() {
                             </div>
                         </div>
                     </Modal>
+                    <ToastContainer />
                 </div>
             </div>
         </>

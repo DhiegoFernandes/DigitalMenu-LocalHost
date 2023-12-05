@@ -3,6 +3,8 @@ import './cardapio.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
 import { MainContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Menu() {
     const { listarProdutosComImagens } = useContext(MainContext);
@@ -83,6 +85,7 @@ function Menu() {
                                 </div>  
                         ))}
                     </div>
+                    <ToastContainer />
                 </div>
             </div>
         </>

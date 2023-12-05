@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../../context/context';
 import './client.css';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Client() {
     const { listarMesasAtivas, autenticacaoMesa } = useContext(MainContext);
@@ -62,6 +64,7 @@ function Client() {
                                 </div>
                             ))}
                         </div>
+                        <ToastContainer />
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import { MainContext } from "../../context/context";
 import { Modal } from '@mui/material';
 import Carrinho from "../../components/Carrinho/Carrinho";
 import '../../components/Carrinho/Carrinho.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cardapio(props) {
     const { listarProdutosComImagens, listarTotal, encerraPedido, listarItens } = useContext(MainContext);
@@ -274,6 +276,7 @@ function Cardapio(props) {
                         </div>
 
                     </div>
+                    <ToastContainer />
                 </div>
             </Modal>
         </>

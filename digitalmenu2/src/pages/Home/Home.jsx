@@ -3,6 +3,8 @@ import './home.css';
 
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
 import fotoApresentacao from '../../assets/image/fotoApresentacao.png';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
 
@@ -51,6 +53,7 @@ function Home() {
 
                         </div>
                     </div>
+                    <ToastContainer />
                 </main>
 
 
