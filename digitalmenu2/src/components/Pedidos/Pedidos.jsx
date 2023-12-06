@@ -11,7 +11,7 @@ import './pedidos.css'
 
 function Pedidos(){
 
-        const {listarPedidos, listarItens, editarQuantidade, cancelarItem, encerrarPedido} = useContext(MainContext);
+        const {listarPedidos, listarItens, editarQuantidade, cancelarItem, encerraPedidoSistema} = useContext(MainContext);
     
         const [pedidos, setPedidos] = useState([]);
         const [itens, setItens] = useState([]);
@@ -295,7 +295,7 @@ function Pedidos(){
                                     <p>Tem certeza que deseja encerrar o pedido {idpedido}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseEncerra() }}>Não</button>
-                                        <button className='btn-salvar' onClick={() => { encerrarPedido(idpedido); setUpdatePedidos(true); CloseEncerra(); }}>Sim</button>
+                                        <button className='btn-salvar' onClick={() => { encerraPedidoSistema(idpedido); setUpdatePedidos(true); CloseEncerra(); }}>Sim</button>
                                     </div>
                                 </div>
 

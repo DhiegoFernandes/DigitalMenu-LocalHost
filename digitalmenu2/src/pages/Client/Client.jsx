@@ -40,7 +40,7 @@ function Client() {
 
                 <div className='client_principal'>
                     <div className="client_mensagem">
-                        <h1 className='restaurante_nome'>( Restaurante )</h1>
+                        <h1 className='restaurante_nome'>Restaurante</h1>
                         <p className='restaurante_descricao'>Bem-vindo ao<span className='restaurante_descricao_destaque'>Restaurante</span></p>
                         <p></p>
                     </div>

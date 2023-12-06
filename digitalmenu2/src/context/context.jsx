@@ -222,13 +222,15 @@ function MainProvider({ children }) {
     }
 
     
-    // async function encerrarPedido(id_pedido){
-    //     try {
-    //         const { data } = await api.put(`/pedidos/encerra-pedido/${id_pedido}`);
-    //     } catch (e) {
-    //         console.log("Erro ao cancelar pedido", e)
-    //     }
-    // }
+    async function encerraPedidoSistema(id_pedido){
+         try {
+             const { data } = await api.put(`/pedidos/encerra-pedido/${id_pedido}`);
+             createNotification('Sucesso ao encerrar pedido', 'success');
+         } catch (e) {
+             console.log("Erro ao cancelar pedido", e)
+             createNotification('Erro ao encerrar pedido.');
+         }
+     }
 
     // ==================== Produtos ==================== //
 
@@ -513,7 +515,7 @@ function MainProvider({ children }) {
             listarItens,
             editarQuantidade,
             cancelarItem,
-            //encerrarPedido,
+            encerraPedidoSistema,
             produtosMaisFaturados,
             produtosMaisVendidos,
             totalEmPedidos
