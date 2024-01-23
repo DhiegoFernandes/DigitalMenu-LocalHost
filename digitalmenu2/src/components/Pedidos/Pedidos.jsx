@@ -3,13 +3,15 @@ import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
 import { Modal } from '@mui/material';
 import localePTBR from '../../util/locale';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './pedidos.css'
 
 
 function Pedidos(){
 
-        const {listarPedidos, listarItens, editarQuantidade, cancelarItem, encerrarPedido} = useContext(MainContext);
+        const {listarPedidos, listarItens, editarQuantidade, cancelarItem, encerraPedidoSistema} = useContext(MainContext);
     
         const [pedidos, setPedidos] = useState([]);
         const [itens, setItens] = useState([]);
@@ -32,14 +34,14 @@ function Pedidos(){
                 field: "idpedido",
                 headerName: "ID Pedido",
                 minWidth: 90,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
                 field: "id_mesa",
                 headerName: "ID Mesa",
                 minWidth: 90,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
@@ -47,7 +49,10 @@ function Pedidos(){
                 headerName: "Total",
                 minWidth: 100,
                 hideable: false,
-                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                )
             },
             {
                 field: "data",
@@ -101,14 +106,14 @@ function Pedidos(){
                 field: "iditem",
                 headerName: "ID Item",
                 minWidth: 50,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
                 field: "id_pedido",
                 headerName: "ID Pedido",
                 minWidth: 50,
-                hideable: false,
+                hideable: true,
                 renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
             },
             {
@@ -130,14 +135,20 @@ function Pedidos(){
                 headerName: "Preço",
                 minWidth: 50,
                 hideable: false,
-                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                )
             },
             {
                 field: "subtotal",
                 headerName: "Subtotal",
                 minWidth: 50,
                 hideable: false,
-                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+                renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+                renderCell: (params) => (
+                    <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                )
             },
             {
                 field: "observacao",
@@ -284,7 +295,7 @@ function Pedidos(){
                                     <p>Tem certeza que deseja encerrar o pedido {idpedido}?</p>
                                     <div className='botoes-sim-nao marg-grande'>
                                         <button className='btn-cancelar' onClick={() => { CloseEncerra() }}>Não</button>
-                                        <button className='btn-salvar' onClick={() => { encerrarPedido(idpedido); setUpdatePedidos(true); CloseEncerra(); }}>Sim</button>
+                                        <button className='btn-salvar' onClick={() => { encerraPedidoSistema(idpedido); setUpdatePedidos(true); CloseEncerra(); }}>Sim</button>
                                     </div>
                                 </div>
 
@@ -313,6 +324,7 @@ function Pedidos(){
                             </div>
                         </div>
                     </Modal>
+                    <ToastContainer />
                 </div>
             </div>
         </>

@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import './cardapio.css';
+import './comanda.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
+import order from '../../assets/image/order.png';
 import { MainContext } from "../../context/context";
 import { Modal } from '@mui/material';
 import Carrinho from "../../components/Carrinho/Carrinho";
 import '../../components/Carrinho/Carrinho.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cardapio(props) {
     const { listarProdutosComImagens, listarTotal, encerraPedido, listarItens } = useContext(MainContext);
@@ -16,6 +20,9 @@ function Cardapio(props) {
     const [produtosNoCarrinho, setProdutosNoCarrinho] = useState(props.produtosNoCarrinho || []);
     const [totalPedido, setTotalPedido] = useState(0);
     const [total, setTotal] = useState(0);
+    const [atualizarPrecoPedido, setAtualizarPrecoPedido] = useState(false);
+    const [enviarPedidoClicado, setEnviarPedidoClicado] = useState(false);
+
     const [itensPedido, setItensPedido] = useState([]);
 
     const adicionarProdutoAoCarrinho = (produto) => {
@@ -100,10 +107,18 @@ function Cardapio(props) {
         listarTotal(numeroPedido.idpedido).then((data) => {
             console.log("Data de listarTotal:", data);
             setTotalPedido(data[0]?.TOTAL || 0);
+            if (atualizarPrecoPedido) {
+                // Lógica para atualizar o preço quando atualizarPrecoPedido for true
+                // Pode ser uma chamada para listarTotal ou qualquer lógica específica que você precise
+                // ...
+
+                // Após a atualização, marque como falso para evitar atualizações desnecessárias
+                setAtualizarPrecoPedido(false);
+            }
 
         });
         console.log("Chamou", listarTotal)
-    }, [mostrarCarrinho, numeroPedido.idpedido]);
+    }, [mostrarCarrinho, numeroPedido.idpedido, atualizarPrecoPedido]);
 
 
     useEffect(() => {
@@ -111,11 +126,11 @@ function Cardapio(props) {
         const numeroItens = produtosNoCarrinho.length;
 
         setTotal(novoTotal);
-    }, [produtosNoCarrinho]);
+    }, [produtosNoCarrinho, enviarPedidoClicado]);
 
     const fecharCarrinho = () => {
         setMostrarCarrinho(false);
-      };
+    };
 
     const [openEncerrarPedido, setOpenEncerrarPedido] = useState(false);
     const OpenEncerrarPedido = () => setOpenEncerrarPedido(true);
@@ -125,34 +140,21 @@ function Cardapio(props) {
         <>
             <div className='header_cardapio'>
                 <img className='tamanho_logoDM_Cardapio' src={logoDM} alt="" />
+
                 <div className="header__informacoes">
-                  <div className="header__informacoes__valores">
-                        <button className="btn-Carrinho" onClick={toggleCarrinho}>
-                            <i className="material-symbols-outlined" id="icone-canto-tela">shopping_cart</i>
-                            <p>Total (conta) R$ {totalPedido}</p>
-
-                        </button>
-                        {mostrarCarrinho && (
-                            <Carrinho
-                                produtosNoCarrinho={produtosNoCarrinho}
-                                total={total}
-                                onRemoverProdutoDoCarrinho={onRemoverProdutoDoCarrinho}
-                                setProdutosNoCarrinho={setProdutosNoCarrinho}
-                                listarTotal={listarTotal}
-                                fecharCarrinho={fecharCarrinho}
-                            />
-                        )}
-                        
-                    </div>
-
+                    <img className='tamanho_imgPedido' src={order} alt="" />
                     <div className="header__informacoesPedido">
-                        <p>Mesa   N°: {numeroMesa}</p>
-                        <p>Pedido N°: {numeroPedido.idpedido}</p>
+                        <div>
+                            <p>Mesa   N°: {numeroMesa}</p>
+                            <p>Pedido N°: {numeroPedido.idpedido}</p>
+                        </div>
+
                     </div>
 
-                    <button className="btn-EncerrarPedido" onClick={async () => {
-                        // const { data } = await listarItens(); 
-                        // setItensPedido(data); 
+                    <button className="btn-EncerrarPedido" onClick={ () => {
+                        
+                        listarItens(numeroPedido.idpedido).then(resultado => {console.log("Ta printando esse:",resultado); setItensPedido(resultado)}).catch(erro => console.log(erro));
+                        // setItensPedido(resultado); 
                         OpenEncerrarPedido();
                     }}>
                         <i className="material-symbols-outlined size_IconCarrinho">point_of_sale</i>
@@ -164,7 +166,7 @@ function Cardapio(props) {
                     <button className="btn-Carrinho" onClick={toggleCarrinho}>
                         <i className="material-symbols-outlined size_IconCarrinho" id="icone-canto-tela">shopping_cart</i>
                         <div>
-                            <p>Total R$ {totalPedido}</p>
+                            <p>Total R$ {totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
                             <p>{produtosNoCarrinho.length} produto{produtosNoCarrinho.length !== 1 ? 's' : ''} no carrinho</p>
                         </div>
 
@@ -178,6 +180,7 @@ function Cardapio(props) {
                             setProdutosNoCarrinho={setProdutosNoCarrinho}
                             listarTotal={listarTotal}
                             fecharCarrinho={fecharCarrinho}
+                            setAtualizarPrecoPedido={setAtualizarPrecoPedido}
                         />
                     )}
 
@@ -210,9 +213,9 @@ function Cardapio(props) {
                         {produtosFiltrados.map((produto) => (
                             <div key={produto.id} className="cardapio-celula">
                                 <div className="informacoes_produto">
-                                 {/*    <p className="id_produtoCardapio">{produto.idproduto}</p> */}
+                                    {/*    <p className="id_produtoCardapio">{produto.idproduto}</p> */}
                                     <p className="nome-produtoCardapio">{produto.nome}</p>
-                                    <p className="preco-produtoCardapio">R$ {produto.preco}</p>
+                                    <p className="preco-produtoCardapio">R$ {produto.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>
 
                                     <div className="btn-AdicionarProdutoCarrinho marg-pequena">
@@ -236,17 +239,36 @@ function Cardapio(props) {
             >
                 <div className='modal'>
                     <div className='btn-modal'>
-                        <div className='modal-ativar'>
-                            <p>Tem certeza que deseja encerrar o seu pedido?</p>
-                            <p className="atencao">*ATENÇÃO: Ao pressionar o botão "Sim" sua conta será encerrada, se deseja apenas enviar o pedido para ser preparo, abra o carrinho e envie o pedido.</p>
-                            <div className="itens-pedido">
-                                {/* {console.log("Print do array dos itens: ",itensPedido)}
-                                {itensPedido.map((itens) => (
-                                    <div key={itens}>
-                                        <p>Produto: {itens.nome} Quantidade: {itens.QNTD} Preço: {itens.preco} Subtotal: {itens.subtotal} </p>
-                                    </div>
-                                ))} */}
+                        <div className='modal-ativar-comanda'>
+                            <div className="comanda">
+                                <h2 className="text-comanda">Comanda</h2>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <p>Mesa   N°: {numeroMesa}</p>
+                                <p>Pedido N°: {numeroPedido.idpedido}</p>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <div className="comanda-cabecalho">
+                                    <p className="cabecalho-nome">Nome</p>
+                                    <p className="cabecalho-qntd">Qntd.</p>
+                                    <p className="cabecalho-preco">Preço(uni.)</p>
+                                    <p className="cabecalho-subtotal">Subtotal</p>
+                                </div>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <div className="itens-pedido">     
+                                    
+                                    {itensPedido.map((itens, index) => (
+                                        <div className="comanda-tabela" key={index}>
+                                            <p className="tabela-nome">{itens.nome}</p>
+                                            <p className="tabela-qntd">{itens.QTDE}</p>
+                                            <p className="tabela-preco">{itens.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
+                                            <p className="tabela-subtotal">{itens.subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')} </p>
+                                        </div>
+                                    ))}
+
+                                </div>
+                                <p>-----------------------------------------------------------------------------</p>
+                                <div className="comanda-total">Total: R${totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</div>
                             </div>
+                            <p className="pergunta-final">Encerrar conta?</p>
                             <div className='botoes-sim-nao marg-grande'>
                                 <button className='btn-cancelar' onClick={() => CloseEncerrarPedido()}>Não</button>
                                 <button className='btn-salvar' onClick={() => { CloseEncerrarPedido(); encerraPedido(numeroPedido.idpedido); }}>Sim</button>
@@ -254,6 +276,7 @@ function Cardapio(props) {
                         </div>
 
                     </div>
+                    <ToastContainer />
                 </div>
             </Modal>
         </>

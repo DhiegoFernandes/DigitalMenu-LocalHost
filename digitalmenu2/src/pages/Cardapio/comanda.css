@@ -1,0 +1,89 @@
+.comanda{
+    background-color: #CCC;
+    width: 460px;
+    height: auto;
+    text-align: left;
+
+    box-shadow: black 0px 0px 5px 0px;
+}
+
+.text-comanda{
+    font-size: 1.9rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.comanda p{
+    font-size: 1.1rem;
+    margin: 2px;
+}
+
+.comanda-total{
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.comanda-cabecalho{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px;
+    margin-right: 0.5vw;
+}
+
+.cabecalho-nome{
+    /* border: 1px solid red; */
+    width: 40%;
+}
+.cabecalho-qntd{
+    /* border: 1px solid orange; */
+    width: 10%;
+    text-align: center;
+}
+.cabecalho-preco{
+    /* border: 1px solid green; */
+    width: 20%;
+    text-align: center;
+}
+.cabecalho-subtotal{
+    /* border: 1px solid blue; */
+    width: 20%;
+    text-align: center;
+}
+
+.comanda-tabela{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px;
+}
+
+.tabela-nome{
+   /* border: 1px solid red;  */
+   width: 40%;
+}
+.tabela-qntd{
+    /* border: 1px solid orange; */
+    width: 10%;
+    text-align: center;
+}
+.tabela-preco{
+    /* border: 1px solid green; */
+    width: 20%;
+    text-align: center;
+}
+.tabela-subtotal{
+    /* border: 1px solid blue; */
+    width: 20%;
+    text-align: center;
+}
+
+.pergunta-final{
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+
+.itens-pedido{
+    height: 24vh;
+    overflow-y: auto;
+}

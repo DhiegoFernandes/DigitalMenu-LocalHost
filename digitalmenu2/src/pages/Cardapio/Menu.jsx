@@ -3,6 +3,8 @@ import './cardapio.css';
 import logoDM from '../../assets/image/logo_digitalmenu2.png';
 import { MainContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Menu() {
     const { listarProdutosComImagens } = useContext(MainContext);
@@ -68,7 +70,7 @@ function Menu() {
                             <div key={produto.idproduto} className="cardapio-celula">
                                 <div className="informacoes_produto">
                                 <p className="nome-produtoCardapio">{produto.nome}</p>
-                                    <p className="preco-produtoCardapio">R${produto.preco}</p>
+                                    <p className="preco-produtoCardapio">R${produto.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',')}</p>
                                     <p className="descricao-produtoCardapio">{produto.descricao}</p>
 
                                     
@@ -83,6 +85,7 @@ function Menu() {
                                 </div>  
                         ))}
                     </div>
+                    <ToastContainer />
                 </div>
             </div>
         </>

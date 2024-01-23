@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Nabla&display=swap');
 
 .main-client {
-    background-color: #525252;
+    background: rgb(246, 242, 217);
+    background: linear-gradient(90deg, rgba(246, 242, 217, 1) 0%, rgb(245, 236, 179) 50%, rgba(246, 242, 217, 1) 100%);
     height: 100vh;
 }
 
@@ -14,8 +15,10 @@
 }
 
 .div_principal_client {
-    background-color: white;
-    border: 3px solid #f44734;
+    display: flex;
+    flex-direction: column;
+    background-color:  rgb(93, 92, 92);
+    border: 4px solid #f44734;
 
 
     margin-left: 20vw;
@@ -40,7 +43,7 @@
 
 .client_mensagem {
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-bottom: 2vh;
 
 
@@ -73,12 +76,15 @@
 
     margin-left: 5px;
     height: 30px;
+    color: white;
 }
 
 .txt-escolhaMesa {
     text-align: center;
     font-size: 2rem;
     font-family: 'Bebas Neue';
+    color: white;
+
 }
 
 
@@ -120,29 +126,23 @@
 /* ------------ Mesa Container ------------*/
 
 .mesas-container {
-    /*     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 2fr)); */
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
     
-    margin-top: 5px;
-    margin-bottom: 30px;
-
-
+    margin-top: 2vh;
 }
 
 .mesas {
-    width: 100px;
+    width: 120px;
+    height: 100px;
     font-weight: bold;
-    background-color: gainsboro;
-    border-radius: 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 60px;
     font-size: 2rem;
     text-align: center;
-
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
+    margin: 5px;
 
 }
 
@@ -154,7 +154,7 @@
     text-align: center;
     cursor: pointer;
     transform: scale(1.1);
-    border-bottom: 5px solid #f44734;
+    border-bottom: 7px solid #f44734;
 }
 
 

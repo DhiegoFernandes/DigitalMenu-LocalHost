@@ -1,38 +1,43 @@
 .main-relatorio {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
-    grid-template-rows: 25vh 25vh 25vh 25vh;
+    grid-template-rows: 20vh 30vh 40vh 10vh;
 }
 
 .container-relatorios {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     grid-row: 2/4;
     grid-column: 2/6;
 
-
-    background-color: white;
     border-radius: 5px;
-/*     box-shadow: 0px 0px 10px gray; */
+
 }
 
 .btn-relatorios {
     display: flex;
-    flex-direction: column;
-    width: 30%;
+    flex-direction: row;
+    margin-bottom: 1vh;
 }
 
-.relatorio-pesquisa {
-    
-    border: 2px solid black;
-    overflow-y: auto;
-    width: 70%;
+.form-TipoRelatorio {
+    width: 25%;
+    padding: 200px;
+    margin-right: 20px;
+
+}
+
+.select-TipoRelatorio {
+    background-color: white;
+    margin-right: 1vw;
+}
+
+.textField-relatorio {
+    width: 20%;
 }
 
 .btn-relatorios button {
-    border: 0;
     border-radius: 10px;
-    padding: 60px;
     background-color: rgb(255, 166, 0);
     font-weight: bold;
     color: white;
@@ -40,9 +45,261 @@
     box-shadow: 0px 0px 2px black;
     cursor: pointer;
     font-size: 20px;
+
+    width: 30%;
 }
 
 .btn-relatorios button:hover {
-    opacity: 0.8;
-    transform: scale(1.1)
+    opacity: 0.9;
+    transform: scale(1.05);
+    background-color: rgb(219, 151, 25);
+    transition: 0.s;
+}
+
+.tabela-relatorio-pesquisa {
+    background-color: white;
+    overflow-y: auto;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    
+  
+}
+
+border-radius: 20px;
+
+.tabela-relatorio-pesquisa {
+    background-color: white;
+    overflow-y: auto;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    
+  
+}
+
+/* ------------- Indice Tabela -------------*/
+.indice-tabela-rel {
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid black;
+    margin-top: 2vh;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.indice-tabela-rel-escondido {
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid black;
+    visibility: hidden;
+    margin-top: 2vh;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    
+}
+
+.indice-tabela-rel p {
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.dados-indice-tabela-rel {
+    width: 100%;
+    /*  background-color: yellow; */
+    justify-content: space-between;
+    margin-right: 2vh;
+
+
+}
+
+
+.rel-Indice1 {
+    /*  background-color: purple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+}
+
+.rel-Indice2 {
+    /*  background-color: rgb(221, 13, 221); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+
+
+}
+
+.rel-Indice3 {
+    /* background-color: rgb(0, 128, 77); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    text-align: center;
+
+}
+
+/* --------- Dados dentro da tabela ---------*/
+.dadostabela-rel {
+    width: 100%;
+    /*    background-color: rgb(0, 251, 255); */
+    justify-content: space-between;
+}
+
+.rel-Dados1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+    /*     background-color: purple; */
+}
+
+.rel-Dados2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+    /*    background-color: rgb(221, 13, 221); */
+}
+
+.rel-Dados3 {
+    /*     background-color: rgb(0, 128, 77); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    text-align: center;
+
+}
+
+
+.dados-relatorio {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #c4c1c1;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.dados-relatorio-mes {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #c4c1c1;
+   /*  background-color: white; */
+    align-items: center;
+
+
+    border-radius: 20px;
+    height: 50vh;
+    
+}
+
+.relAreaImagem {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgb(230, 227, 227);
+    font-size: 10px;
+
+}
+
+.relatorio-ganhos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+    
+    background-color: rgba(255, 255, 0, 0.751);
+    padding: 20px;
+    border-radius: 30px
+}
+
+.relatorio-totalPedidos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2vh;
+/*     background-color: rgb(229, 36, 36); */
+}
+
+.relatorio_imagemProduto {
+    width: 80px;
+    height: 80px;
+}
+
+.img-grafico {
+    width: 50px;
+    margin-right: 1vw;
+}
+
+
+/* ----------------- TEXTO ----------------- */
+
+.txt-rel-indice{
+    font-weight: bold;
+    color: white;
+    background-color: rgb(44, 44, 44);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+
+}
+
+.txt_relProduto {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.txt_relTopProduto {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.txt-TotalMes {
+    margin-top: 2vh;
+    border-radius: 20px;
+    padding: 10px;
+
+    background-color: rgb(44, 44, 44);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 3rem;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.txt-valorTotalMes {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.txt-qtdeMes{
+    text-align: center;
+    font-size: 2rem;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    
+}
+
+.txt-qtdeTotalMes{
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 2rem;
 }

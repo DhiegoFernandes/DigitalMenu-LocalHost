@@ -48,6 +48,7 @@ function MainProvider({ children }) {
             localStorage.setItem('numeroMesa', idMesa);
             navigate("/TelaEspera");
         } catch (e) {
+            createNotification("Erro ao abrir mesa, por favor encerre o pedido nela", 'error');
             console.log("Erro na autenticação" + e);
         }
     }
@@ -74,6 +75,7 @@ function MainProvider({ children }) {
           return data;
         } catch (e) {
           console.log("Erro ao listar produtos mais faturados", e);
+          createNotification('Erro ao listar!', 'error');
         }
       }
       
@@ -86,6 +88,7 @@ function MainProvider({ children }) {
           return data;
         } catch (e) {
           console.log("Erro ao listar produtos mais vendidos", e);
+          createNotification('Erro ao listar!', 'error');
         }
       }
       
@@ -98,6 +101,7 @@ function MainProvider({ children }) {
           return data;
         } catch (e) {
           console.log("Erro ao exibir arrecadação do mês", e);
+          createNotification('Erro ao listar!', 'error');
         }
       }
 
@@ -132,7 +136,6 @@ function MainProvider({ children }) {
     }
 
     async function listarItens(idPedido){
-        // e.preventDefault();
         
         try {
             const { data } = await api.get(`/itens/pedidos/${idPedido}`);
@@ -157,8 +160,10 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.put("/itens/pedidos/quantidades", {iditem, qtde})
             console.log("Quantidade editada com sucesso");
+            createNotification('Sucesso ao editar produto', 'success');
         } catch (e) {
-            console.log("Erro ao editar quantidade" , e)            
+            console.log("Erro ao editar quantidade" , e);
+            createNotification('Erro ao editar produto', 'error');            
         }
     }
 
@@ -168,8 +173,10 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.put(`/itens/${iditem}`)
             console.log("Sucesso ao cancelar o item: ", iditem)
+            createNotification('Sucesso ao cancelar item', 'success');
         } catch (e) {
-            console.log("Erro ao cancelar item" , e)            
+            console.log("Erro ao cancelar item" , e) 
+            createNotification('Erro ao cancelar item', 'error');           
         }
     }
 
@@ -185,6 +192,7 @@ function MainProvider({ children }) {
             return data;
         } catch (error) {
             console.log("Erro ao abrir pedido com a  "+ idMesa)
+            createNotification('Erro ao abrir pedido com a mesa:'+idMesa , 'error')
         }
     }
 
@@ -194,7 +202,8 @@ function MainProvider({ children }) {
             console.log("Sucesso ao encerrar o pedido do numero ", idPedido);
             navigate('/TelaEspera');
         } catch (error) {
-            console.log("Erro ao encerrar o pedido do numero ", idPedido)
+            console.log("Erro ao encerrar o pedido do numero ", idPedido);
+            createNotification('Erro ao encerrar pedido, por favor chame o gerente');
         }
     }
 
@@ -208,16 +217,20 @@ function MainProvider({ children }) {
             return data;
         } catch (error) {
             console.log("Erro ao inserir item no pedido", error);
+            createNotification('Erro ao enviar produto, por favor chame o gerente');
         }
     }
 
-    async function encerrarPedido(id_pedido){
-        try {
-            const { data } = await api.put(`/pedidos/encerra-pedido/${id_pedido}`);
-        } catch (e) {
-            console.log("Erro ao cancelar pedido", e)
-        }
-    }
+    
+    async function encerraPedidoSistema(id_pedido){
+         try {
+             const { data } = await api.put(`/pedidos/encerra-pedido/${id_pedido}`);
+             createNotification('Sucesso ao encerrar pedido', 'success');
+         } catch (e) {
+             console.log("Erro ao cancelar pedido", e)
+             createNotification('Erro ao encerrar pedido.');
+         }
+     }
 
     // ==================== Produtos ==================== //
 
@@ -272,9 +285,10 @@ function MainProvider({ children }) {
         try{
             console.log('Entrou no try e esta assim: ', formData)
             const {data} = await api.post('/produto', formData)
-            console.log('datatinha: '+imagem)
+            createNotification('Produto cadastrado com sucesso!', 'success');
         }catch(e){
             console.log("Erro ao cadastrar produto", e)
+            createNotification('Erro ao cadastrar produto', 'error');
         }
     }
 
@@ -288,9 +302,10 @@ function MainProvider({ children }) {
 
         try {
             const { data } = await api.put("/produto", {nome, preco, descricao, categoria, status, idproduto});
-            console.log("Sucesso ao alterar produto", idproduto)
+            createNotification("Sucesso ao alterar produto",'success');
         } catch (e) {
-            console.log("Erro ao editar produto", e)
+            console.log("Erro ao editar produto", e);
+            createNotification('Erro ao editar produto', 'error');
         }
     }
 
@@ -299,9 +314,10 @@ function MainProvider({ children }) {
 
         try {
             const { data } = await api.delete(`/produto/${idproduto}`);
-            console.log("Produto desativado:" + idproduto);
+            createNotification("Produto desativado com sucesso!", 'success');
         } catch (e) {
             console.error("Erro ao desativar produto:", e);
+            createNotification('Erro ao desativar produto', 'error');
         }
     }
 
@@ -327,8 +343,10 @@ function MainProvider({ children }) {
             const { data } = await api.post("/mesa", { idMesa });
             // Realiza o redirecionamento após o sucesso da chamada da API
             console.log("Mesa criada com sucesso id da mesa:"+ idMesa);
+            createNotification("Mesa criada com sucesso!", 'success');
         } catch (e) {
             console.error("Erro ao cadastrar mesa:", e);
+            createNotification('Erro ao cadastrar mesa!', 'error');
 
         }
     }
@@ -366,8 +384,10 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.delete(`/mesa/${idMesa}`, config);
             console.log("Mesa deletada: " + idMesa);
+            createNotification('Sucesso ao desativar mesa','success');
         } catch (e) {
             console.error("Erro ao deletar mesa:", e);
+            createNotification('Erro ao desativar mesa','success');
         }
     }
 
@@ -377,8 +397,10 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.put(`/mesa/${idMesa}`);
             console.log("Mesa ativada: " + idMesa);
+            createNotification('Sucesso ao ativar mesa','success');
         } catch (e) {
             console.error("Erro ao ativar mesa:", e);
+            createNotification('Erro ao ativar mesa','error');
         }
     }
 
@@ -407,8 +429,10 @@ function MainProvider({ children }) {
         try{
             const { data } = await api.post("/categorias/criar", {nome});
             console.log("Categoria cadastrada com sucesso!")
+            createNotification('Categoria cadastrada com sucesso!','success');
         }catch(e){
-            console.log("Erro ao cadastrar categoria: ", e)
+            console.log("Erro ao cadastrar categoria: ", e);
+            createNotification('Erro ao cadastrar categoria!','error');
         }
     }
 
@@ -418,8 +442,10 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.delete(`/categorias/deletar/${idCategoria}`, config);
             console.log("Categoria deletada: " + idCategoria);
+            createNotification('Categoria desativada com sucesso!','success');
         } catch (e) {
             console.error("Erro ao deletar categoria:", e);
+            createNotification('Erro ao desativar  categoria','error');
         }
     }
 
@@ -429,8 +455,10 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.put(`/categorias/ativar/${idCategoria}`, config);
             console.log("Categoria ativada: " + idCategoria);
+            createNotification('Categoria ativada com sucesso!','success');
         } catch (e) {
             console.error("Erro ao ativar Categoria:" + idCategoria, e);
+            createNotification('Erro ao ativar categoria','error');
         }
     }
 
@@ -487,7 +515,7 @@ function MainProvider({ children }) {
             listarItens,
             editarQuantidade,
             cancelarItem,
-            encerrarPedido,
+            encerraPedidoSistema,
             produtosMaisFaturados,
             produtosMaisVendidos,
             totalEmPedidos

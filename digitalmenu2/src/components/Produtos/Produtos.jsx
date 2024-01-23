@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../../context/context';
 import { DataGrid } from '@mui/x-data-grid';
-import { Modal } from '@mui/material';
+import { Modal, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import localePTBR from '../../util/locale';
-
 
 import './produtos.css'
 import '../Modal/modal_componentes.css';
-import camera from '../../assets/image/camera.png' 
+import camera from '../../assets/image/camera.png'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Produtos() {
@@ -44,7 +45,7 @@ function Produtos() {
             field: "idproduto",
             headerName: "ID Produto",
             minWidth: 90,
-            hideable: false,
+            hideable: true,
             renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
         },
         {
@@ -66,7 +67,10 @@ function Produtos() {
             headerName: "Preço",
             minWidth: 50,
             hideable: false,
-            renderHeader: (params) => <strong>{params.colDef.headerName}</strong>
+            renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+            renderCell: (params) => (
+                <span>R$ {Number(params.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            )
         },
         {
             field: "status",
@@ -93,7 +97,7 @@ function Produtos() {
                     <button><i className='material-symbols-outlined' onClick={() => {
                         setIdproduto(params.row.idproduto);
                         setNome(params.row.nome);
-                        setPreco(params.row.preco);
+                        setPreco(params.row.preco.toString().replace('.', ','));
                         setCategoria(params.row.categoria);
                         setDescricao(params.row.descricao)
                         setStatus(params.row.status);
@@ -143,15 +147,25 @@ function Produtos() {
                         localeText={localePTBR}
                     />
                 </div>
+
+
+
+
+
                 <div className='btn-cadastro-produto'>
-                    <button onClick={() => {
+
+                    <button type="btn-cadastrarSistema" className="btn-cadastrarSistema" onClick={() => {
                         setIdproduto("");
                         setNome("");
                         setPreco("");
                         setDescricao("")
                         setStatus("");
                         Open();
-                    }}>Cadastrar Produto</button>
+                    }}>
+                        <span className="btn-cadastrarSistema__text">Cadastrar Produtos</span>
+                        <span className="btn-cadastrarSistema__icon"><svg xmlns="http://www.w3.org/2000/svg" width="44" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height="44" fill="none" className="svg"><line y2="22" y1="2" x2="12" x1="12"></line><line y2="12" y1="12" x2="22" x1="2"></line></svg></span>
+                    </button>
+
 
                     {/* CADASTRAR */}
                     <Modal
@@ -202,17 +216,20 @@ function Produtos() {
                                             </div>
                                             <div className='dropDown_categorias_div marg-media'>
                                                 <p className='label_cadastro_produto '>Categoria</p>
-                                                <select className="dropDown_categorias " value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                                                    {categorias.map((categoria) => (
-                                                        <option key={categoria.nome} value={categoria.nome}>{categoria.nome}</option>
-                                                    ))}
-                                                </select>
+                                                <FormControl >
+                                                    {/*     <InputLabel>categoria</InputLabel> */}
+                                                    <Select className="dropDown_categorias" onChange={(e) => setCategoria(e.target.value)}>
+                                                        {categorias.map((categoria) => (
+                                                            <MenuItem key={categoria.nome} value={categoria.nome}>{categoria.nome}</MenuItem>
+                                                        ))}
+                                                    </Select>
+                                                </FormControl>
                                             </div>
 
                                             <div className='foto_cadastro_produto'>
                                                 <p className='label_cadastro_produto marg-pequena'>Imagem</p>
                                                 <label className="imagem_cadastro_produto" htmlFor="inputTag">
-                                                    <img className="icone_Camera_produtos"src={camera} alt="" />
+                                                    <img className="icone_Camera_produtos" src={camera} alt="" />
                                                     <p>Imagem Produto</p>
                                                     <input className='input_foto_produto marg-pequena'
                                                         id='inputTag'
@@ -332,6 +349,7 @@ function Produtos() {
                             </div>
                         </div>
                     </Modal>
+                    <ToastContainer />
                 </div>
             </div>
         </>
